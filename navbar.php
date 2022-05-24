@@ -1,5 +1,5 @@
 
-<div class="container-fluid p-0">
+<div class="container-fluid navPrincipal p-0" style="background:#f39c12;">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"><img src="./images/128.png" alt="logo" class="logo"></a>
