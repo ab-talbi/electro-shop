@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Electro Shop</title>
+
+    
+    <!-- bootstrap-css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+    <!-- css file -->
+    <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./css/style.css?v=<?php echo time(); ?>">
+</head>
+<body>
+
+<body>
+    <input type="checkbox" id="checkbox">
+    <header class="header">
+		<h2 class="u-name">Electro <b>Shop</b>
+			<label for="checkbox">
+				<i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
+			</label>
+		</h2>
+		<i class="fa fa-user" aria-hidden="true"></i>
+	</header>
+	
+
+	<div class="body">
+		<nav class="side-bar">
+			<div class="user-p">
+				<img src="../images/drone.jpg">
+				<h4>L'admin</h4>
+			</div>
+			<ul>
+				<li>
+					<a href="#">
+						<i class="fa fa-desktop" aria-hidden="true"></i>
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+						<span>Ajouter Produits</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa-brands fa-product-hunt" aria-hidden="true"></i>
+						<span>Produits</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+						<span>Ajouter Catégories</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa-solid fa-list" aria-hidden="true"></i>
+						<span>Catégories</span>
+					</a>
+				</li>
+                <li>
+					<a href="#">
+						<i class="fa-solid fa-users" aria-hidden="true"></i>
+						<span>Les Utilisateurs</span>
+					</a>
+				</li>
+                <li>
+					<a href="#">
+						<i class="fa-solid fa-cart-plus" aria-hidden="true"></i>
+						<span>Les Demandes</span>
+					</a>
+				</li>
+                <li>
+					<a href="#">
+						<i class="fa fa-cog" aria-hidden="true"></i>
+						<span>Parametres</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-power-off" aria-hidden="true"></i>
+						<span>Déconnexion</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<section class="section-1">
+		</section>
+	</div>
+
+</body>
+
+
+
+    <!-- bootstrap-JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    
+</body>
+</html>
