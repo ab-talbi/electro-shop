@@ -1,11 +1,6 @@
 
-<<<<<<< HEAD
-<div class="container-fluid p-0 "  style="background:#f39c12">
-        <nav class="navbar navbar-expand-lg navbar-light" >
-=======
 <div class="container-fluid navPrincipal p-0" style="background:#f39c12;">
         <nav class="navbar navbar-expand-lg navbar-light">
->>>>>>> 2e1fb587cfad2d67dee2cfbe944efab8d3d3bddb
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"><img src="./images/128.png" alt="logo" class="logo"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
