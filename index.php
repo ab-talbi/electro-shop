@@ -1,3 +1,9 @@
+<?php
+
+    include('./includes/connect.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,8 +29,8 @@
         include("./navbar.php");
     ?>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
-        <ul class="navbar-nav me-auto">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black ">
+        <ul class="navbar-nav headerBC">
             <li class="nav-item">
                 <a href="" class="nav-link">Bienvenue</a>
             </li>
@@ -44,20 +50,20 @@
         <div class="col-md-2 bg-black-white p-0">
             <ul class="navbar-nav me-auto text-center">
                 <li class="nav-item bg-blue-black">
-                    <a href="" class="nav-link text-light"><h4>Delivary Brands</h4></a>
+                    <a href="" class="nav-link text-light"><h4>Les Marques</h4></a>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-light">Brand 1</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-light">Brand 2</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-light">Brand 3</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-light">Brand 4</a>
-                </li>
+                <?php
+                    
+                    $select_marques = $con->query('SELECT * FROM marques');
+                    if($select_marques){
+                        while($ligne = $select_marques->fetch(PDO::FETCH_OBJ)){
+                            echo "<li class='nav-item'><a href='index.php?marque=$ligne->id_marque' class='nav-link text-light'>$ligne->nom_marque</a></li>";
+                        }
+                    }else{
+                        echo "Pas de Marques pour le moment";  
+                    }
+
+                ?>
             </ul>
 
 
@@ -65,78 +71,41 @@
                 <li class="nav-item bg-blue-black">
                     <a href="" class="nav-link text-light"><h4>Les Catégories</h4></a>
                 </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-light">Catégorie 1</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-light">Catégorie 2</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-light">Catégorie 3</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link text-light">Catégorie 4</a>
-                </li>
+
+                <?php
+                    
+                    $select_categories = $con->query('SELECT * FROM categories');
+                    while($ligne = $select_categories->fetch(PDO::FETCH_OBJ)){
+                        echo "<li class='nav-item'><a href='index.php?categorie=$ligne->id_categorie' class='nav-link text-light'>$ligne->nom_categorie</a></li>";
+                    }
+                    
+                ?>
             </ul>
         </div>
 
         <div class="col-md-10">
             <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./images/samsung50.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Samsung 50 4K UHD Smart TV</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Ajouter</a>
-                            <a href="#" class="btn btn-secondary">Voir les détails</a>
+                <?php
+                    
+                    $select_produit = $con->query('SELECT * FROM produits order by rand() limit 0,12');
+                    while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
+                        echo "<div class='col-md-4 mb-2'>
+                        <div class='card'>
+                            <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                            <div class='card-body'>
+                                <h5 class='card-title'>$ligne->nom_produit</h5>
+                                <p class='card-text'>$ligne->description_produit</p>
+                                <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
+                                <a href='#' class='btn btn-primary'>Ajouter</a>
+                                <a href='#' class='btn btn-secondary'>Voir les détails</a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./images/appleimac.jpeg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Apple iMac A1418 21.5</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Ajouter</a>
-                            <a href="#" class="btn btn-secondary">Voir les détails</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./images/drone.jpg" class="card-img-top" alt="..." >
-                        <div class="card-body">
-                            <h5 class="card-title">Drone E99 Pro2 4K Dual Camera</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Ajouter</a>
-                            <a href="#" class="btn btn-secondary">Voir les détails</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./images/drone.jpg" class="card-img-top" alt="..." >
-                        <div class="card-body">
-                            <h5 class="card-title">Drone E99 Pro2 4K Dual Camera</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Ajouter</a>
-                            <a href="#" class="btn btn-secondary">Voir les détails</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="./images/drone.jpg" class="card-img-top" alt="..." >
-                        <div class="card-body">
-                            <h5 class="card-title">Drone E99 Pro2 4K Dual Camera</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Ajouter</a>
-                            <a href="#" class="btn btn-secondary">Voir les détails</a>
-                        </div>
-                    </div>
-                </div>
+                    </div>";
+                    }
+                    
+                ?>
+
+                
             </div>
         </div>
 

@@ -25,3 +25,15 @@ footer a{
     text-decoration: none;
     color: rgb(4, 13, 47);
 }
+.headerBC {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding:0 30px;
+	color: #fff;
+    width: 100%;
+}
+.navbar{
+    margin: 0;
+    padding: 0;
+}
