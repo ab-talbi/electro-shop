@@ -35,79 +35,162 @@
 	
 	<div class="container p-0 m-0">
 		<div class="row">
-		<div class="body col-lg-3">
-			<nav class="side-bar">
-				<div class="user-p">
-					<img src="../images/drone.jpg">
-					<h4>L'admin</h4>
-				</div>
-				<ul>
-					<li>
-						<a href="#">
-							<i class="fa fa-desktop" aria-hidden="true"></i>
-							<span>Dashboard</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
-							<span>Ajouter Produits</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa-brands fa-product-hunt" aria-hidden="true"></i>
-							<span>Produits</span>
-						</a>
-					</li>
-					<li>
-						<a href="./index.php?ajouter_categories">
-							<i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
-							<span>Ajouter Catégories </span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa-solid fa-list" aria-hidden="true"></i>
-							<span>Catégories</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa-solid fa-users" aria-hidden="true"></i>
-							<span>Les Utilisateurs</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa-solid fa-cart-plus" aria-hidden="true"></i>
-							<span>Les Demandes</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-cog" aria-hidden="true"></i>
-							<span>Parametres</span>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<i class="fa fa-power-off" aria-hidden="true"></i>
-							<span>Déconnexion</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
-			<section class="section-1">
-			</section>
-		</div>
-		<div class="col-lg-9 text-center">
-			<?php
-				if(isset($_GET['ajouter_categories'])){
-					include('./ajouter_categories.php');
-				}
-			?>
-		</div>
+			<div class="body col-lg-3">
+				<nav class="side-bar">
+					<div class="user-p">
+						<img src="../images/drone.jpg">
+						<h4>L'admin</h4>
+					</div>
+					<ul>
+						<li>
+							<a href="#">
+								<i class="fa fa-desktop" aria-hidden="true"></i>
+								<span>Dashboard</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+								<span>Ajouter Produits</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-brands fa-product-hunt" aria-hidden="true"></i>
+								<span>Produits</span>
+							</a>
+						</li>
+						<li>
+							<a href="./index.php?ajouter_categories">
+								<i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+								<span>Ajouter Catégories </span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-list" aria-hidden="true"></i>
+								<span>Catégories</span>
+							</a>
+						</li>
+						<li>
+							<a href="./index.php?ajouter_marques">
+								<i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+								<span>Ajouter Marques </span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-list" aria-hidden="true"></i>
+								<span>Marques</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-users" aria-hidden="true"></i>
+								<span>Les Utilisateurs</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-cart-plus" aria-hidden="true"></i>
+								<span>Les Demandes</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-cog" aria-hidden="true"></i>
+								<span>Parametres</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-power-off" aria-hidden="true"></i>
+								<span>Déconnexion</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<section class="section-1">
+				</section>
+			</div>
+			<div class="col-lg-9 text-center">
+
+				<!-- espace pour ajouter les categories -->
+				<?php
+					if(isset($_GET['ajouter_categories'])){
+						include('./ajouter_categories.php');
+						$request = htmlspecialchars($_GET['ajouter_categories']);
+						switch($request)
+						{
+							case 'success':
+								echo "<script>Swal.fire({position: 'center',
+									icon: 'success',
+									title: 'La catégorie ajouté avec succès',
+									showConfirmButton: false,
+									timer: 3000});
+									</script>";
+								break;
+
+							case 'error':
+								echo "<script>Swal.fire({position: 'center',
+									icon: 'error',
+									title: 'La catégorie éxiste déjà',
+									showConfirmButton: false,
+									timer: 3000});
+									</script>";
+								break;
+
+								case 'empty':
+									echo "<script>Swal.fire({position: 'center',
+										icon: 'error',
+										title: 'Donnez une categorie valide svp',
+										showConfirmButton: false,
+										timer: 3000});
+										</script>";
+									break;
+						}
+					}
+				?>
+
+
+				<!-- espace pour ajouter les categories -->
+				<?php
+					if(isset($_GET['ajouter_marques'])){
+						include('./ajouter_marques.php');
+						$request = htmlspecialchars($_GET['ajouter_marques']);
+						switch($request)
+						{
+							case 'success':
+								echo "<script>Swal.fire({position: 'center',
+									icon: 'success',
+									title: 'La marque ajouté avec succès',
+									showConfirmButton: false,
+									timer: 3000});
+									</script>";
+								break;
+
+							case 'error':
+								echo "<script>Swal.fire({position: 'center',
+									icon: 'error',
+									title: 'La marque éxiste déjà',
+									showConfirmButton: false,
+									timer: 3000});
+									</script>";
+								break;
+							
+								case 'empty':
+									echo "<script>Swal.fire({position: 'center',
+										icon: 'error',
+										title: 'Donnez une marque valide svp',
+										showConfirmButton: false,
+										timer: 3000});
+										</script>";
+									break;
+
+						}
+					}
+				?>
+			</div>
 		</div>
 	</div>
 </body>
