@@ -22,6 +22,7 @@
     background-color: rgba(2, 11, 47, 0.811);
 }
 footer a{
+    display: inline-block;
     text-decoration: none;
     color: rgb(4, 13, 47);
 }
@@ -36,4 +37,14 @@ footer a{
 .navbar{
     margin: 0;
     padding: 0;
+    margin: auto 20px;
+}
+.list{
+    text-align: center;
+    width: max-content;
+    padding: 0;
+    margin: 0;
+}
+.list li{
+    display: inline;
 }

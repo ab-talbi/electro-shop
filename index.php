@@ -23,6 +23,19 @@
 
 </head>
 <body>
+
+    <head>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a href="" class="nav-link">Bienvenue</a>
+                </li>
+                <li class="nav-item">
+                    <a href="" class="nav-link">Connexion</a>
+                </li>
+            </ul>
+        </nav>
+    </head>
     
     <!-- NavBar -->
     <?php

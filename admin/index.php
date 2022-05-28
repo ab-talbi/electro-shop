@@ -72,6 +72,18 @@
 							</a>
 						</li>
 						<li>
+							<a href="./index.php?ajouter_marques">
+								<i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
+								<span>Ajouter Marques </span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa-solid fa-list" aria-hidden="true"></i>
+								<span>Marques</span>
+							</a>
+						</li>
+						<li>
 							<a href="#">
 								<i class="fa-solid fa-users" aria-hidden="true"></i>
 								<span>Les Utilisateurs</span>
@@ -97,16 +109,87 @@
 						</li>
 					</ul>
 				</nav>
-				<section>
-
-				</section>
 			</div>
 			<div class="col-lg-9">
+
+				<!-- espace pour ajouter les categories -->
 				<?php
 					if(isset($_GET['ajouter_categories'])){
 						include('./ajouter_categories.php');
-					}
+						$request = htmlspecialchars($_GET['ajouter_categories']);
+						switch($request)
+						{
+							case 'success':
+								echo "<script>Swal.fire({position: 'center',
+									icon: 'success',
+									title: 'La catégorie ajouté avec succès',
+									showConfirmButton: false,
+									timer: 3000});
+									</script>";
+								break;
 
+							case 'error':
+								echo "<script>Swal.fire({position: 'center',
+									icon: 'error',
+									title: 'La catégorie éxiste déjà',
+									showConfirmButton: false,
+									timer: 3000});
+									</script>";
+								break;
+
+								case 'empty':
+									echo "<script>Swal.fire({position: 'center',
+										icon: 'error',
+										title: 'Donnez une categorie valide svp',
+										showConfirmButton: false,
+										timer: 3000});
+										</script>";
+									break;
+						}
+					}
+				?>
+
+
+				<!-- espace pour ajouter les marques -->
+				<?php
+					if(isset($_GET['ajouter_marques'])){
+						include('./ajouter_marques.php');
+						$request = htmlspecialchars($_GET['ajouter_marques']);
+						switch($request)
+						{
+							case 'success':
+								echo "<script>Swal.fire({position: 'center',
+									icon: 'success',
+									title: 'La marque ajouté avec succès',
+									showConfirmButton: false,
+									timer: 3000});
+									</script>";
+								break;
+
+							case 'error':
+								echo "<script>Swal.fire({position: 'center',
+									icon: 'error',
+									title: 'La marque éxiste déjà',
+									showConfirmButton: false,
+									timer: 3000});
+									</script>";
+								break;
+							
+								case 'empty':
+									echo "<script>Swal.fire({position: 'center',
+										icon: 'error',
+										title: 'Donnez une marque valide svp',
+										showConfirmButton: false,
+										timer: 3000});
+										</script>";
+									break;
+
+						}
+					}
+				?>
+				
+				<?php
+				
 					if(isset($_GET['ajouter_produit'])){
 						include('./ajouter_produit.php');
 					}

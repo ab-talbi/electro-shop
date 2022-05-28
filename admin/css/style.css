@@ -80,7 +80,7 @@
 	padding: 15px 0px;
 	padding-left: 17px;
 	margin-left: 0;
-	transition: 500ms background;
+	transition: 500ms;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -116,4 +116,8 @@
 }
 #checkbox:checked ~ .body .side-bar a span{
 	display: none;
+}
+.btn-ajouter{
+	background-color: #030026d8;
+	color:#ccc
 }
