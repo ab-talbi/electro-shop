@@ -13,6 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electro Shop - Acceuil</title>
 
+    <!-- google font -->
+    <link href='https://fonts.googleapis.com/css?family=Alice' rel='stylesheet'>
+
     <!-- bootstrap-css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
@@ -25,11 +28,6 @@
 </head>
 <body>
     
-    <!-- NavBar -->
-    <?php
-        include("./navbar.php");
-    ?>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
         <ul class="navbar-nav headerBC">
             <li class="nav-item">
@@ -41,9 +39,15 @@
         </ul>
     </nav>
     
+    <!-- NavBar -->
+    <?php
+        include("./navbar.php");
+    ?>
+
+    
     <div class="bg-black-white text-light">
         <h3 class="text-center">Electro Shop</h3>
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, aspernatur!</p>
+        <p class="text-center m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, aspernatur!</p>
     </div>
 
 
@@ -77,13 +81,16 @@
         <div class="col-md-10">
             <div class="row">
                 <?php
-                    if(!isset($_GET['trouver_produit'])){
+                    if(isset($_GET['search_btn'])){
+                        searchProducts();
+                    }elseif(isset($_GET['touslesproduits'])){
+                        getTousProduits();
+                    }else{
                         getProduits();
                     }
-                    
+                   
                     getProduitsByCategorie();
                     getProduitsByMarque();
-                    getProduitsByRechercher();
                     
                 ?>
 
