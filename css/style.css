@@ -47,4 +47,5 @@ footer a{
 }
 .list li{
     display: inline;
+    margin: 5px 15px;
 }

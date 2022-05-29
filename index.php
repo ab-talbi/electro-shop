@@ -24,25 +24,8 @@
 </head>
 <body>
 
-    <head>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a href="" class="nav-link">Bienvenue</a>
-                </li>
-                <li class="nav-item">
-                    <a href="" class="nav-link">Connexion</a>
-                </li>
-            </ul>
-        </nav>
-    </head>
-    
-    <!-- NavBar -->
-    <?php
-        include("./navbar.php");
-    ?>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black ">
+<nav class="navbar navbar-expand-lg navbar-dark bg-blue-black m-0">
         <ul class="navbar-nav headerBC">
             <li class="nav-item">
                 <a href="" class="nav-link">Bienvenue</a>
@@ -53,9 +36,15 @@
         </ul>
     </nav>
     
+    <!-- NavBar -->
+    <?php
+        include("./navbar.php");
+    ?>
+
+    
     <div class="bg-black-white text-light">
         <h3 class="text-center">Electro Shop</h3>
-        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, aspernatur!</p>
+        <p class="text-center m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, aspernatur!</p>
     </div>
 
 
