@@ -90,6 +90,7 @@
                             getProduits();
                         }
                     }
+                   
                     getProduitsByCategorie();
                     getProduitsByMarque();
                    

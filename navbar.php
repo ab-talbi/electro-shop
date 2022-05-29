@@ -12,7 +12,7 @@
                             <a class="nav-link active" aria-current="page" href="./index.php">Acceuil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Produits</a>
+                            <a class="nav-link" href="./index.php?touslesproduits">Produits</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
@@ -25,8 +25,8 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <input class="form-control me-2" name="search_data" type="search" placeholder="Search" aria-label="Search"/>
-                        <input type="submit" value="Search" name="search_btn" class="btn btn-outline-light"/>
+                        <input class="form-control me-2" name="search_data" type="search" placeholder="Rechercher" aria-label="Search"/>
+                        <input type="submit" value="Rechercher" name="search_btn" class="btn btn-outline-light"/>
                     </form>
                 </div>
             </div>
