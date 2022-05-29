@@ -1,6 +1,7 @@
 <?php
 
     include('./includes/connect.php');
+    include('./fonctions/fonctions.php');
 
 ?>
 
@@ -23,9 +24,19 @@
 
 </head>
 <body>
+<<<<<<< HEAD
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black m-0">
+=======
+    
+    <!-- NavBar -->
+    <?php
+        include("./navbar.php");
+    ?>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
+>>>>>>> deec10d876e82c01ec34a471e241e5dd41e00f52
         <ul class="navbar-nav headerBC">
             <li class="nav-item">
                 <a href="" class="nav-link">Bienvenue</a>
@@ -56,14 +67,7 @@
                 </li>
                 <?php
                     
-                    $select_marques = $con->query('SELECT * FROM marques');
-                    if($select_marques){
-                        while($ligne = $select_marques->fetch(PDO::FETCH_OBJ)){
-                            echo "<li class='nav-item'><a href='index.php?marque=$ligne->id_marque' class='nav-link text-light'>$ligne->nom_marque</a></li>";
-                        }
-                    }else{
-                        echo "Pas de Marques pour le moment";  
-                    }
+                    getMarques();
 
                 ?>
             </ul>
@@ -76,10 +80,7 @@
 
                 <?php
                     
-                    $select_categories = $con->query('SELECT * FROM categories');
-                    while($ligne = $select_categories->fetch(PDO::FETCH_OBJ)){
-                        echo "<li class='nav-item'><a href='index.php?categorie=$ligne->id_categorie' class='nav-link text-light'>$ligne->nom_categorie</a></li>";
-                    }
+                    getCategories();
                     
                 ?>
             </ul>
@@ -89,21 +90,9 @@
             <div class="row">
                 <?php
                     
-                    $select_produit = $con->query('SELECT * FROM produits order by rand() limit 0,12');
-                    while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                        echo "<div class='col-md-4 mb-2'>
-                        <div class='card'>
-                            <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
-                            <div class='card-body'>
-                                <h5 class='card-title'>$ligne->nom_produit</h5>
-                                <p class='card-text'>$ligne->description_produit</p>
-                                <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
-                                <a href='#' class='btn btn-primary'>Ajouter</a>
-                                <a href='#' class='btn btn-secondary'>Voir les détails</a>
-                            </div>
-                        </div>
-                    </div>";
-                    }
+                    getProduits();
+                    getProduitsByCategorie();
+                    getProduitsByMarque();
                     
                 ?>
 

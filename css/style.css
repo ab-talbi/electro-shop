@@ -37,7 +37,6 @@ footer a{
 .navbar{
     margin: 0;
     padding: 0;
-    margin: auto 20px;
 }
 .list{
     text-align: center;
@@ -47,5 +46,11 @@ footer a{
 }
 .list li{
     display: inline;
+<<<<<<< HEAD
     margin: 5px 15px;
+=======
+}
+.row{
+    margin: 0;
+>>>>>>> deec10d876e82c01ec34a471e241e5dd41e00f52
 }
