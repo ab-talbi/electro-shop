@@ -18,10 +18,10 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-cart-arrow-down"><sup>1</sup></i></a>
+                            <a class="nav-link" href="#"><i class="fa-solid fa-cart-arrow-down"> <?php getNombreProduitsPourUtilisateur() ?></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Total Prix: 100 MAD</a>
+                            <a class="nav-link" href="#">Prix Total : <?php getPrixTotalProduitsPourUtilisateur() ?> MAD</a>
                         </li>
                     </ul>
                     <form class="d-flex">
