@@ -77,10 +77,13 @@
         <div class="col-md-10">
             <div class="row">
                 <?php
+                    if(!isset($_GET['trouver_produit'])){
+                        getProduits();
+                    }
                     
-                    getProduits();
                     getProduitsByCategorie();
                     getProduitsByMarque();
+                    getProduitsByRechercher();
                     
                 ?>
 

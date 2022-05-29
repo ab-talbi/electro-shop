@@ -24,9 +24,9 @@
                             <a class="nav-link" href="#">Total Prix: 100 MAD</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    <form class="d-flex" action="" methode="get">
+                        <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search" name="trouver_donnees">
+                        <input class="btn btn-outline-light" type="submit" value="Rechercher" name="trouver_produit">
                     </form>
                 </div>
             </div>
