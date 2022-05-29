@@ -37,7 +37,6 @@ footer a{
 .navbar{
     margin: 0;
     padding: 0;
-    margin: auto 20px;
 }
 .list{
     text-align: center;
@@ -47,4 +46,7 @@ footer a{
 }
 .list li{
     display: inline;
+}
+.row{
+    margin: 0;
 }
