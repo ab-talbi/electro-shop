@@ -16,7 +16,7 @@
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
                     <a href='#' class='btn btn-primary'>Ajouter</a>
-                    <a href='#' class='btn btn-secondary'>Voir les détails</a>
+                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
                     </div>";
@@ -25,9 +25,7 @@
 
     }
 
-
     //Afficher les Catégories
-
     function getCategories(){
 
         global $con;
@@ -39,7 +37,6 @@
     }
 
     //Afficher les marques
-
     function getMarques(){
         global $con;
         $select_marques = $con->query('SELECT * FROM marques');
@@ -71,7 +68,7 @@
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
                     <a href='#' class='btn btn-primary'>Ajouter</a>
-                    <a href='#' class='btn btn-secondary'>Voir les détails</a>
+                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
                     </div>";
@@ -79,7 +76,7 @@
         }
     }
 
-        //Afficher les produits d'une marque
+    //Afficher les produits d'une marque
     function getProduitsByMarque(){
         global $con;
         if(isset($_GET['marque'])){
@@ -98,7 +95,7 @@
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
                     <a href='#' class='btn btn-primary'>Ajouter</a>
-                    <a href='#' class='btn btn-secondary'>Voir les détails</a>
+                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
                     </div>";
@@ -127,13 +124,39 @@
                         <p class='card-text'>$ligne->description_produit</p>
                         <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
                         <a href='#' class='btn btn-primary'>Ajouter</a>
-                        <a href='#' class='btn btn-secondary'>Voir les détails</a>
+                        <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                         </div>
                         </div>
                         </div>";
                     }
             }
         }
+    }
 
+    //voire les details
+    function getDetails(){
+        global $con;
+        if(!isset($_GET['categorie']) && !isset($_GET['marque']) && isset($_GET['id_produit'])){
+            $id_produit = htmlspecialchars($_GET['id_produit']);
+            $select_produit = $con->query("SELECT * FROM produits WHERE id_produit = $id_produit");
+            while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
+                echo "
+                <div class='col-md-4'>
+                    <!-- photos -->
+                    <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                </div>
+                <div class='col-md-8'>
+                    <!-- text -->
+                    <h5 class='card-title'>$ligne->nom_produit</h5>
+                    <p class='card-text'><strong>Description: </strong>$ligne->description_produit</p>
+                    <p class='card-text'><strong>Prix : </strong>$ligne->prix_produit MAD</p>
+                </div>
+                <div class='col-md-12 text-center p-2'>
+                    <a href='#' class='btn btn-primary'>Ajouter</a>
+                    <a href='./index.php' class='btn btn-secondary'>Retour</a>
+                </div>
+                ";
+            }
+        }
     }
 ?>
