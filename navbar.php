@@ -1,7 +1,7 @@
 
     <div class="container-fluid navPrincipal p-0" style="background:#f39c12;">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
+            <div class="container-fluid" style="margin: 5px auto;">
                 <a class="navbar-brand" href="#"><img src="./images/128.png" alt="logo" class="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -9,7 +9,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Acceuil</a>
+                            <a class="nav-link active" aria-current="page" href="./index.php">Acceuil</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Produits</a>
@@ -25,8 +25,8 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
+                        <input class="form-control me-2" name="search_data" type="search" placeholder="Search" aria-label="Search"/>
+                        <input type="submit" value="Search" name="search_btn" class="btn btn-outline-light"/>
                     </form>
                 </div>
             </div>
