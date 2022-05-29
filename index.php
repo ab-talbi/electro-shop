@@ -86,6 +86,8 @@
                     }else{
                         if(isset($_GET['search_btn'])){
                             searchProducts();
+                        }elseif(isset($_GET['touslesproduits'])){
+                            getTousProduits();
                         }else{
                             getProduits();
                         }
@@ -96,7 +98,6 @@
                    
                 ?>
 
-                
             </div>
         </div>
 

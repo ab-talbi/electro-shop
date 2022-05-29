@@ -16,7 +16,7 @@
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
                     <a href='#' class='btn btn-primary'>Ajouter</a>
-                    <a href='#' class='btn btn-secondary'>Voir les détails</a>
+                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
                     </div>";
