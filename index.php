@@ -79,19 +79,21 @@
         </div>
 
         <div class="col-md-10">
-            <div class="row">
+            <div class="row m-3">
                 <?php
-                    if(isset($_GET['search_btn'])){
-                        searchProducts();
-                    }elseif(isset($_GET['touslesproduits'])){
-                        getTousProduits();
+                    if(isset($_GET['voir_details'])){
+                         getDetails();
                     }else{
-                        getProduits();
+                        if(isset($_GET['search_btn'])){
+                            searchProducts();
+                        }else{
+                            getProduits();
+                        }
                     }
                    
                     getProduitsByCategorie();
                     getProduitsByMarque();
-                    
+                   
                 ?>
 
                 
