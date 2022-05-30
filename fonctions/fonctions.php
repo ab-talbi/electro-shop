@@ -15,7 +15,7 @@
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
-                    <a href='#' class='btn btn-primary'>Ajouter</a>
+                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
                     <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
@@ -36,7 +36,7 @@
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
-                    <a href='#' class='btn btn-primary'>Ajouter</a>
+                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
                     <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
@@ -88,7 +88,7 @@
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
-                    <a href='#' class='btn btn-primary'>Ajouter</a>
+                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
                     <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
@@ -115,7 +115,7 @@
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
-                    <a href='#' class='btn btn-primary'>Ajouter</a>
+                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
                     <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
@@ -145,7 +145,7 @@
                         <h5 class='card-title'>$ligne->nom_produit</h5>
                         <p class='card-text'>$ligne->description_produit</p>
                         <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
-                        <a href='#' class='btn btn-primary'>Ajouter</a>
+                        <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
                         <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                         </div>
                         </div>
@@ -194,12 +194,79 @@
                     <p class='card-text'><strong>Prix : </strong>$ligne->prix_produit MAD</p>
                 </div>
                 <div class='col-md-12 text-center p-2'>
-                    <a href='#' class='btn btn-primary'>Ajouter</a>
+                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
                     <a href='./index.php' class='btn btn-secondary'>Retour</a>
                 </div>
                 ";
             }
         }
     }
+
+    function ajouterProduitCarte(){
+        global $con;
+        if(isset($_GET['ajouter_produit_carte'])){
+            $adresse_ip = getIPAddress();
+            $id_produit = htmlspecialchars($_GET['ajouter_produit_carte']);
+            $select_produit = $con->query("SELECT * FROM `carte` WHERE id_produit = $id_produit and adresse_ip like '$adresse_ip'");
+            $rows = $select_produit->rowCount();
+            if($rows > 0){
+                echo "<script>Swal.fire({position: 'center',
+                    icon: 'error',
+                    title: 'Déjà ajouté',
+                    showConfirmButton: true}).then((result) => {
+                        if (result.isConfirmed) {
+                          Swal.fire(
+                            window.open('./index.php','_self')
+                          )
+                        }
+                      });
+                    </script>";
+            }else{
+                $insert_produit = $con->prepare('INSERT INTO carte(id_produit,adresse_ip,quantite) VALUES(:id_produit,:adresse_ip,:quantite)');
+                $insert_produit->execute(array(":id_produit"=>$id_produit,":adresse_ip"=>$adresse_ip,":quantite"=>0));
+
+                if($insert_produit){
+                    echo "<script>Swal.fire({position: 'center',
+                        icon: 'success',
+                        title: 'Le Produit à été ajouté avec succés',
+                        showConfirmButton: true}).then((result) => {
+                            if (result.isConfirmed) {
+                              Swal.fire(
+                                window.open('./index.php','_self')
+                              )
+                            }
+                          });
+                        </script>";
+                }
+                
+            }
+        }
+    }
+
+
+    //Afficher le nombre de produits dans la carte pour un etulisateur
+    function getNombreProduitsPourUtilisateur(){
+            global $con;
+            $adresse_ip = getIPAddress();
+            $select_produit_utilisateur = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
+            $rows = $select_produit_utilisateur->rowCount();
+            echo $rows;
+    }
+
+
+    //Afficher le Prix Total de produits dans la carte pour un etulisateur
+    function getPrixTotalProduitsPourUtilisateur(){
+        global $con;
+        $adresse_ip = getIPAddress();
+        $select_produit_utilisateur = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
+        $prix_total = 0;
+
+        while($ligne = $select_produit_utilisateur->fetch(PDO::FETCH_OBJ)){
+            $select_produit = $con->query("SELECT * FROM `produits` WHERE id_produit = $ligne->id_produit");
+            $prix_total += ($select_produit->fetch(PDO::FETCH_OBJ))->prix_produit;  
+        }
+
+        echo $prix_total;
+}
 
 ?>

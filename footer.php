@@ -49,8 +49,8 @@
                 </aside>
             </div>
             <div class="col-lg-12 text-center">
-                <div class="information" style="color:rgb(4, 13, 47);">
-                    <p > &copy;2022</p>
+                <div class="information" style="color:white;">
+                    <p > &copy; <?php echo "2021-".Date('Y')." IRISI1 - Projet E-commerce" ?></p>
                 </div>
             </div>
         </div>
