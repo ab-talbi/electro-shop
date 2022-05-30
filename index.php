@@ -62,8 +62,12 @@
                     <a href="" class="nav-link text-light"><h4>Les Marques</h4></a>
                 </li>
                 <?php
-                    
-                    getMarques();
+                    if(isset($_GET['categorie'])){
+                        $url = $_SERVER['REQUEST_URI']."&";
+                    }else {
+                        $url = "index.php?";
+                    }
+                    getMarques($url);
 
                 ?>
             </ul>
@@ -75,8 +79,12 @@
                 </li>
 
                 <?php
-                    
-                    getCategories();
+                if(isset($_GET['marque'])){
+                    $url = $_SERVER['REQUEST_URI']."&";
+                }else {
+                    $url = "index.php?";
+                }
+                    getCategories($url);
                     
                 ?>
             </ul>
@@ -99,6 +107,10 @@
                    
                     getProduitsByCategorie();
                     getProduitsByMarque();
+                    if(isset($_GET['marque']) && isset($_GET['categorie'])){
+                        getProduitsByMarqueEtCategorie();
+
+                    }
                    
                 ?>
 
