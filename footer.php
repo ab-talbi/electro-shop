@@ -1,4 +1,4 @@
-<footer style="background:#f39c12;padding-top:60px" class=" mt-100 footer-eara">
+<footer style="background:#f39c12;padding-top:60px" class=" mt-10 footer-eara">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-sm-6">
@@ -35,7 +35,7 @@
                     </ul>
                 </aside>
             </div>
-            <div class="col-lg-3 ">
+            <div class="col-lg-3 col-sm-6">
                 <aside class="social_width">
                     <div class="f_title">
                         <h3>Retrouvez-nous sur</h3>

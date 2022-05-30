@@ -47,23 +47,23 @@
     }
 
     //Afficher les Catégories
-    function getCategories(){
+    function getCategories($url){
 
         global $con;
         $select_categories = $con->query('SELECT * FROM categories');
         while($ligne = $select_categories->fetch(PDO::FETCH_OBJ)){
-            echo "<li class='nav-item'><a href='index.php?categorie=$ligne->id_categorie' class='nav-link text-light'>$ligne->nom_categorie</a></li>";
+            echo "<li class='nav-item'><a href='".$url."categorie=$ligne->id_categorie' class='nav-link text-light'>$ligne->nom_categorie</a></li>";
         }
 
     }
 
     //Afficher les marques
-    function getMarques(){
+    function getMarques($url){
         global $con;
         $select_marques = $con->query('SELECT * FROM marques');
         if($select_marques){
             while($ligne = $select_marques->fetch(PDO::FETCH_OBJ)){
-                echo "<li class='nav-item'><a href='index.php?marque=$ligne->id_marque' class='nav-link text-light'>$ligne->nom_marque</a></li>";
+                echo "<li class='nav-item'><a href='".$url."marque=$ligne->id_marque' class='nav-link text-light'>$ligne->nom_marque</a></li>";
             }
         }else{
             echo "Pas de Marques pour le moment";  
@@ -73,7 +73,7 @@
     //Afficher les produits d'une catégorie
     function getProduitsByCategorie(){
         global $con;
-        if(isset($_GET['categorie'])){
+        if(isset($_GET['categorie']) && !isset($_GET['marque'])){
             $categorie_id = htmlspecialchars($_GET['categorie']);
             $select_produit = $con->query("SELECT * FROM produits where id_categorie = $categorie_id");
             $rows = $select_produit->rowCount();
@@ -100,7 +100,7 @@
     //Afficher les produits d'une marque
     function getProduitsByMarque(){
         global $con;
-        if(isset($_GET['marque'])){
+        if(isset($_GET['marque']) && !isset($_GET['categorie'])){
             $marque_id = htmlspecialchars($_GET['marque']);
             $select_produit = $con->query("SELECT * FROM produits where id_marque = $marque_id");
             $rows = $select_produit->rowCount();
@@ -117,6 +117,36 @@
                     <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
                     <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
                     <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
+                    </div>
+                    </div>
+                    </div>";
+            }
+        }
+        
+    }
+
+
+    //afficher les produit selon la marque et categorie
+    function getProduitsByMarqueEtCategorie(){
+        global $con;
+        if(isset($_GET['marque']) && isset($_GET['categorie'])){
+            $marque_id = htmlspecialchars($_GET['marque']);
+            $categorie_id = htmlspecialchars($_GET['categorie']);
+            $select_produit = $con->query("SELECT * FROM produits WHERE id_marque = $marque_id AND id_categorie = $categorie_id");
+            $rows = $select_produit->rowCount();
+            if($rows == 0){
+                echo '<h2 class="text-center mt-5 text-danger">Pas de Produits disponible pour cette marque et categorie!</h2>';
+            }
+            while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
+                echo "<div class='col-md-4 mb-2 mt-2'>
+                    <div class='card'>
+                    <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                    <div class='card-body'>
+                    <h5 class='card-title'>$ligne->nom_produit</h5>
+                    <p class='card-text'>$ligne->description_produit</p>
+                    <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
+                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
+                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
                     </div>";
