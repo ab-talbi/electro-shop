@@ -18,13 +18,13 @@
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa-solid fa-cart-arrow-down"> <?php getNombreProduitsPourUtilisateur() ?></i></a>
+                            <a class="nav-link" href="./carte.php"><i class="fa-solid fa-cart-arrow-down"> <?php getNombreProduitsPourUtilisateur() ?></i></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Prix Total : <?php getPrixTotalProduitsPourUtilisateur() ?> MAD</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
+                    <form class="d-flex" action="index.php">
                         <input class="form-control me-2" name="search_data" type="search" placeholder="Rechercher" aria-label="Search"/>
                         <input type="submit" value="Rechercher" name="search_btn" class="btn btn-outline-light"/>
                     </form>
