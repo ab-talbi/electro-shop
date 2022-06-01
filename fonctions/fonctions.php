@@ -8,7 +8,7 @@
         if(!isset($_GET['categorie']) && !isset($_GET['marque']) && !isset($_get['search_btn'])){
             $select_produit = $con->query('SELECT * FROM produits order by rand() limit 0,12');
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                echo "<div class='col-md-4 mb-2 mt-2'>
+                echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
                     <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
@@ -29,7 +29,7 @@
         if(!isset($_GET['categorie']) && !isset($_GET['marque'])){
             $select_produit = $con->query('SELECT * FROM produits order by rand()');
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                echo "<div class='col-md-4 mb-2 mt-2'>
+                echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
                     <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
@@ -52,7 +52,8 @@
         global $con;
         $select_categories = $con->query('SELECT * FROM categories');
         while($ligne = $select_categories->fetch(PDO::FETCH_OBJ)){
-            echo "<li class='nav-item'><a href='".$url."categorie=$ligne->id_categorie' class='nav-link text-light'>$ligne->nom_categorie</a></li>";
+           echo "<li><a class='dropdown-item' href='".$url."categorie=$ligne->id_categorie'>$ligne->nom_categorie</a></li>";
+            //echo "<li class='nav-item liList'><a href='".$url."categorie=$ligne->id_categorie' class=''>$ligne->nom_categorie</a></li>";
         }
 
     }
@@ -62,9 +63,17 @@
         global $con;
         $select_marques = $con->query('SELECT * FROM marques');
         if($select_marques){
+            echo "<div class='col-md-2 bg-black-white p-0'>
+                    <ul class='navbar-nav me-auto text-center'>
+                        <li class='nav-item bg-blue-black'>
+                            <a href='#' class='nav-link text-light'><h4>Les Marques</h4></a>
+                        </li>";
             while($ligne = $select_marques->fetch(PDO::FETCH_OBJ)){
                 echo "<li class='nav-item'><a href='".$url."marque=$ligne->id_marque' class='nav-link text-light'>$ligne->nom_marque</a></li>";
             }
+            echo "
+            </ul>
+        </div>";
         }else{
             echo "Pas de Marques pour le moment";  
         }
@@ -81,7 +90,7 @@
                 echo '<h2 class="text-center mt-5 text-danger">Pas de Produits disponible pour cette catégorie!</h2>';
             }
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                echo "<div class='col-md-4 mb-2 mt-2'>
+                echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
                     <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
@@ -108,7 +117,7 @@
                 echo '<h2 class="text-center mt-5 text-danger">Pas de Produits disponible pour cette marque!</h2>';
             }
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                echo "<div class='col-md-4 mb-2 mt-2'>
+                echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
                     <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
@@ -138,7 +147,7 @@
                 echo '<h2 class="text-center mt-5 text-danger">Pas de Produits disponible pour cette marque et categorie!</h2>';
             }
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                echo "<div class='col-md-4 mb-2 mt-2'>
+                echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
                     <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
@@ -168,7 +177,7 @@
                 echo '<h2 class="text-center mt-5 text-danger">Aucun Produits correspondabt à cette recherche !</h2>';
             }else{
                 while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                    echo "<div class='col-md-4 mb-2 mt-2'>
+                    echo "<div class='col-md-3 mb-2 mt-2'>
                         <div class='card'>
                         <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                         <div class='card-body'>

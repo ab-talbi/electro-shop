@@ -17,8 +17,8 @@
     <link href='https://fonts.googleapis.com/css?family=Alice' rel='stylesheet'>
 
     <!-- bootstrap-css -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -56,41 +56,18 @@
 
 
     <div class="row">
-        <div class="col-md-2 bg-black-white p-0">
-            <ul class="navbar-nav me-auto text-center">
-                <li class="nav-item bg-blue-black">
-                    <a href="" class="nav-link text-light"><h4>Les Marques</h4></a>
-                </li>
                 <?php
+                
                     if(isset($_GET['categorie'])){
                         $url = $_SERVER['REQUEST_URI']."&";
+                        getMarques($url);
                     }else {
                         $url = "index.php?";
                     }
-                    getMarques($url);
-
-                ?>
-            </ul>
-
-
-            <ul class="navbar-nav me-auto text-center">
-                <li class="nav-item bg-blue-black">
-                    <a href="" class="nav-link text-light"><h4>Les Catégories</h4></a>
-                </li>
-
-                <?php
-                if(isset($_GET['marque'])){
-                    $url = $_SERVER['REQUEST_URI']."&";
-                }else {
-                    $url = "index.php?";
-                }
-                    getCategories($url);
                     
                 ?>
-            </ul>
-        </div>
 
-        <div class="col-md-10">
+        <div class="<?php echo "".isset($_GET['categorie'])? 'col-md-10' : 'col-md-12'?>">
             <div class="row m-3">
                 <?php
                     if(isset($_GET['voir_details'])){
@@ -109,7 +86,6 @@
                     getProduitsByMarque();
                     if(isset($_GET['marque']) && isset($_GET['categorie'])){
                         getProduitsByMarqueEtCategorie();
-
                     }
                    
                 ?>
@@ -127,6 +103,5 @@
     ?>
 
     <!-- bootstrap-JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script></body>
 </html>

@@ -2,6 +2,31 @@
     font-weight: 700;
     font-family: Arial, Helvetica, sans-serif; 
 }
+/* .hoverCateg{
+    position: relative;
+}
+.ulList{
+    display: none;
+    width:fit-content;
+    position: absolute;
+    top: 40px;
+    padding: 5px;
+    text-align: center;
+    background-color: rgb(223, 19, 19);
+    border: none;
+}
+.ulList li:hover{
+border-bottom: solid rgb(230, 160, 11);
+}
+.ulList a{
+    color: rgb(4, 13, 47);
+    text-decoration: none;
+}
+.hoverCateg:hover+.ulList{
+    display: block;
+    z-index: 5;
+} */
+
 .navPrincipal{
     font-weight:700;
 }

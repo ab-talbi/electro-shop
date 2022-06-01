@@ -17,6 +17,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catégories</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php
+                                if(isset($_GET['marque'])){
+                                    $url = $_SERVER['REQUEST_URI']."&";
+                                }else {
+                                    $url = "index.php?";
+                                }
+                                    getCategories($url);
+                            ?>
+                        </ul>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa-solid fa-cart-arrow-down"> <?php getNombreProduitsPourUtilisateur() ?></i></a>
                         </li>
