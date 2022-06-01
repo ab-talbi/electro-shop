@@ -80,3 +80,10 @@ footer a{
 .row{
     margin: 0;
 }
+.to-limit {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} 
+
