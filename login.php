@@ -1,3 +1,10 @@
+<?php
+
+    include('includes/connect.php');
+    include('fonctions/fonctions.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +21,28 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
      <!-- css file -->
-     <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
+     <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
     <title>Connexion</title>
     
 </head>
 <body>   
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
+        <ul class="navbar-nav headerBC">
+            <li class="nav-item">
+                <a href="" class="nav-link">Bienvenue</a>
+            </li>
+            <li class="nav-item">
+                <a href="login.php" class="nav-link">Connexion</a>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- NavBar -->
+    <?php
+        include("navbar.php");
+    ?>
 
     <div class="container-fluid my-3">
         <h2 class="text-center m-5">connexion</h2>
@@ -41,7 +64,7 @@
 
                     <div class="text-center">
                         <input type="submit" value="connexion" class="btn btn-success me-1"/>
-                        <p class="mt-2 small fw-bold">Vous avez pas déjà un comte? <a href="../registre.php">cree copmt</a></p>
+                        <p class="mt-2 small fw-bold">Vous avez pas déjà un comte? <a href="./registre.php">cree copmt</a></p>
                     </div>
                 </form>
             </div>
@@ -49,6 +72,15 @@
     </div>
 
    
+    <?php
+                        
+        include("footer.php");
+                        
+    ?>
+    <!-- js -->
+    <script src="js/fonctions.js"></script>
 
+    <!-- bootstrap-JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

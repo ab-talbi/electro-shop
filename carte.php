@@ -37,7 +37,7 @@
                 <a href="" class="nav-link">Bienvenue</a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">Connexion</a>
+                <a href="./client/login.php" class="nav-link">Connexion</a>
             </li>
         </ul>
     </nav>

@@ -1,6 +1,6 @@
 
 <?php
-    include('./includes/connect.php');
+    include('C:\xampp\htdocs\Electro-Shop\includes\connect.php');
 
     //Afficher les produits
     function getProduits(){
@@ -387,7 +387,7 @@
             <div class='d-flex mb-3'>
                 <h4 class='px-3'>Total :<strong> $tot MAD </strong></h4>
                 <a href='./index.php'><button class='px-3 btn btn-primary'>Ajouter Autres Produits</button></a>
-                <a class='px-2' href='./payer.php'><button class='px-3 btn btn-secondary'>Mode de Payement</button></a>
+                <a class='px-2' href='./client/payer.php'><button class='px-3 btn btn-secondary'>Mode de Payement</button></a>
             </div>
             ";
         }else{

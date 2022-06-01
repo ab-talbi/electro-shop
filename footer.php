@@ -1,4 +1,4 @@
-<footer style="background:#f39c12;padding-top:60px" class=" mt-10 footer-eara">
+<footer style="background:#f39c12;padding-top:60px;padding-bottom:20px" class=" mt-10 footer-eara">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-sm-6">
@@ -49,8 +49,8 @@
                 </aside>
             </div>
             <div class="col-lg-12 text-center">
-                <div class="information" style="color:white;">
-                    <p > &copy; <?php echo "2021-".Date('Y')." IRISI1 - Projet E-commerce" ?></p>
+                <div class="information mt-2" style="color:rgb(4, 13, 47);">
+                    <p > Copyright &copy; <?php echo "2021-".Date('Y')." ElectroShop-IRISI1,Tous les droits sont réservés." ?></p>
                 </div>
             </div>
         </div>
