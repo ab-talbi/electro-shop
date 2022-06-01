@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electro Shop - Les Détailles de la Carte</title>
+    <title>Electro Shop - Payement</title>
 
     <!-- google font -->
     <link href='https://fonts.googleapis.com/css?family=Alice' rel='stylesheet'>
@@ -43,12 +43,31 @@
     </nav>
     
     <!-- NavBar -->
-    <?php
-        if(isset($_GET['modifier_produit_carte'])){
-            modifierCarteQuantite();
-        }
-        include("./navbar.php");
-    ?>
+
+    <div class="container-fluid navPrincipal p-0" style="background:#f39c12;">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid" style="margin: 5px auto;">
+                <a class="navbar-brand" href="#"><img src="./images/128.png" alt="logo" class="logo"></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./index.php">Acceuil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./index.php?touslesproduits">Produits</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+</div>
+    
 
     
     <div class="bg-black-white text-light">
@@ -61,16 +80,11 @@
         <div class="row">
             
                 <?php
-                    supprimerCarteProduits();
-                    supprimerCarteUnSeulProduit();
-                    if(isset($_GET['modifier_produit_carte'])){
-                        modifierCarteQuantite();
-                        getTousProduitsCartePourUtilisateur();
+                    if(!isset($_SESSION['nom_utilisateur'])){
+                        include('./client/login.php');
+                    }else{
+                        
                     }
-                    else{
-                        getTousProduitsCartePourUtilisateur();
-                    }
-                            
                 ?>
 
         </div>
