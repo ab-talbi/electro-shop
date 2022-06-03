@@ -81,7 +81,7 @@ if(isset($_GET['id_utilisateur']) and (string)$id_utilisateur == $_GET['id_utili
     }
 
 
-    // $insert_commande_incomplete = $con->prepare('INSERT INTO commande_incomplete(id_utilisateur,random_cmd,id_produit,quantite,status_commande) VALUES(:id_utilisateur,:random_cmd,:id_produit,:quantite,:status_commande)');
+    //$insert_commande_incomplete = $con->prepare('INSERT INTO commande_incomplete(id_utilisateur,random_cmd,id_produit,quantite,status_commande) VALUES(:id_utilisateur,:random_cmd,:id_produit,:quantite,:status_commande)');
     // $insert_commande_incomplete->execute(array(":id_utilisateur"=>$id_utilisateur,":random_cmd"=>$random_cmd,":id_produit"=>$id_produit,":quantite"=>$quantite,":status_commande"=>$status_commande));
 
 
