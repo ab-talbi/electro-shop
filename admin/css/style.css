@@ -46,6 +46,7 @@
 	background: #030026d8;
 	min-height: 100vh;
 	transition: 500ms width;
+	overflow-y: visible;
 }
 .body {
 	display: flex;
@@ -108,7 +109,7 @@
 #checkbox {
 	display: none;
 }
-#checkbox:checked ~ .body .side-bar {
+#checkbox :checked ~ .body .side-bar {
 	width: 60px;
 }
 #checkbox:checked ~ .body .side-bar .user-p{

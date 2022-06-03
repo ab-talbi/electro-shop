@@ -1,3 +1,9 @@
+<?php
+    include('../includes/connect.php');
+    include('../fonctions/fonctions.php');
+    @session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,8 +46,9 @@
                     </div>
 
                     <div class="text-center">
-                        <input type="submit" value="connexion" class="btn btn-success me-1"/>
-                        <p class="mt-2 small fw-bold">Vous avez pas déjà un comte? <a href="../registre.php">cree copmt</a></p>
+                        <input name="connexion_submit_btn" type="submit" value="connexion" class="btn btn-success me-1"/>
+                        <p class="mt-2 small fw-bold">Vous avez pas déjà un compte? <a href="../registre.php">Créer un compte</a></p>
+                        <p class="mt-2 small fw-bold"><a href="../carte.php">Retour au panier</a></p>
                     </div>
                 </form>
             </div>
@@ -52,3 +59,72 @@
 
 </body>
 </html>
+
+<?php
+
+    if(isset($_POST['connexion_submit_btn'])){
+        $email_utilisateur = htmlspecialchars($_POST['email']);
+        $password_utilisateur = htmlspecialchars($_POST['passwd']);
+        $adresse_ip = getIPAddress();
+
+        $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` WHERE email_utilisateur like '$email_utilisateur'");
+        $rows = $select_utilisateur->rowCount();
+        $nom_utilisateur;
+        $mot_passe_utilisateur;
+        while($ligne = $select_utilisateur->fetch(PDO::FETCH_OBJ)){
+            $nom_utilisateur = $ligne->nom_utilisateur;
+            $mot_passe_utilisateur = $ligne->mot_passe_utilisateur;;
+        }
+
+        $select_carte = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
+        $rows_carte = $select_carte->rowCount();
+
+        if($rows > 0){
+            if(password_verify($password_utilisateur,$mot_passe_utilisateur)){
+                $_SESSION['nom_utilisateur'] = $nom_utilisateur;
+                if($rows_carte == 0){
+                    echo "<script>Swal.fire({position: 'center',
+                        icon: 'success',
+                        title: 'Bienvenu',
+                        showConfirmButton: true}).then((result) => {
+                            if (result.isConfirmed) {
+                              Swal.fire(
+                                window.open('./profile.php','_self')
+                              )
+                            }else{
+                                window.open('./profile.php','_self')
+                            }
+                          });</script>";
+                }else{
+                    echo "<script>Swal.fire({position: 'center',
+                        icon: 'success',
+                        title: 'Bienvenu',
+                        showConfirmButton: true}).then((result) => {
+                            if (result.isConfirmed) {
+                              Swal.fire(
+                                window.open('./payer.php','_self')
+                              )
+                            }else{
+                                window.open('./payer.php','_self')
+                            }
+                          });</script>";
+                }
+
+            }else{
+                echo "<script>Swal.fire({position: 'center',
+                    icon: 'error',
+                    title: 'Mot de passe incorrecte',
+                    showConfirmButton: true});
+                    </script>";
+            }
+            
+        }else{
+            echo "<script>Swal.fire({position: 'center',
+                icon: 'error',
+                title: 'Ce compte n\'existe pas',
+                showConfirmButton: true});
+                </script>";
+        }
+    }
+
+?>

@@ -2,6 +2,7 @@
 
     include('includes/connect.php');
     include('fonctions/fonctions.php');
+    @session_start();
 
 ?>
 
@@ -28,14 +29,30 @@
 </head>
 <body>   
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
         <ul class="navbar-nav headerBC">
             <li class="nav-item">
-                <a href="" class="nav-link">Bienvenue</a>
+                <a href="" class="nav-link">Bienvenue <?php if(isset($_SESSION['nom_utilisateur'])){
+                    echo $_SESSION['nom_utilisateur'];
+                } ?></a>
             </li>
-            <li class="nav-item">
-                <a href="login.php" class="nav-link">Connexion</a>
-            </li>
+            <ul class="navbar-nav nav-item">
+                <?php if(isset($_SESSION['nom_utilisateur'])){
+                    echo '<li class="nav-item">
+                    <a href="logout.php" class="nav-link">Déconnecter</a>
+                </li>';
+                }else{
+                    echo '<li class="nav-item">
+                    <a href="login.php" class="nav-link">Se connecter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="registre.php" class="nav-link">S\'inscrire</a>
+                </li>';
+                }
+                ?>
+
+            </ul>
+            
         </ul>
     </nav>
     
@@ -63,8 +80,8 @@
                     </div>
 
                     <div class="text-center">
-                        <input type="submit" value="connexion" class="btn btn-success me-1"/>
-                        <p class="mt-2 small fw-bold">Vous avez pas déjà un comte? <a href="./registre.php">cree copmt</a></p>
+                        <input name="connexion_submit_btn" type="submit" value="connexion" class="btn btn-success me-1"/>
+                        <p class="mt-2 small fw-bold">Vous avez pas déjà un compte? <a href="./registre.php">créer un compte</a></p>
                     </div>
                 </form>
             </div>
@@ -84,3 +101,74 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<?php
+
+    if(isset($_POST['connexion_submit_btn'])){
+        $email_utilisateur = htmlspecialchars($_POST['email']);
+        $password_utilisateur = htmlspecialchars($_POST['passwd']);
+        $adresse_ip = getIPAddress();
+
+        $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` WHERE email_utilisateur like '$email_utilisateur'");
+        $rows = $select_utilisateur->rowCount();
+        $nom_utilisateur;
+        $mot_passe_utilisateur;
+        while($ligne = $select_utilisateur->fetch(PDO::FETCH_OBJ)){
+            $nom_utilisateur = $ligne->nom_utilisateur;
+            $mot_passe_utilisateur = $ligne->mot_passe_utilisateur;;
+        }
+
+        $select_carte = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
+        $rows_carte = $select_carte->rowCount();
+
+        if($rows > 0){
+            if(password_verify($password_utilisateur,$mot_passe_utilisateur)){
+                
+                $_SESSION['nom_utilisateur'] = $nom_utilisateur;
+
+                if($rows_carte == 0){
+                    echo "<script>Swal.fire({position: 'center',
+                        icon: 'success',
+                        title: 'Bienvenu',
+                        showConfirmButton: true}).then((result) => {
+                            if (result.isConfirmed) {
+                              Swal.fire(
+                                window.open('./client/profile.php','_self')
+                              )
+                            }else{
+                                window.open('./client/profile.php','_self')
+                            }
+                          });</script>";
+                }else{
+                    echo "<script>Swal.fire({position: 'center',
+                        icon: 'success',
+                        title: 'Bienvenu',
+                        showConfirmButton: true}).then((result) => {
+                            if (result.isConfirmed) {
+                              Swal.fire(
+                                window.open('./client/payer.php','_self')
+                              )
+                            }else{
+                                window.open('./client/payer.php','_self')
+                            }
+                          });</script>";
+                }
+
+            }else{
+                echo "<script>Swal.fire({position: 'center',
+                    icon: 'error',
+                    title: 'Mot de passe incorrecte',
+                    showConfirmButton: true});
+                    </script>";
+            }
+            
+        }else{
+            echo "<script>Swal.fire({position: 'center',
+                icon: 'error',
+                title: 'Ce compte n\'existe pas',
+                showConfirmButton: true});
+                </script>";
+        }
+    }
+
+?>

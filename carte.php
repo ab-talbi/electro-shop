@@ -2,7 +2,7 @@
 
     include('./includes/connect.php');
     include('./fonctions/fonctions.php');
-
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -34,11 +34,27 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
         <ul class="navbar-nav headerBC">
             <li class="nav-item">
-                <a href="" class="nav-link">Bienvenue</a>
+                <a href="" class="nav-link">Bienvenue <?php if(isset($_SESSION['nom_utilisateur'])){
+                    echo $_SESSION['nom_utilisateur'];
+                } ?></a>
             </li>
-            <li class="nav-item">
-                <a href="./client/login.php" class="nav-link">Connexion</a>
-            </li>
+            <ul class="navbar-nav nav-item">
+                <?php if(isset($_SESSION['nom_utilisateur'])){
+                    echo '<li class="nav-item">
+                    <a href="logout.php" class="nav-link">Déconnecter</a>
+                </li>';
+                }else{
+                    echo '<li class="nav-item">
+                    <a href="login.php" class="nav-link">Se connecter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="registre.php" class="nav-link">S\'inscrire</a>
+                </li>';
+                }
+                ?>
+
+            </ul>
+            
         </ul>
     </nav>
     

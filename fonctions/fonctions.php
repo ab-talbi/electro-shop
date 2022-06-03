@@ -1,6 +1,5 @@
 
 <?php
-    include('C:\xampp\htdocs\Electro-Shop\includes\connect.php');
 
     //Afficher les produits
     function getProduits(){

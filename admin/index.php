@@ -22,7 +22,7 @@
 <body>
 
 <body>
-    <input type="checkbox" id="checkbox">
+    
     <header class="header">
 		<h2 class="u-name">Electro <b>Shop</b>
 			<label for="checkbox">
@@ -31,6 +31,7 @@
 		</h2>
 		<i class="fa fa-user" aria-hidden="true"></i>
 	</header>
+	<input type="checkbox" id="checkbox">
 	
 	<div class="container p-0 m-0">
 		<div class="row">

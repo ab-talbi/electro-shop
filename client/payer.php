@@ -1,10 +1,10 @@
 <?php
 
-    session_start();
-    $_SESSION['payer']=$_SERVER['REQUEST_URI'];
+    @session_start();
+    
     include('../includes/connect.php');
-    include('../fonctions/fonctions.php');
 
+    $_SESSION['payer']=$_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.8/dist/sweetalert2.all.min.js"></script>
    
     <!-- css file -->
-    <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
 
 </head>
 <body>
@@ -36,11 +36,27 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
         <ul class="navbar-nav headerBC">
             <li class="nav-item">
-                <a href="#" class="nav-link">Bienvenue</a>
+                <a href="" class="nav-link">Bienvenue <?php if(isset($_SESSION['nom_utilisateur'])){
+                    echo $_SESSION['nom_utilisateur'];
+                } ?></a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Connexion</a>
-            </li>
+            <ul class="navbar-nav nav-item">
+                <?php if(isset($_SESSION['nom_utilisateur'])){
+                    echo '<li class="nav-item">
+                    <a href="../logout.php" class="nav-link">Déconnecter</a>
+                </li>';
+                }else{
+                    echo '<li class="nav-item">
+                    <a href="../login.php" class="nav-link">Se connecter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="../registre.php" class="nav-link">S\'inscrire</a>
+                </li>';
+                }
+                ?>
+
+            </ul>
+            
         </ul>
     </nav>
     
@@ -85,6 +101,7 @@
                     if(!isset($_SESSION['nom_utilisateur'])){
                         include('./login.php');
                     }else{
+                        echo 'PayPal';
                         
                     }
                 ?>
