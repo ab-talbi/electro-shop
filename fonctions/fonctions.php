@@ -286,13 +286,13 @@
 
 
     //Afficher le nombre de produits dans la carte pour un etulisateur
-    function getNombreProduitsPourUtilisateur(){
-            global $con;
-            $adresse_ip = getIPAddress();
-            $select_produit_utilisateur = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
-            $rows = $select_produit_utilisateur->rowCount();
-            echo $rows;
-    }
+    // function getNombreProduitsPourUtilisateur(){
+    //         global $con;
+    //         $adresse_ip = getIPAddress();
+    //         $select_produit_utilisateur = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
+    //         $rows = $select_produit_utilisateur->rowCount();
+    //         echo $rows;
+    // }
 
 
     //Afficher le Prix Total de produits dans la carte pour un etulisateur
@@ -308,10 +308,9 @@
             if($row != 0){
                 $prix_total += (($select_produit->fetch(PDO::FETCH_OBJ))->prix_produit)*$ligne->quantite; 
             }
-             
         }
 
-        echo $prix_total;
+        return $prix_total;
     }
 
 
@@ -384,9 +383,9 @@
             </form>
 
             <div class='d-flex mb-3'>
-                <h4 class='px-3'>Total :<strong> $tot MAD </strong></h4>
+                <h4 class='px-3'>TOTAL DE LA COMMANDE :<strong> $tot DH<sub>TTC</sub> </strong></h4>
                 <a href='./index.php'><button class='px-3 btn btn-primary'>Ajouter Autres Produits</button></a>
-                <a class='px-2' href='./client/payer.php'><button class='px-3 btn btn-secondary'>Mode de Payement</button></a>
+                <a class='px-2' href='./client/commander.php'><button class='px-3 btn btn-secondary'>Commander</button></a>
             </div>
             ";
         }else{
@@ -443,20 +442,20 @@
                     $supp = $con->prepare("DELETE FROM carte WHERE id_produit=? and adresse_ip like '$adresse_ip'")->execute([$supprimer_produit_id]);
                 }
                 if($supp){
-                    echo "<script>Swal.fire({position: 'center',
-                        icon: 'success',
-                        title: 'Produit(s) supprimé(s) de la carte avec succés',
+                    echo '<script>Swal.fire({position: "center",
+                        icon: "success",
+                        title: "Produit(s) supprimé(s) de la carte avec succés",
                         showConfirmButton: true}).then((result) => {
                             if (result.isConfirmed) {
                               Swal.fire(
-                                window.open('./carte.php','_self')
+                                window.open("./carte.php","_self")
                               )
                             }
                             else{
-                                window.open('./carte.php','_self')
+                                window.open("./carte.php","_self")
                             }
                           });
-                        </script>";
+                        </script>';
                 }
             }else{
                 echo '<script>Swal.fire({position: "center",
@@ -472,7 +471,9 @@
                         }
                       });
                     </script>';
-            }
+            
+                    }
+
         }
 
     }
@@ -509,14 +510,17 @@
 
 
     //Compter le nombre de Produits dans la carte pour un utilisateur
-    function NombreCarteProduitsPourUtilisateur(){
+    function getNombreProduitsPourUtilisateur(){
         global $con;
         $adresse_ip = getIPAddress();
             
         $select_produit_utilisateur = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
-    
-        $rows = $select_produit_utilisateur->rowCount();
+        $nombre_produits = 0;
         // echo $rows;
+        while($ligne = $select_produit_utilisateur->fetch(PDO::FETCH_OBJ)){
+            $nombre_produits += $ligne->quantite;
+        }
+        return $nombre_produits;
     }
 
 

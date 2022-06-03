@@ -31,10 +31,10 @@
                         </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./carte.php"><i class="fa-solid fa-cart-arrow-down"> <?php getNombreProduitsPourUtilisateur() ?></i></a>
+                            <a class="nav-link" href="./carte.php"><i class="fa-solid fa-cart-arrow-down"> <?php echo getNombreProduitsPourUtilisateur() ?></i></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Prix Total : <?php getPrixTotalProduitsPourUtilisateur() ?> MAD</a>
+                            <a class="nav-link" href="#">Prix Total : <?php echo getPrixTotalProduitsPourUtilisateur() ?> MAD</a>
                         </li>
                     </ul>
                     <form class="d-flex" action="index.php">

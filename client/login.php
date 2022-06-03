@@ -102,10 +102,10 @@
                         showConfirmButton: true}).then((result) => {
                             if (result.isConfirmed) {
                               Swal.fire(
-                                window.open('./payer.php','_self')
+                                window.open('./commander.php','_self')
                               )
                             }else{
-                                window.open('./payer.php','_self')
+                                window.open('./commander.php','_self')
                             }
                           });</script>";
                 }
