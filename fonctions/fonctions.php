@@ -9,13 +9,13 @@
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
                 echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
-                    <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text to-limit'>$ligne->description_produit</p>
                     <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
-                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
-                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
+                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
+                    <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
                     </div>
                     </div>
                     </div>";
@@ -30,13 +30,13 @@
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
                 echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
-                    <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text to-limit'>$ligne->description_produit</p>
                     <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
-                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
-                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
+                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
+                    <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
                     </div>
                     </div>
                     </div>";
@@ -91,13 +91,13 @@
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
                 echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
-                    <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text to-limit'>$ligne->description_produit</p>
                     <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
-                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
-                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
+                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
+                    <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
                     </div>
                     </div>
                     </div>";
@@ -118,13 +118,13 @@
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
                 echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
-                    <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text to-limit'>$ligne->description_produit</p>
                     <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
-                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
-                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
+                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
+                    <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
                     </div>
                     </div>
                     </div>";
@@ -148,13 +148,13 @@
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
                 echo "<div class='col-md-3 mb-2 mt-2'>
                     <div class='card'>
-                    <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
-                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
-                    <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
+                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
+                    <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
                     </div>
                     </div>
                     </div>";
@@ -178,13 +178,13 @@
                 while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
                     echo "<div class='col-md-3 mb-2 mt-2'>
                         <div class='card'>
-                        <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                        <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                         <div class='card-body'>
                         <h5 class='card-title'>$ligne->nom_produit</h5>
                         <p class='card-text to-limit'>$ligne->description_produit</p>
                         <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
-                        <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
-                        <a href='./index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
+                        <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
+                        <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
                         </div>
                         </div>
                         </div>";
@@ -223,7 +223,7 @@
                 echo "
                 <div class='col-md-4'>
                     <!-- photos -->
-                    <img src='./admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                 </div>
                 <div class='col-md-8'>
                     <!-- text -->
@@ -232,8 +232,8 @@
                     <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
                 </div>
                 <div class='col-md-12 text-center p-2'>
-                    <a href='./index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
-                    <a href='./index.php' class='btn btn-secondary'>Retour</a>
+                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
+                    <a href='/Electro-Shop/index.php' class='btn btn-secondary'>Retour</a>
                 </div>
                 ";
             }
@@ -254,10 +254,10 @@
                     showConfirmButton: true}).then((result) => {
                         if (result.isConfirmed) {
                           Swal.fire(
-                            window.open('./index.php','_self')
+                            window.open('/Electro-Shop/index.php','_self')
                           )
                         }else{
-                            window.open('./index.php','_self')
+                            window.open('/Electro-Shop/index.php','_self')
                         }
                       });
                     </script>";
@@ -272,10 +272,10 @@
                         showConfirmButton: true}).then((result) => {
                             if (result.isConfirmed) {
                               Swal.fire(
-                                window.open('./index.php','_self')
+                                window.open('/Electro-Shop/index.php','_self')
                               )
                             }else{
-                                window.open('./index.php','_self')
+                                window.open('/Electro-Shop/index.php','_self')
                             }
                           });</script>";
                 }
@@ -324,7 +324,7 @@
         $rows = $select_produit_utilisateur->rowCount();
         if($rows>0){
             echo '
-            <form action="./carte.php" method="get">
+            <form action="/Electro-Shop/carte.php" mathod="get">
             <table class="table caption-top text-center mt-3">
             <caption class="text-center">Les produits que vous avez ajouté à votre carte</caption>
             <thead>
@@ -359,7 +359,7 @@
                             <tr>
                                 <th scope='row'>$compteur</th>
                                 <td>$nom_produit</td>
-                                <td><img style='width:100px' src='./admin/produits_images/$image1' alt='$nom_produit'></td>
+                                <td><img style='width:100px' src='/Electro-Shop/admin/produits_images/$image1' alt='$nom_produit'></td>
                                 <td>$prix_unitaire</td>
                                 <td><input type='number' name='modifier_quantite_carte_$ligne->id_produit' class='form-input w-50' value='$quantite'></td>
                                 <td>$prix_total_produit</td>
@@ -385,7 +385,7 @@
             <div class='d-flex mb-3'>
                 <h4 class='px-3'>TOTAL DE LA COMMANDE :<strong> $tot DH<sub>TTC</sub> </strong></h4>
                 <a href='./index.php'><button class='px-3 btn btn-primary'>Ajouter Autres Produits</button></a>
-                <a class='px-2' href='./client/commander.php'><button class='px-3 btn btn-secondary'>Commander</button></a>
+                <a class='px-2' href='/Electro-Shop/client/commander.php'><button class='px-3 btn btn-secondary'>Commander</button></a>
             </div>
             ";
         }else{
@@ -418,11 +418,11 @@
                         showConfirmButton: true}).then((result) => {
                             if (result.isConfirmed) {
                               Swal.fire(
-                                window.open('./carte.php','_self')
+                                window.open('/Electro-Shop/carte.php','_self')
                               )
                             }
                             else{
-                                window.open('./carte.php','_self')
+                                window.open('/Electro-Shop/carte.php','_self')
                             }
                           });
                         </script>";
@@ -448,11 +448,11 @@
                         showConfirmButton: true}).then((result) => {
                             if (result.isConfirmed) {
                               Swal.fire(
-                                window.open("./carte.php","_self")
+                                window.open("/Electro-Shop/carte.php","_self")
                               )
                             }
                             else{
-                                window.open("./carte.php","_self")
+                                window.open("/Electro-Shop/carte.php","_self")
                             }
                           });
                         </script>';
@@ -464,10 +464,10 @@
                     showConfirmButton: true}).then((result) => {
                         if(result.isConfirmed) {
                           Swal.fire(
-                            window.open("./carte.php","_self")
+                            window.open("/Electro-Shop/carte.php","_self")
                           )
                         }else{
-                            window.open("./carte.php","_self")
+                            window.open("/Electro-Shop/carte.php","_self")
                         }
                       });
                     </script>';
@@ -496,7 +496,7 @@
                             showConfirmButton: true}).then((result) => {
                                 if (result.isConfirmed) {
                                   Swal.fire(
-                                    window.open('./carte.php','_self')
+                                    window.open('/Electro-Shop/carte.php','_self')
                                   )
                                 }
                               });
@@ -522,6 +522,32 @@
         }
         return $nombre_produits;
     }
+
+
+    //image de profile de l'utilisateure
+    function getProfilImage($id_utilisateur){
+        global $con;
+
+        $select_image_utilisateur  = $con->prepare("SELECT image_utilisateur FROM utilisateurs WHERE id_utilisateur = ?");
+        $select_image_utilisateur->execute(array($id_utilisateur));
+        $data = $select_image_utilisateur->fetch();
+        if($select_image_utilisateur->rowCount() == 0){
+            echo "
+                <li class='nav-item'>
+                    <img src='./client_images/photo.png' class='photo_profile my-4' style='background-color: #fff;' alt='Photo de profile'>
+                </li>";
+        }else{
+            $image = $data['image_utilisateur'];
+            echo "
+                <li class='nav-item'>
+                    <img src='./client_images/$image' class='photo_profile my-4' alt='Photo de profile'>
+                </li>";
+            
+        }
+    }
+
+
+
 
 
 ?>

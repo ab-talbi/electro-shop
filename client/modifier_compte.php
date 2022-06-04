@@ -11,31 +11,31 @@
     <form class="w-50 m-auto" action="" method="post" enctype="multipart/form-data">
     <h3 class="text-success-mb-4">Modification de voter compte</h3>
         <div class="form-outline mb-4">
-            <label for="nom_utilisateur">Nom :</label>
+            <label for="nom_utilisateur">Nom </label>
             <input type="text" name="nom_utilisateur" id="nom_utilisateur" class="form-control w-50" value="">
         </div>
         <div class="form-outline mb-4">
-            <label for="prenom_utilisateur">Prénom :</label>
+            <label for="prenom_utilisateur">Prénom </label>
             <input type="text" name="prenom_utilisateur" id="prenom_utilisateur" class="form-control w-50" value="">
         </div>
         <div class="form-outline mb-4">
-            <label for="image_utilisateur">Image :</label>
+            <label for="image_utilisateur">Image </label>
             <input type="file" name="image_utilisateur" id="image_utilisateur" class="form-control w-50" value="">
         </div>
         <div class="form-outline mb-4">
-            <label for="adresse_utilisateur">Adresse :</label>
+            <label for="adresse_utilisateur">Adresse </label>
             <input type="text" name="adresse_utilisateur" id="adresse_utilisateur" class="form-control w-50" value="">
         </div>
         <div class="form-outline mb-4">
-            <label for="mot_passe_utilisateur">Mot de Passe :</label>
+            <label for="mot_passe_utilisateur">Mot de Passe </label>
             <input type="password" name="mot_passe_utilisateur" id="mot_passe_utilisateur" class="form-control w-50" value="">
         </div>
         <div class="form-outline mb-4">
-            <label for="email_utilisateur">Email :</label>
+            <label for="email_utilisateur">Email </label>
             <input type="email" name="email_utilisateur" id="email_utilisateur" class="form-control w-50" value="">
         </div>
         <div class="form-outline mb-4">
-            <label for="tel_utilisateur">Telephone :</label>
+            <label for="tel_utilisateur">Telephone </label>
             <input type="tel" name="tel_utilisateur" id="tel_utilisateur" class="form-control w-50" value="">
         </div>
         <div class="form-outline mb-4">

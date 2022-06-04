@@ -117,7 +117,7 @@
                     </div>
                     <div class="text-center">
                         <input name="register_utilisateur" type="submit" value="envoyer" class="btn btn-success me-1"/>
-                        <input type="reset" value="renitialiser" class="btn btn-warning ms-1">
+                        <input type="reset" value="renitialiser" class="btn btn-warning text-light ms-1">
                         <?php
                                 if(isset($_SESSION['payer'])){
                                     $url = "./client/payer.php";

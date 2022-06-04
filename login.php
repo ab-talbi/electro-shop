@@ -118,9 +118,11 @@
         $rows = $select_utilisateur->rowCount();
         $nom_utilisateur;
         $mot_passe_utilisateur;
+        $id_utilisateur;
         while($ligne = $select_utilisateur->fetch(PDO::FETCH_OBJ)){
             $nom_utilisateur = $ligne->nom_utilisateur;
-            $mot_passe_utilisateur = $ligne->mot_passe_utilisateur;;
+            $mot_passe_utilisateur = $ligne->mot_passe_utilisateur;
+            $id_utilisateur = $ligne->id_utilisateur;
         }
 
         $select_carte = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
@@ -130,7 +132,7 @@
             if(password_verify($password_utilisateur,$mot_passe_utilisateur)){
                 
                 $_SESSION['nom_utilisateur'] = $nom_utilisateur;
-
+                $_SESSION['id_utilisateur'] = $id_utilisateur;
                 if($rows_carte == 0){
                     echo "<script>Swal.fire({position: 'center',
                         icon: 'success',
