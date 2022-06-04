@@ -40,17 +40,22 @@
                 } ?></a>
             </li>
             <ul class="navbar-nav nav-item">
-                <?php if(isset($_SESSION['nom_utilisateur'])){
-                    echo '<li class="nav-item">
-                    <a href="logout.php" class="nav-link">Déconnecter</a>
-                </li>';
+            <?php if(isset($_SESSION['nom_utilisateur'])){
+                    echo "
+                    <li class='nav-item'>
+                        <a href='./client/profile.php' class='nav-link'>Profile</a>
+                    </li>
+                    <li class='nav-item'>
+                            <a href='./logout.php' class='nav-link'>Déconnecter</a>
+                    </li>";
                 }else{
-                    echo '<li class="nav-item">
-                    <a href="login.php" class="nav-link">Se connecter</a>
-                </li>
-                <li class="nav-item">
-                    <a href="registre.php" class="nav-link">S\'inscrire</a>
-                </li>';
+                    echo "
+                    <li class='nav-item'>
+                    <a href='./login.php' class='nav-link'>Se connecter</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a href='./registre.php' class='nav-link'>S'inscrire</a>
+                    </li>";
                 }
                 ?>
 

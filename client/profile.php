@@ -1,5 +1,4 @@
 <?php
-
     include('../includes/connect.php');
     include('../fonctions/fonctions.php');
     session_start();
@@ -39,9 +38,24 @@
                 } ?></a>
             </li>
             <ul class="navbar-nav nav-item">
-                <li class="nav-item">
-                    <a href="logout.php" class="nav-link">Déconnecter</a>
-                </li>
+            <?php if(isset($_SESSION['nom_utilisateur'])){
+                    echo "
+                    <li class='nav-item'>
+                        <a href='./profile.php' class='nav-link'>Profile</a>
+                    </li>
+                    <li class='nav-item'>
+                            <a href='../logout.php' class='nav-link'>Déconnecter</a>
+                    </li>";
+                }else{
+                    echo "
+                    <li class='nav-item'>
+                    <a href='../login.php' class='nav-link'>Se connecter</a>
+                    </li>
+                    <li class='nav-item'>
+                        <a href='../registre.php' class='nav-link'>S'inscrire</a>
+                    </li>";
+                }
+                ?>
             </ul>
             
         </ul>
@@ -62,13 +76,17 @@
         <div class='col-md-2 bg-black-white p-0'>
             <ul class='navbar-nav me-auto text-center'>
                 <li class='nav-item bg-blue-black'>
-                    <a href='#' class='nav-link text-light'><h4>Les Marques</h4></a>
+                    <a href='#' class='nav-link text-light'><h4>Le profile</h4></a>
                 </li>
                 <?php
-                    getProfilImage(1);
+                    if(isset($_SESSION['id_utilisateur'])){
+                        getProfilImage($_SESSION['id_utilisateur']);
+                    }else{
+                        getProfilImage(0);
+                    }
                 ?>
                 <li class='nav-item'>
-                    <a href='profile.php' class='nav-link text-light'>Commandes incomplete</a>
+                    <a href='profile.php' class='nav-link text-light'>Commandes incomplete P55</a>
                 </li>
                 <li class='nav-item'>
                     <a href='profile.php?modifier_compte' class='nav-link text-light'>Modifier le compte</a>
