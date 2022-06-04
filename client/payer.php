@@ -1,7 +1,7 @@
 <?php
 
     @session_start();
-    
+    include('../includes/connect.php');
     include('../fonctions/fonctions.php');
     $adresse_ip = getIPAddress();
     $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` WHERE ip_utilisateur like '$adresse_ip'");

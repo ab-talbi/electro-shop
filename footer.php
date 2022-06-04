@@ -41,10 +41,10 @@
                         <h3>Retrouvez-nous sur</h3>
                     </div>
                     <ul class="list">
-                        <li><a href="facebook/ElectroShop"><i class="fa-brands fa-facebook"></i> </a></li>
-                        <li><a href="instagram/ElectroShop"><i class="fa-brands fa-instagram"></i> </a></li>
-                        <li><a href="youtube/ElectroShop"><i class="fa-brands fa-youtube"></i> </a></li>
-                        <li><a href="twitter/ElectroShop"><i class="fa-brands fa-twitter"></i> </a></li>
+                        <li><a href="http://www.facebook.com/ElectroShop"><i class="fa-brands fa-facebook"></i> </a></li>
+                        <li><a href="http://www.instagram.com/ElectroShop"><i class="fa-brands fa-instagram"></i> </a></li>
+                        <li><a href="http://www.youtube.com/ElectroShop"><i class="fa-brands fa-youtube"></i> </a></li>
+                        <li><a href="http://www.twitter.com/ElectroShop"><i class="fa-brands fa-twitter"></i> </a></li>
                     </ul>
                 </aside>
             </div>

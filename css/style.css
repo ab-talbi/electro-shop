@@ -62,3 +62,10 @@ footer a{
     text-overflow: ellipsis;
 } 
 
+.photo_profile{
+    width: 90%;
+    margin: auto;
+    display: block;
+    height: 100%;
+}
+
