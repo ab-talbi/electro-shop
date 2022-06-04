@@ -3,6 +3,11 @@
     include('includes/connect.php');
     include('fonctions/fonctions.php');
     @session_start();
+    if($_SESSION){
+        session_destroy();
+        echo "<script>window.open('./login.php','_self')</script>";
+
+    }
 
 ?>
 

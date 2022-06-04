@@ -5,7 +5,6 @@
     session_start();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +85,11 @@
             </ul>
         </div>
         <div class="col-md-10">
-
+                <?php
+                    if(isset($_GET['modifier_compte'])){
+                        include('modifier_compte.php');
+                    }
+                ?>
         </div>
     </div>
 
