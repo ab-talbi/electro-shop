@@ -201,29 +201,37 @@
                 echo "<script>Swal.fire({position: 'center',
                     icon: 'success',
                     title: 'Vous etes inscrit avec succés',
-                    showConfirmButton: true});</script>";
+                    showConfirmButton: true}).then((result) => {
+                                if (result.isConfirmed) {
+                          Swal.fire(
+                                 window.open('./login.php','_self')
+                               )
+                              }else{
+                               window.open('./login.php','_self')
+                            }
+                          });</script>";
             }
         }
 
-        $select_carte = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$ip_utilisateur'");
-        $rows_carte = $select_carte->rowCount();
-        if($rows_carte>0){
-            $_SESSION['nom_utilisateur'] = $nom_utilisateur;
-            echo "<script>Swal.fire({position: 'center',
-                icon: 'success',
-                title: 'Vous avez des produits dans la carte!',
-                showConfirmButton: true}).then((result) => {
-                    if (result.isConfirmed) {
-                      Swal.fire(
-                        window.open('./client/commander.php','_self')
-                      )
-                    }else{
-                        window.open('./client/commander.php','_self')
-                    }
-                  });</script>";
-        }else{
-            echo "<script>window.open('./index.php','_self')</script>";
-        }
+        // $select_carte = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$ip_utilisateur'");
+        // $rows_carte = $select_carte->rowCount();
+        // if($rows_carte>0){
+        //     $_SESSION['nom_utilisateur'] = $nom_utilisateur;
+        //     echo "<script>Swal.fire({position: 'center',
+        //         icon: 'success',
+        //         title: 'Vous avez des produits dans la carte!',
+        //         showConfirmButton: true}).then((result) => {
+        //             if (result.isConfirmed) {
+        //               Swal.fire(
+        //                 window.open('./client/commander.php','_self')
+        //               )
+        //             }else{
+        //                 window.open('./client/commander.php','_self')
+        //             }
+        //           });</script>";
+        // }else{
+        //     echo "<script>window.open('./index.php','_self')</script>";
+        // }
 
         
 

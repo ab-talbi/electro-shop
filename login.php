@@ -3,6 +3,11 @@
     include('includes/connect.php');
     include('fonctions/fonctions.php');
     @session_start();
+    if($_SESSION){
+        session_destroy();
+        echo "<script>window.open('./login.php','_self')</script>";
+
+    }
 
 ?>
 
@@ -146,10 +151,10 @@
                         showConfirmButton: true}).then((result) => {
                             if (result.isConfirmed) {
                               Swal.fire(
-                                window.open('./client/payer.php','_self')
+                                window.open('./client/commander.php','_self')
                               )
                             }else{
-                                window.open('./client/payer.php','_self')
+                                window.open('./client/commander.php','_self')
                             }
                           });</script>";
                 }
