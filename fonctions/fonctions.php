@@ -324,7 +324,7 @@
         $rows = $select_produit_utilisateur->rowCount();
         if($rows>0){
             echo '
-            <form action="./carte.php" mathod="get">
+            <form action="./carte.php" method="get">
             <table class="table caption-top text-center mt-3">
             <caption class="text-center">Les produits que vous avez ajouté à votre carte</caption>
             <thead>
