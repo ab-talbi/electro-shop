@@ -92,7 +92,7 @@
                     <a href='profile.php?modifier_compte' class='nav-link text-light'>Modifier le compte</a>
             </li>
                 <li class='nav-item'>
-                    <a href='profile.php?commande' class='nav-link text-light'>Mes Commandes</a>
+                    <a href='profile.php?mes_commandes' class='nav-link text-light'>Mes Commandes</a>
             </li>
                 <li class='nav-item'>
                     <a href='profile.php?supprimer_compte' class='nav-link text-light'>Supprimer le compte</a>
@@ -106,6 +106,9 @@
                 <?php
                     if(isset($_GET['modifier_compte'])){
                         include('modifier_compte.php');
+                    }
+                    if(isset($_GET['mes_commandes'])){
+                        include('liste_commandes.php');
                     }
                 ?>
         </div>
