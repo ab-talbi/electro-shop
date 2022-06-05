@@ -1,3 +1,12 @@
+<?php
+
+	include('../includes/connect.php');
+	include('../fonctions/fonctions.php');
+	session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +32,7 @@
 
 <body>
     
-    <header class="header">
+    <header class="header" style="width:100%; position:fixed">
 		<h2 class="u-name">Electro <b>Shop</b>
 			<label for="checkbox">
 				<i id="navbtn" class="fa fa-bars" aria-hidden="false"></i>
@@ -33,10 +42,10 @@
 	</header>
 	<input type="checkbox" id="checkbox">
 	
-	<div class="container p-0 m-0" >
+	<div class="container p-0 m-0 " >
 		<div class="row">
 			<div class="body col-lg-3">
-				<nav class="side-bar" style="overflow-y:scroll;">
+				<nav class="side-bar" style="margin-top:62px;overflow-y:scroll; height:100%; position:fixed">
 					<div class="user-p">
 						<img src="../images/drone.jpg">
 						<h4>L'admin</h4>
@@ -108,11 +117,13 @@
 								<span>Déconnexion</span>
 							</a>
 						</li>
+						
 					</ul>
+					<div style="height:60px"></div>
 				</nav>
 			</div>
-			<div class="col-lg-9">
-
+			<div class="col-lg-9" style="margin-top:62px">
+				
 				<!-- espace pour ajouter les categories -->
 				<?php
 					if(isset($_GET['ajouter_categories'])){
@@ -202,6 +213,14 @@
 				
 					if(isset($_GET['liste_produits'])){
 						include('liste_produits.php');
+					}
+				?>
+
+					<!-- espace pour editer les produits -->
+				<?php
+				
+					if(isset($_GET['modifier_produit'])){
+						include('modifier_produit.php');
 					}
 				?>
 			</div>

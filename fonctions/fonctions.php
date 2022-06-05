@@ -52,7 +52,32 @@
         $select_categories = $con->query('SELECT * FROM categories');
         while($ligne = $select_categories->fetch(PDO::FETCH_OBJ)){
            echo "<li><a class='dropdown-item' href='./index.php?categorie=$ligne->id_categorie'>$ligne->nom_categorie</a></li>";
-            //echo "<li class='nav-item liList'><a href='".$url."categorie=$ligne->id_categorie' class=''>$ligne->nom_categorie</a></li>";
+        }
+
+    }
+    //Afficher les Catégories Pour Admin
+    function getCategoriesAdminSelect(){
+
+        global $con;
+        global $id_categorie;
+        $select_categories = $con->query('SELECT * FROM categories');
+        while($ligne = $select_categories->fetch(PDO::FETCH_OBJ)){
+            if($id_categorie != $ligne->id_categorie){
+                echo "<option value='$ligne->id_categorie'>$ligne->nom_categorie</option>";
+            }
+        }
+
+    }
+    //Afficher les Marques Pour Admin
+    function getMarquesAdminSelect(){
+
+        global $con;
+        global $id_marque;
+        $select_marque = $con->query('SELECT * FROM marques');
+        while($ligne = $select_marque->fetch(PDO::FETCH_OBJ)){
+            if($id_marque != $ligne->id_marque){
+                echo "<option value='$ligne->id_marque'>$ligne->nom_marque</option>";
+            }
         }
 
     }
@@ -552,9 +577,7 @@
 
 
 
-<<<<<<< HEAD
-=======
-    //Afficher les produits existent dans la carte pour un etulisateur
+    //Afficher les commandes pour un etulisateur
     function getTousCommandesPourUtilisateur(){
         global $con;
         global $id_utilisateur;
@@ -629,6 +652,66 @@
 
 
 
+    //Afficher les produits 
+    function getTousProduitsPourAdmin(){
+        global $con;
+        $select_produit = $con->query("SELECT * FROM `produits`");
+        $rows = $select_produit->rowCount();
+        if($rows>0){
+            echo '
+            <table class="table mt-5">
+            <thead class="bg-success text-light">
+                <tr class="text-center">
+                    <th>#ID</th>
+                    <th>NOM</th>
+                    <th>PRIX (unit)</th>
+                    <th>IMAGE</th>
+                    <th>STATUS</th>
+                    <th>MODIFIER</th>
+                    <th>SUPPRIMER</th>
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+            ';
+            $compteur=1;
+            while($prod = $select_produit->fetch(PDO::FETCH_OBJ)){
+                $nom_produit = $prod->nom_produit;
+                $id_produit = $prod->id_produit;
+                $prix_unitaire = $prod->prix_produit;
+                $image1 = $prod->produit_image1;
+                $status = $prod->status_produit;
+                if($status == 'true'){
+                    $status = 'Disponible';
+                }
+                else{
+                    $status = 'Pas Disponible';
+                }
+                echo "
+                    <tr class='text-center'>
+                        <th>$compteur</th>
+                        <td>$nom_produit</td>
+                        <td>$prix_unitaire</td>
+                        <td><img style='width:100px;object-fit:contain' src='./produits_images/$image1' alt='$nom_produit'></td>
+                        
+                        <td>$status</td>
+                        <td><a href='./index.php?modifier_produit=$id_produit' class='text-black'><i class='fa-solid fa-pen-to-square'></i></a></td>
+                        <td><a href='' class='text-black'><i class='fa-solid fa-trash'></i></a></td>
+                    </tr> 
+                ";
+                $compteur++;          
+            }
+                
+            
+            echo "
+            </tbody>
+            </table>
+            ";
+        }else{
+            echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>Pas de Produit</strong></h2>
+            <a href='./index.php?ajouter_produit' class='px-3 btn btn-primary'>Ajouter des Produits</a></div>";
+        }
+    }
 
->>>>>>> a72ec99ef87c4cd36fdef28d4ac9dfc6e8b12eb3
+
+
 ?>

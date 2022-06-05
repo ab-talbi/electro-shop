@@ -17,31 +17,34 @@
     <h3 class="text-success my-4">Modification de voter compte</h3>
         <div class="form-outline mb-4">
             <label for="nom_utilisateur">Nom </label>
-            <input type="text" name="nom_utilisateur" id="nom_utilisateur" class="form-control w-50" value="<?php echo $nom_utilisateur ?>">
+            <input type="text" name="nom_utilisateur" id="nom_utilisateur" class="form-control w-100" value="<?php echo $nom_utilisateur ?>">
         </div>
         <div class="form-outline mb-4">
             <label for="prenom_utilisateur">Prénom </label>
-            <input type="text" name="prenom_utilisateur" id="prenom_utilisateur" class="form-control w-50" value="<?php echo $prenom_utilisateur ?>">
+            <input type="text" name="prenom_utilisateur" id="prenom_utilisateur" class="form-control w-100" value="<?php echo $prenom_utilisateur ?>">
         </div>
         <div class="form-outline mb-4">
             <label for="image_utilisateur">Image </label>
-            <input type="file" name="image_utilisateur" id="image_utilisateur" class="form-control w-50" value="">
-            <!-- <img src="./client_images/<?php echo $image_utilisateur ?>" width= 80px height=80px alt="photo de profile"> -->
+            <div class="d-flex">
+                <input type="file" name="image_utilisateur" id="image_utilisateur" class="form-control <?php if($image_utilisateur != '') echo "w-90"; else echo "w-100"; ?> m-auto" >
+                <?php if($image_utilisateur != '') echo "<img src='./client_images/$image_utilisateur' style='width:100px' alt='photo de profile'>";?> 
+                
+            </div>
         </div>
         <div class="form-outline mb-4">
             <label for="adresse_utilisateur">Adresse </label>
-            <input type="text" name="adresse_utilisateur" id="adresse_utilisateur" class="form-control w-50" value="<?php echo $adresse_utilisateur ?>">
+            <input type="text" name="adresse_utilisateur" id="adresse_utilisateur" class="form-control w-100" value="<?php echo $adresse_utilisateur ?>">
         </div>
         <div class="form-outline mb-4">
             <label for="email_utilisateur">Email </label>
-            <input type="email" name="email_utilisateur" id="email_utilisateur" class="form-control w-50" value="<?php echo $email_utilisateur ?>">
+            <input type="email" name="email_utilisateur" id="email_utilisateur" class="form-control w-100" value="<?php echo $email_utilisateur ?>">
         </div>
         <div class="form-outline mb-4">
             <label for="tel_utilisateur">Telephone </label>
-            <input type="tel" name="tel_utilisateur" id="tel_utilisateur" class="form-control w-50" value="<?php echo $tel_utilisateur ?>">
+            <input type="tel" name="tel_utilisateur" id="tel_utilisateur" class="form-control w-100" value="<?php echo $tel_utilisateur ?>">
         </div>
         <div class="form-outline mb-4">
-            <input type="submit" name="modifier_btn" class="btn btn-primary form-control w-50 m-auto" value="Modifier">
+            <input type="submit" name="modifier_btn" class="btn btn-primary form-control w-100 m-auto" value="Modifier">
         </div>
     </form>
 
@@ -87,19 +90,19 @@
             
                 //Modifier les donnee de l'utilisateur
                 $update_data_utilisateur = $con->prepare("UPDATE utilisateurs set nom_utilisateur=:nom_utilisateur,
-                                                                            prenom_utilisateur=:prenom_utilisateur,
-                                                                            email_utilisateur=:email_utilisateur,
-                                                                            adresse_utilisateur=:adresse_utilisateur,
-                                                                            tel_utilisateur=:tel_utilisateur,
-                                                                            image_utilisateur=:image_utilisateur WHERE id_utilisateur=:id_utilisateur
-                                                                            ")->execute(array(
-                                                                                            ":nom_utilisateur"=>$nom_utilisateur,
-                                                                                            ":prenom_utilisateur"=>$prenom_utilisateur,
-                                                                                            ":email_utilisateur"=>$email_utilisateur,
-                                                                                            ":image_utilisateur"=>$image_utilisateur_up,
-                                                                                            ":adresse_utilisateur"=>$adresse_utilisateur,
-                                                                                            ":tel_utilisateur"=>$tel_utilisateur,
-                                                                                            "id_utilisateur"=>$id_utilisateur));
+                prenom_utilisateur=:prenom_utilisateur,
+                email_utilisateur=:email_utilisateur,
+                adresse_utilisateur=:adresse_utilisateur,
+                tel_utilisateur=:tel_utilisateur,
+                image_utilisateur=:image_utilisateur WHERE id_utilisateur=:id_utilisateur
+                ")->execute(array(
+                                ":nom_utilisateur"=>$nom_utilisateur,
+                                ":prenom_utilisateur"=>$prenom_utilisateur,
+                                ":email_utilisateur"=>$email_utilisateur,
+                                ":image_utilisateur"=>$image_utilisateur_up,
+                                ":adresse_utilisateur"=>$adresse_utilisateur,
+                                ":tel_utilisateur"=>$tel_utilisateur,
+                                "id_utilisateur"=>$id_utilisateur));
             
                 if($update_data_utilisateur){
                     echo "
