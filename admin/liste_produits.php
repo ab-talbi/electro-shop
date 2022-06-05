@@ -20,7 +20,7 @@
             <td>image</td>
             <td>disponible</td>
             <td><a href="#" class="text-black"><i class="fa-solid fa-pen-to-square"></i></a></td>
-            <td><a href="#" class="text-black"><i class="fa-solid fa-trash"></i></a></td>
+            <td><a href="index.php?supprimer_produit=<?php echo '5'; ?>" class="text-black"><i class="fa-solid fa-trash"></i></a></td>
         </tr>
     </tbody>
 </table>

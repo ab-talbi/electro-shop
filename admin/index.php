@@ -67,7 +67,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="index.php?liste_categories">
 								<i class="fa-solid fa-list" aria-hidden="true"></i>
 								<span>Catégories</span>
 							</a>
@@ -79,7 +79,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="index.php?liste_marques">
 								<i class="fa-solid fa-list" aria-hidden="true"></i>
 								<span>Marques</span>
 							</a>
@@ -148,6 +148,30 @@
 									break;
 						}
 					}
+				?>		
+
+				<!-- espace pour lister les categories -->
+				<?php
+
+					if(isset($_GET['liste_categories'])){
+					include('liste_categories.php');
+					}
+				?>
+
+				<!-- espace pour modifier les categories -->
+				<?php
+
+					if(isset($_GET['modifier_categorie'])){
+					include('modifier_categorie.php');
+					}
+				?>
+
+				<!-- espace pour supprimer les categories -->
+				<?php
+
+					if(isset($_GET['supprimer_categorie'])){
+					include('supprimer_categorie.php');
+					}
 				?>
 
 
@@ -188,7 +212,33 @@
 						}
 					}
 				?>
+
+				<!-- espace pour ajouter les marques -->
+				<?php
 				
+					if(isset($_GET['liste_marques'])){
+						include('liste_marques.php');
+					}
+				?>
+
+				<!-- espace pour modifier les marques -->
+				<?php
+
+					if(isset($_GET['modifier_marque'])){
+					include('modifier_marque.php');
+					}
+				?>
+
+				<!-- espace pour supprimer les marques -->
+				<?php
+
+					if(isset($_GET['supprimer_marque'])){
+					include('supprimer_marque.php');
+					}
+				?>
+
+
+
 				<?php
 				
 					if(isset($_GET['ajouter_produit'])){
@@ -204,6 +254,16 @@
 						include('liste_produits.php');
 					}
 				?>
+
+				<!-- espace pour lister les produits -->
+
+				<?php
+				
+					if(isset($_GET['supprimer_produit'])){
+						include('supprimer_produit.php');
+					}
+				?>
+
 			</div>
 		</div>
 	</div>

@@ -552,8 +552,6 @@
 
 
 
-<<<<<<< HEAD
-=======
     //Afficher les produits existent dans la carte pour un etulisateur
     function getTousCommandesPourUtilisateur(){
         global $con;
@@ -580,7 +578,7 @@
             ';
 
             while($ligne = $select_commande_utilisateur->fetch(PDO::FETCH_OBJ)){
-                $id_commande = $ligne->id_commande;
+                $id_commande = $ligne->id_commande; 
                 $random_cmd = $ligne->random_cmd;
                 $nombre_produits = $ligne->nombre_produits;
                 $a_payer = $ligne->a_payer;
@@ -630,5 +628,4 @@
 
 
 
->>>>>>> a72ec99ef87c4cd36fdef28d4ac9dfc6e8b12eb3
 ?>

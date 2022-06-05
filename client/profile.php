@@ -103,14 +103,13 @@
                     if(isset($_GET['modifier_compte'])){
                         include('modifier_compte.php');
                     }
-<<<<<<< HEAD
 
                     if(isset($_GET['supprimer_compte'])){
                         include('supprimer_compte.php');
-=======
+                    }
+                    
                     if(isset($_GET['mes_commandes'])){
                         include('liste_commandes.php');
->>>>>>> a72ec99ef87c4cd36fdef28d4ac9dfc6e8b12eb3
                     }
                 ?>
         </div>

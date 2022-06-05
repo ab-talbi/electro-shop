@@ -1,4 +1,4 @@
-    <h3 class="text-danger text-center my-4">Supprimer le compte ?</h3>
+    <h3 class="text-danger text-center my-4">Êtes-vous sûr de vouloir le supprimer ?</h3>
     <form action="" method="post" class=" d-flex align-items-center justify-content-center mt-5">
         <div class="form-outline mb-4">
             <input type="submit" value="Oui" name="ok-btn" class="btn btn-danger m-2">
