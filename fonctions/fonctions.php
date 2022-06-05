@@ -603,7 +603,7 @@
             ';
 
             while($ligne = $select_commande_utilisateur->fetch(PDO::FETCH_OBJ)){
-                $id_commande = $ligne->id_commande;
+                $id_commande = $ligne->id_commande; 
                 $random_cmd = $ligne->random_cmd;
                 $nombre_produits = $ligne->nombre_produits;
                 $a_payer = $ligne->a_payer;
@@ -695,7 +695,7 @@
                         
                         <td>$status</td>
                         <td><a href='./index.php?modifier_produit=$id_produit' class='text-black'><i class='fa-solid fa-pen-to-square'></i></a></td>
-                        <td><a href='' class='text-black'><i class='fa-solid fa-trash'></i></a></td>
+                        <td><a href='./index.php?supprimer_produit=$id_produit' class='text-black'><i class='fa-solid fa-trash'></i></a></td>
                     </tr> 
                 ";
                 $compteur++;          

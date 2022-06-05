@@ -104,13 +104,10 @@
                         include('modifier_compte.php');
                     }
 
-
-
-
                     if(isset($_GET['supprimer_compte'])){
                         include('supprimer_compte.php');
                     }
-
+                    
                     if(isset($_GET['mes_commandes'])){
                         include('liste_commandes.php');
                     }
