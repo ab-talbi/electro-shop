@@ -29,8 +29,6 @@
     <link rel="stylesheet" href="./css/style.css?v=<?php echo time(); ?>">
 </head>
 <body>
-
-<body>
     
     <header class="header" style="width:100%; position:fixed">
 		<h2 class="u-name">Electro <b>Shop</b>
@@ -266,7 +264,7 @@
 					}
 				?>
 
-				<!-- espace pour lister les produits -->
+				<!-- espace pour supprimer les produits -->
 
 				<?php
 				
@@ -285,10 +283,26 @@
 			</div>
 		</div>
 	</div>
-</body>
 
 
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-body">
+			<h4>Êtes-vous sûr de vouloir le supprimer ?</h4>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-success" data-bs-dismiss="modal">Non</button>
+			<button type="button" class="btn btn-danger" id="idConfirme"></button>
+		</div>
+		</div>
+	</div>
+	</div>
 
+	
+	<!-- js linck -->
+	<script src="js/confirme.js"></script>
     <!-- bootstrap-JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     

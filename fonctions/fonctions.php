@@ -695,7 +695,9 @@
                         
                         <td>$status</td>
                         <td><a href='./index.php?modifier_produit=$id_produit' class='text-black'><i class='fa-solid fa-pen-to-square'></i></a></td>
-                        <td><a href='./index.php?supprimer_produit=$id_produit' class='text-black'><i class='fa-solid fa-trash'></i></a></td>
+                        <td><button value='index.php?supprimer_produit=$id_produit' 
+                        type='button' class=' fa-solid fa-trash btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                        </button></td>
                     </tr> 
                 ";
                 $compteur++;          
