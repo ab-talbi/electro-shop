@@ -55,7 +55,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="index.php?liste_produits">
 								<i class="fa-brands fa-product-hunt" aria-hidden="true"></i>
 								<span>Produits</span>
 							</a>
@@ -193,6 +193,15 @@
 				
 					if(isset($_GET['ajouter_produit'])){
 						include('./ajouter_produit.php');
+					}
+				?>
+
+				<!-- espace pour lister les produits -->
+
+				<?php
+				
+					if(isset($_GET['liste_produits'])){
+						include('liste_produits.php');
 					}
 				?>
 			</div>

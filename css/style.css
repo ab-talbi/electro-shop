@@ -63,10 +63,7 @@ footer a{
 } 
 
 .photo_profile{
-    width: 60%;
-    margin: auto;
-    display: block;
-    height: 100%;
+    width: 150px;
     border-radius: 50%;
 }
 

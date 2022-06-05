@@ -105,7 +105,7 @@
                     }
                    
                     getProduitsByCategorie();
-                    getProduitsByMarque();
+                   // getProduitsByMarque();
                     if(isset($_GET['marque']) && isset($_GET['categorie'])){
                         getProduitsByMarqueEtCategorie();
                     }

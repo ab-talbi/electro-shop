@@ -46,12 +46,12 @@
     }
 
     //Afficher les Catégories
-    function getCategories($url){
+    function getCategories(){
 
         global $con;
         $select_categories = $con->query('SELECT * FROM categories');
         while($ligne = $select_categories->fetch(PDO::FETCH_OBJ)){
-           echo "<li><a class='dropdown-item' href='".$url."categorie=$ligne->id_categorie'>$ligne->nom_categorie</a></li>";
+           echo "<li><a class='dropdown-item' href='./index.php?categorie=$ligne->id_categorie'>$ligne->nom_categorie</a></li>";
             //echo "<li class='nav-item liList'><a href='".$url."categorie=$ligne->id_categorie' class=''>$ligne->nom_categorie</a></li>";
         }
 
@@ -89,7 +89,7 @@
                 echo '<h2 class="text-center mt-5 text-danger">Pas de Produits disponible pour cette catégorie!</h2>';
             }
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                echo "<div class='col-md-3 mb-2 mt-2'>
+                echo "<div class='col-md-4 mb-2 mt-2'>
                     <div class='card'>
                     <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
@@ -116,7 +116,7 @@
                 echo '<h2 class="text-center mt-5 text-danger">Pas de Produits disponible pour cette marque!</h2>';
             }
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                echo "<div class='col-md-3 mb-2 mt-2'>
+                echo "<div class='col-md-4 mb-2 mt-2'>
                     <div class='card'>
                     <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
@@ -146,7 +146,7 @@
                 echo '<h2 class="text-center mt-5 text-danger">Pas de Produits disponible pour cette marque et categorie!</h2>';
             }
             while($ligne = $select_produit->fetch(PDO::FETCH_OBJ)){
-                echo "<div class='col-md-3 mb-2 mt-2'>
+                echo "<div class='col-md-4 mb-2 mt-2'>
                     <div class='card'>
                     <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
@@ -531,21 +531,23 @@
         $select_image_utilisateur  = $con->prepare("SELECT image_utilisateur FROM utilisateurs WHERE id_utilisateur = ?");
         $select_image_utilisateur->execute(array($id_utilisateur));
         $data = $select_image_utilisateur->fetch();
-        if($select_image_utilisateur->rowCount() == 0){
-            echo "
-                <li class='nav-item'>
-                    <img src='./client_images/photo.png' class='photo_profile my-4' style='background-color: #fff;' alt='Photo de profile'>
-                </li>";
-        }else{
+        if($select_image_utilisateur->rowCount() > 0){
             $image = $data['image_utilisateur'];
+            if($image == ""){
+                 echo "
+                <li class='nav-item'>
+                    <img src='./client_images/photo.png' class='photo_profile my-2' style='background-color: #fff;' alt='Photo de profile'>
+                </li>";
+            }else{
+            
             echo "
                 <li class='nav-item'>
-                    <img src='./client_images/$image' class='photo_profile my-4' alt='Photo de profile'>
+                    <img src='./client_images/$image' class='photo_profile my-2' alt='Photo de profile'>
                 </li>";
             
+            }
         }
     }
-
 
 
 
