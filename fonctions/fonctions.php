@@ -714,4 +714,74 @@
 
 
 
+     //Afficher les Commandes Pour l'Admin 
+     function getTousCommandesPourAdmin(){
+        global $con;
+        $select_commande = $con->query("SELECT * FROM `commande`");
+        $rows = $select_commande->rowCount();
+        if($rows>0){
+            echo '
+            <table class="table mt-5">
+            <thead class="bg-success text-light">
+                <tr class="text-center">
+                    <th>#</th>
+                    <th>Réfference</th>
+                    <th>Total à payer</th>
+                    <th>Nombre Produits</th>
+                    <th>Date</th>
+                    <th>Email</th>
+                    <th>Etat</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+            ';
+            $compteur=1;
+            while($prod = $select_commande->fetch(PDO::FETCH_OBJ)){
+
+                $id_utilisateur = $prod->id_utilisateur;
+                $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` where id_utilisateur = '$id_utilisateur'");
+
+                $email_utilisateur = ($select_utilisateur->fetch(PDO::FETCH_OBJ))->email_utilisateur;
+
+                $a_payer = $prod->a_payer;
+                $random_cmd = $prod->random_cmd;
+                $status_commande = $prod->status_commande;
+                $nombre_produits = $prod->nombre_produits;
+                $date_commande = $prod->date_commande;
+
+                if($status_commande == 'suspens'){
+                    $status_commande = 'Incomplète';
+                }
+                else{
+                    $status_commande = 'Achevé';
+                }
+                echo "
+                    <tr class='text-center'>
+                        <th>$compteur</th>
+                        <td>$random_cmd</td>
+                        <td>$a_payer</td>
+                        <td>$nombre_produits</td>
+                        <td>$date_commande</td>
+                        <td>$email_utilisateur</td>
+                        <td>$status_commande</td>
+                        <td><a href='' class='text-black'><i class='fa-solid fa-trash'></i></a></td>
+                    </tr> 
+                ";
+                $compteur++;          
+            }
+                
+            
+            echo "
+            </tbody>
+            </table>
+            ";
+        }else{
+            echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>Pas de Commande</strong></h2>
+            </div>";
+        }
+    }
+
+
+
 ?>

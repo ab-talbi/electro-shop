@@ -100,9 +100,9 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="./index.php?liste_commandes">
 								<i class="fa-solid fa-cart-plus" aria-hidden="true"></i>
-								<span>Les Demandes</span>
+								<span>Les Commandes</span>
 							</a>
 						</li>
 						<li>
@@ -223,6 +223,13 @@
 						include('modifier_produit.php');
 					}
 				?>
+					<!-- espace pour afficher les commandes-->
+					<?php
+				
+				if(isset($_GET['liste_commandes'])){
+					include('liste_commandes.php');
+				}
+			?>
 			</div>
 		</div>
 	</div>
