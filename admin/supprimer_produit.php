@@ -11,7 +11,7 @@
                 <script>
                     alert('un produit à étè sipprimer');
              
-                    window.open('index.php','_self');
+                    window.open('index.php?liste_produits','_self');
                </script>";
         }
     }
