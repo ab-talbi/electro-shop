@@ -552,4 +552,83 @@
 
 
 
+<<<<<<< HEAD
+=======
+    //Afficher les produits existent dans la carte pour un etulisateur
+    function getTousCommandesPourUtilisateur(){
+        global $con;
+        global $id_utilisateur;
+        $select_commande_utilisateur = $con->query("SELECT * FROM `commande` WHERE id_utilisateur = $id_utilisateur");
+        $compteur = 1;
+
+        $rows = $select_commande_utilisateur->rowCount();
+        if($rows>0){
+            echo '
+            <table style="overflow-x:scroll" class="table caption-top text-center mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Réferrence</th>
+                    <th scope="col">Nombre de Produits</th>
+                    <th scope="col">A payer (MAD)</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Etat</th>
+                    <th scope="col">Opération</th>
+                </tr>
+            </thead>
+            <tbody>
+            ';
+
+            while($ligne = $select_commande_utilisateur->fetch(PDO::FETCH_OBJ)){
+                $id_commande = $ligne->id_commande;
+                $random_cmd = $ligne->random_cmd;
+                $nombre_produits = $ligne->nombre_produits;
+                $a_payer = $ligne->a_payer;
+                $date_commande = $ligne->date_commande;
+                $status_commande = $ligne->status_commande;
+                if($status_commande == 'suspens'){
+                    $status_commande = 'incomplète';
+                }else{
+                    $status_commande = 'achevé';
+                }
+                echo "
+                    <tr>
+                        <th scope='row'>$compteur</th>
+                        <td>$random_cmd</td>
+                        <td>$nombre_produits</td>
+                        <td>$a_payer</td>
+                        <td>$date_commande</td>
+                        <td style='color:red'>$status_commande</td>
+                    ";
+                    if($status_commande == 'achevé'){
+                        echo "
+                        <td class='text-center'>-</td>
+                        </tr> 
+                        ";
+                    }else{
+                        echo "
+                        <td class='text-center'><a href='terminer_commande.php?id_commande=$id_commande'>Terminer</a></td>
+                        </tr> 
+                        ";
+                    }
+                 
+                $compteur++; 
+                         
+            }
+            echo "
+            </tbody>
+            </table>
+            
+            ";
+        }else{
+            echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>Pas de Commande</strong></h2>
+            </div>";
+        }
+    }
+
+
+
+
+
+>>>>>>> a72ec99ef87c4cd36fdef28d4ac9dfc6e8b12eb3
 ?>

@@ -33,10 +33,10 @@
 	</header>
 	<input type="checkbox" id="checkbox">
 	
-	<div class="container p-0 m-0">
+	<div class="container p-0 m-0" >
 		<div class="row">
 			<div class="body col-lg-3">
-				<nav class="side-bar">
+				<nav class="side-bar" style="overflow-y:scroll;">
 					<div class="user-p">
 						<img src="../images/drone.jpg">
 						<h4>L'admin</h4>
