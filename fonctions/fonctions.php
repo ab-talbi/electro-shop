@@ -744,6 +744,8 @@
 
                 $email_utilisateur = ($select_utilisateur->fetch(PDO::FETCH_OBJ))->email_utilisateur;
 
+                $id_commande=$prod->id_commande;
+
                 $a_payer = $prod->a_payer;
                 $random_cmd = $prod->random_cmd;
                 $status_commande = $prod->status_commande;
@@ -765,7 +767,9 @@
                         <td>$date_commande</td>
                         <td>$email_utilisateur</td>
                         <td>$status_commande</td>
-                        <td><a href='' class='text-black'><i class='fa-solid fa-trash'></i></a></td>
+                        <td><button value='index.php?supprimer_commande=$id_commande' 
+                        type='button' class=' fa-solid fa-trash btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                        </button></td>
                     </tr> 
                 ";
                 $compteur++;          
@@ -778,6 +782,69 @@
             ";
         }else{
             echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>Pas de Commande</strong></h2>
+            </div>";
+        }
+    }
+
+
+
+    function afficherTousUtilisateurs(){
+        global $con;
+        $select_utilisateurs = $con->query("SELECT * FROM `utilisateurs`");
+        $rows = $select_utilisateurs->rowCount();
+        if($rows>0){
+            echo '
+            <table class="table mt-5">
+            <thead class="bg-success text-light">
+                <tr class="text-center">
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Adresse</th>
+                    <th>Tel</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+            <tbody class="bg-light">
+            ';
+            $compteur=1;
+            while($utilisateur = $select_utilisateurs->fetch(PDO::FETCH_OBJ)){
+
+                $id_utilisateur = $utilisateur->id_utilisateur;
+                $nom_utilisateur = $utilisateur->nom_utilisateur;
+                $prenom_utilisateur = $utilisateur->prenom_utilisateur;
+                $email_utilisateur = $utilisateur->email_utilisateur;
+                $image_utilisateur = $utilisateur->image_utilisateur;
+                $adresse_utilisateur = $utilisateur->adresse_utilisateur;
+                $tel_utilisateur = $utilisateur->tel_utilisateur;
+
+
+                echo "
+                    <tr class='text-center'>
+                        <th style='padding-top:3.35%'>$compteur</th>
+                        <td><img style='width:100px' src='./produits_images/$image_utilisateur'></td>
+                        <td style='padding-top:3.35%'>$nom_utilisateur</td>
+                        <td style='padding-top:3.35%''>$prenom_utilisateur</td>
+                        <td style='padding-top:3.35%'>$email_utilisateur</td>
+                        <td style='padding-top:3.35%'>$adresse_utilisateur</td>
+                        <td style='padding-top:3.35%'>$tel_utilisateur</td>
+                        <td style='padding-top:3.35%'><button value='index.php?supprimer_utilisateur=$id_utilisateur' 
+                        type='button' class=' fa-solid fa-trash btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                        </button></td>
+                    </tr> 
+                ";
+                $compteur++;          
+            }
+                
+            
+            echo "
+            </tbody>
+            </table>
+            ";
+        }else{
+            echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>Pas d'etulisateurs</strong></h2>
             </div>";
         }
     }

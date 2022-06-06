@@ -92,7 +92,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="./index.php?liste_utilisateurs">
 								<i class="fa-solid fa-users" aria-hidden="true"></i>
 								<span>Les Utilisateurs</span>
 							</a>
@@ -110,7 +110,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="../client/logout.php">
 								<i class="fa fa-power-off" aria-hidden="true"></i>
 								<span>Déconnexion</span>
 							</a>
@@ -248,6 +248,8 @@
 
 
 
+
+
 				<?php
 				
 					if(isset($_GET['ajouter_produit'])){
@@ -287,6 +289,22 @@
 					include('liste_commandes.php');
 				}
 			?>
+
+				<!-- espace pour supprimer les commandes -->
+				<?php
+
+					if(isset($_GET['supprimer_commande'])){
+					include('supprimer_commande.php');
+					}
+				?>
+
+				<!-- espace pour afficher les utilisateurs-->
+				<?php
+					if(isset($_GET['liste_utilisateurs'])){
+						include('liste_utilisateurs.php');
+					}
+				?>
+
 			</div>
 		</div>
 	</div>

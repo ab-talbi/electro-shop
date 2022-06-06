@@ -13,7 +13,7 @@
             if($delete_marque){
                 echo "
                     <script>
-                        alert('une marque à étè sipprimer');
+                        alert('une marque à étè supprimer');
                  
                         window.open('index.php?liste_marques','_self');
                    </script>";
