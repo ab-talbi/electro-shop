@@ -5,7 +5,7 @@
     @session_start();
     if($_SESSION){
         session_destroy();
-        echo "<script>window.open('./login.php','_self')</script>";
+        echo "<script>window.open('./login.php?dashboard','_self')</script>";
 
     }
 
@@ -28,12 +28,11 @@
 
      <!-- css file -->
      <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
-	<link rel="stylesheet" href="../css/style.css?v=<?php echo time(); ?>">
 
     <title>Connexion</title>
     
 </head>
-<body>   
+<body class="p-5">   
 <!-- 
     <nav class="navbar navbar-expand-lg navbar-dark bg-blue-black">
         <ul class="navbar-nav headerBC">
@@ -68,11 +67,14 @@
     ?> -->
 
     <div class="container-fluid my-3">
-        <h2 class="text-center m-5">connexion</h2>
-        <div class="row d-flex align-items-center justify-content-center">
-            <div class="col-lg-12 col-xl-6">
-                <form action="" method="post">
-
+        <div class="row d-flex align-items-center text-center justify-content-center">
+            <div class="col-md-6">
+                <img src="/Electro-Shop/images/passwd.png" alt="password">
+            </div>
+            <div class="col-lg-6 ">
+        
+                <form action="" class="" method="post">
+                    <h2 class="m-5">connexion</h2>
                     <!-- Email -->
                     <div class="form-outline mb-4">
                         <label for="idemail" class="form-label">Email </label>

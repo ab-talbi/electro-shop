@@ -39,7 +39,6 @@
 .user-p h4 {
 	color: #ccc;
 	padding: 5px 0;
-
 }
 .side-bar {
 	width: 250px;
@@ -47,7 +46,6 @@
 	min-height: 100vh;
 	transition: 500ms width;
 	overflow-y: visible;
-	
 }
 .body {
 	display: flex;

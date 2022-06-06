@@ -15,7 +15,7 @@
                             <a class="nav-link" href="/Electro-Shop/index.php?touslesproduits">Produits</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="#footer">Contact</a>
                         </li>
                         <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Catégories</a>

@@ -41,7 +41,6 @@
 		</h2>
 		<a href="" class="nav-link">Bienvenue <?php echo $_SESSION['nom_utilisateur']?></a>
 		<a href='./logout.php' class='nav-link'><i class='fa fa-power-off' aria-hidden='true'></i></a>
-                    <!-- <a href='./client/profile.php' class='nav-link'><i class="fa fa-user" aria-hidden="true"></i> Profile</a> -->
 	</header>
 	<input type="checkbox" id="checkbox">
 	
@@ -61,7 +60,7 @@
 					</div>
 					<ul>
 						<li>
-							<a href="#">
+							<a href="index.php?dashboard">
 								<i class="fa fa-desktop" aria-hidden="true"></i>
 								<span>Dashboard</span>
 							</a>
@@ -132,7 +131,56 @@
 				</nav>
 			</div>
 			<div class="col-lg-9" style="margin-top:62px">
-				
+
+
+				<!-- Dashboar -->
+				<?php
+					if(isset($_GET['dashboard'])){
+				?>
+						<div class="row pt-4 d-flex flex-row justify-content-around text-center">
+							<!-- Produit -->
+							<div class="col-3 m-3" style="width:200px; height:200px;">
+								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Produits</strong><br/>
+					</div><?php
+									getStatistique("produits");
+								?>
+							</div>
+
+							<!-- utilisateurs -->
+							<div class="col-3 m-3" style="width:200px; height:200px;">
+								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Clients</strong><br/>
+					</div><?php
+									getStatistique("utilisateurs");
+								?>
+							</div>
+
+							<!-- commande -->
+							<div class="col-3 m-3" style="width:200px; height:200px;">
+								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-3" >Commandes</strong><br/>
+					</div><?php
+									getStatistique("commande");
+								?>
+							</div>
+
+							<!-- marques -->
+							<div class="col-3 m-3" style="width:200px; height:200px;">
+								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Marques</strong><br/>
+					</div><?php
+									getStatistique("marques");
+								?>
+							</div>
+
+							<!-- categories -->
+							<div class="col-3 m-3" style="width:200px; height:200px;">
+								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Categories</strong>	<br/>
+					</div><?php
+									getStatistique("categories");
+								?>
+							</div>
+						</div>
+				<?php
+					}
+				?>
 				<!-- espace pour ajouter les categories -->
 				<?php
 					if(isset($_GET['ajouter_categories'])){

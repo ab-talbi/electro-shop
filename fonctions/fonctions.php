@@ -408,11 +408,12 @@
             </form>
 
             <div class='d-flex mb-3'>
-                <h4 class='px-3'>TOTAL DE LA COMMANDE :<strong> $tot DH<sub>TTC</sub> </strong></h4>
+                <h4 class='px-3'>TOTAL DE LA COMMANDE :<strong id='amount' data-amount='$tot'> $tot DH<sub>TTC</sub> </strong></h4>
                 <a href='./index.php'><button class='px-3 btn btn-primary'>Ajouter Autres Produits</button></a>
                 <a class='px-2' href='/Electro-Shop/client/commander.php'><button class='px-3 btn btn-secondary'>Commander</button></a>
             </div>
             ";
+            $_SESSION['total'] = $tot;
         }else{
             echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>La carte est vide</strong></h2>
             <a href='./index.php' class='px-3 btn btn-primary'>Ajouter des Produits</a></div>";
@@ -847,6 +848,27 @@
         }
     }
 
+
+
+    function getStatistique($table){
+
+        global $con;
+        if($table == "produits"){
+            $select_table = $con->prepare("SELECT * FROM produits ");
+        }elseif($table == "commande"){
+            $select_table = $con->prepare("SELECT * FROM commande ");
+        }elseif($table == "marques"){
+            $select_table = $con->prepare("SELECT * FROM marques ");
+        }elseif($table == "categories"){
+            $select_table = $con->prepare("SELECT * FROM categories ");
+        }elseif($table == "utilisateurs"){
+            $select_table = $con->prepare("SELECT * FROM utilisateurs ");
+        }
+        $select_table->execute(array());
+        $rows = $select_table->rowcount();
+        echo "<span class='fs-5' style='padding-top:20px'>$rows</span>";
+
+    }
 
 
 ?>

@@ -1,4 +1,4 @@
-<footer style="background:#f39c12;padding-top:60px;padding-bottom:20px" class=" mt-10 footer-eara">
+<footer style="background:#f39c12;padding-top:60px;padding-bottom:20px" id="footer" class=" mt-10 footer-eara">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-sm-6">

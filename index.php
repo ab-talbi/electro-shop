@@ -3,6 +3,12 @@
     include('./includes/connect.php');
     include('./fonctions/fonctions.php');
     session_start();
+    if(isset($_GET['success'])){
+        echo '<script>
+                alert("Payment done successfully");
+                window.location.replace("/Electro-Shop/index.php")
+             </script>';
+    }
 
 ?>
 
