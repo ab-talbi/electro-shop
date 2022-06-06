@@ -24,7 +24,9 @@
             <td><?php echo $number; ?></td>
             <td><?php echo $ligne->nom_marque; ?></td>
             <td><a href="index.php?modifier_marque=<?php echo $ligne->id_marque; ?>" class="text-black"><i class="fa-solid fa-pen-to-square"></i></a></td>
-            <td><a href="index.php?supprimer_marque=<?php echo $ligne->id_marque; ?>" class="text-black"><i class="fa-solid fa-trash"></i></a></td>
+            <td><button value="index.php?supprimer_marque=<?php echo $ligne->id_marque; ?>" 
+            type="button" class=" fa-solid fa-trash btn text-black confirme" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            </button></td>
         </tr>
         <?php
             $number++;
@@ -32,4 +34,3 @@
         ?>
     </tbody>
 </table>
-
