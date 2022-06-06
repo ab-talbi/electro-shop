@@ -46,6 +46,7 @@
                         <a href='./client/profile.php' class='nav-link'>Profile</a>
                     </li>
                     <li class='nav-item'>
+                        <i class='fa fa-power-off' aria-hidden='true'></i>
                             <a href='./logout.php' class='nav-link'>Déconnecter</a>
                     </li>";
                 }else{

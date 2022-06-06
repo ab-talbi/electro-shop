@@ -41,6 +41,7 @@
             <ul class="navbar-nav nav-item">
                 <?php if(isset($_SESSION['nom_utilisateur'])){
                     echo '<li class="nav-item">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
                     <a href="logout.php" class="nav-link">Déconnecter</a>
                 </li>';
                 }else{
