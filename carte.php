@@ -40,15 +40,13 @@
             </li>
             <ul class="navbar-nav nav-item">
                 <?php if(isset($_SESSION['nom_utilisateur'])){
-                    echo '<li class="nav-item">
-                    <i class="fa fa-power-off" aria-hidden="true"></i>
-                    
-                    <li class="nav-item">
-                        <a href="./client/profile.php" class="nav-link">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="logout.php" class="nav-link">Déconnecter</a>
-                </li>';
+                    echo '
+                        <li class="nav-item">
+                            <a href="./client/profile.php" class="nav-link">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="logout.php" class="nav-link"><i class="fa fa-power-off" aria-hidden="true"></i> Déconnecter</a>
+                        </li>';
                 }else{
                     echo '<li class="nav-item">
                     <a href="login.php" class="nav-link">Se connecter</a>

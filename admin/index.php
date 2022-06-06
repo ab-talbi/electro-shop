@@ -3,6 +3,9 @@
 	include('../includes/connect.php');
 	include('../fonctions/fonctions.php');
 	session_start();
+	if(!isset($_SESSION['nom_utilisateur'])){
+		header("Location: login.php");
+	}
 
 ?>
 
@@ -29,14 +32,16 @@
     <link rel="stylesheet" href="./css/style.css?v=<?php echo time(); ?>">
 </head>
 <body>
-    
+
     <header class="header" style="width:100%; position:fixed">
 		<h2 class="u-name">Electro <b>Shop</b>
 			<label for="checkbox">
 				<i id="navbtn" class="fa fa-bars" aria-hidden="false"></i>
 			</label>
 		</h2>
-		<i class="fa fa-user" aria-hidden="true"></i>
+		<a href="" class="nav-link">Bienvenue <?php echo $_SESSION['nom_utilisateur']?></a>
+		<a href='./logout.php' class='nav-link'><i class='fa fa-power-off' aria-hidden='true'></i></a>
+                    <!-- <a href='./client/profile.php' class='nav-link'><i class="fa fa-user" aria-hidden="true"></i> Profile</a> -->
 	</header>
 	<input type="checkbox" id="checkbox">
 	
@@ -45,8 +50,14 @@
 			<div class="body col-lg-3">
 				<nav class="side-bar" style="margin-top:62px;overflow-y:scroll; height:100%; position:fixed">
 					<div class="user-p">
-						<img src="../images/drone.jpg">
-						<h4>L'admin</h4>
+						<?php
+							if(isset($_SESSION['id_utilisateur'])){
+								getProfilImage($_SESSION['id_utilisateur']);
+							}else{
+								getProfilImage(0);
+							}
+                		?>
+						<h4><?php echo $_SESSION['nom_utilisateur']?></h4>
 					</div>
 					<ul>
 						<li>
@@ -110,7 +121,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="../client/logout.php">
+							<a href="./logout.php">
 								<i class="fa fa-power-off" aria-hidden="true"></i>
 								<span>Déconnexion</span>
 							</a>

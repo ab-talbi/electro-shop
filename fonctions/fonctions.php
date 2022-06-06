@@ -560,15 +560,13 @@
             $image = $data['image_utilisateur'];
             if($image == ""){
                  echo "
-                <li class='nav-item'>
-                    <img src='./client_images/photo.png' class='photo_profile my-2' style='background-color: #fff;' alt='Photo de profile'>
-                </li>";
+                    <img src='/Electro-Shop/client/client_images/photo.png' class='photo_profile my-2' style='background-color: #fff;' alt='Photo de profile'>
+                ";
             }else{
             
             echo "
-                <li class='nav-item'>
-                    <img src='./client_images/$image' class='photo_profile my-2' alt='Photo de profile'>
-                </li>";
+                <img src='/Electro-Shop/client/client_images/$image' class='photo_profile my-2' alt='Photo de profile'>
+                ";
             
             }
         }

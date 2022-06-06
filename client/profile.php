@@ -75,13 +75,15 @@
                 <li class='nav-item bg-blue-black'>
                     <a href='#' class='nav-link text-light'><h4>Le profile</h4></a>
                 </li>
-                <?php
-                    if(isset($_SESSION['id_utilisateur'])){
-                        getProfilImage($_SESSION['id_utilisateur']);
-                    }else{
-                        getProfilImage(0);
-                    }
-                ?>
+                <li class='nav-item'>
+                    <?php
+                        if(isset($_SESSION['id_utilisateur'])){
+                            getProfilImage($_SESSION['id_utilisateur']);
+                        }else{
+                            getProfilImage(0);
+                        }
+                    ?>
+                </li>
                 <li class='nav-item'>
                     <a href='profile.php' class='nav-link text-light'>Commandes incomplete P55</a>
                 </li>
