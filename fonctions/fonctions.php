@@ -700,8 +700,6 @@
                 ";
                 $compteur++;          
             }
-                
-            
             echo "
             </tbody>
             </table>
