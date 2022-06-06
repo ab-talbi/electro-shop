@@ -1,4 +1,6 @@
 
+
+//Selectionner Tous dans la carte
 let selectionner = document.querySelector('.selectionner');
 selectionner.addEventListener('change',function() {
     let checkboxes = document.querySelectorAll('.thecheck');
@@ -6,5 +8,9 @@ selectionner.addEventListener('change',function() {
       checkboxes[i].checked = this.checked;
     }
 });
+
+
+
+
 
 

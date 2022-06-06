@@ -3,11 +3,17 @@
     include('includes/connect.php');
     include('fonctions/fonctions.php');
     @session_start();
-    if($_SESSION){
+    if(isset($_SESSION['otp']) and isset($_SESSION['mail'])){
+        $code = $_SESSION['otp'];
+        $mail = $_SESSION['mail'];
+        $_SESSION['otp'] = $code;
+        $_SESSION['mail'] = $mail;
+
+    }elseif($_SESSION){
         session_destroy();
         echo "<script>window.open('./login.php','_self')</script>";
-
     }
+    
 
 ?>
 
@@ -123,17 +129,38 @@
             $nom_utilisateur = $ligne->nom_utilisateur;
             $mot_passe_utilisateur = $ligne->mot_passe_utilisateur;
             $id_utilisateur = $ligne->id_utilisateur;
+            $verifie = $ligne->verifie;
         }
+        
 
         $select_carte = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
         $rows_carte = $select_carte->rowCount();
+
+        
 
         if($rows > 0){
             if(password_verify($password_utilisateur,$mot_passe_utilisateur)){
                 
                 $_SESSION['nom_utilisateur'] = $nom_utilisateur;
                 $_SESSION['id_utilisateur'] = $id_utilisateur;
-                if($rows_carte == 0){
+                
+                if($verifie == 0){
+
+                    echo "<script>Swal.fire({position: 'center',
+                        icon: 'error',
+                        title: 'Vous n\'avez pas activer votre compte!',
+                        showConfirmButton: true}).then((result) => {
+                            if (result.isConfirmed) {
+                              Swal.fire(
+                                window.open('./verification.php','_self')
+                              )
+                            }else{
+                                window.open('./verification.php','_self')
+                            }
+                          });
+                        </script>";
+            
+                }elseif($rows_carte == 0){
                     echo "<script>Swal.fire({position: 'center',
                         icon: 'success',
                         title: 'Bienvenu',
