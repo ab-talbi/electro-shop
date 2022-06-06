@@ -137,7 +137,6 @@
     <?php
                         
         include("footer.php");
-        session_destroy(); 
                         
     ?>
     <!-- js -->
@@ -187,54 +186,117 @@
                 showConfirmButton: true});
                 </script>";
         }else{
-            $insert_utilisateur = $con->prepare('INSERT INTO utilisateurs(nom_utilisateur,prenom_utilisateur,email_utilisateur,mot_passe_utilisateur,image_utilisateur,ip_utilisateur,adresse_utilisateur,tel_utilisateur) VALUES(:nom_utilisateur,:prenom_utilisateur,:email_utilisateur,:mot_passe_utilisateur,:image_utilisateur,:ip_utilisateur,:adresse_utilisateur,:tel_utilisateur)');
-            $executer = $insert_utilisateur->execute(array(":nom_utilisateur"=>$nom_utilisateur,
-                ":prenom_utilisateur"=>$prenom_utilisateur,
-                ":email_utilisateur"=>$email_utilisateur,
-                ":mot_passe_utilisateur"=>$password_utilisateur_hash,
-                ":image_utilisateur"=>$image_utilisateur,
-                ":ip_utilisateur"=>$ip_utilisateur,
-                ":adresse_utilisateur"=>$adresse_utilisateur,
-                ":tel_utilisateur"=>$tel_utilisateur));
+
+            //insertion tous va bien
+
+            // $insert_utilisateur = $con->prepare('INSERT INTO utilisateurs(nom_utilisateur,prenom_utilisateur,email_utilisateur,mot_passe_utilisateur,image_utilisateur,ip_utilisateur,adresse_utilisateur,tel_utilisateur) VALUES(:nom_utilisateur,:prenom_utilisateur,:email_utilisateur,:mot_passe_utilisateur,:image_utilisateur,:ip_utilisateur,:adresse_utilisateur,:tel_utilisateur)');
+            // $executer = $insert_utilisateur->execute(array(":nom_utilisateur"=>$nom_utilisateur,
+            //     ":prenom_utilisateur"=>$prenom_utilisateur,
+            //     ":email_utilisateur"=>$email_utilisateur,
+            //     ":mot_passe_utilisateur"=>$password_utilisateur_hash,
+            //     ":image_utilisateur"=>$image_utilisateur,
+            //     ":ip_utilisateur"=>$ip_utilisateur,
+            //     ":adresse_utilisateur"=>$adresse_utilisateur,
+            //     ":tel_utilisateur"=>$tel_utilisateur));
     
-            if($executer){
-                echo "<script>Swal.fire({position: 'center',
-                    icon: 'success',
-                    title: 'Vous etes inscrit avec succés',
-                    showConfirmButton: true}).then((result) => {
-                                if (result.isConfirmed) {
-                          Swal.fire(
-                                 window.open('./login.php','_self')
-                               )
-                              }else{
-                               window.open('./login.php','_self')
+            //if($executer){
+                // echo "<script>Swal.fire({position: 'center',
+                //     icon: 'success',
+                //     title: 'Vous etes inscrit avec succés',
+                //     showConfirmButton: true}).then((result) => {
+                //                 if (result.isConfirmed) {
+                //           Swal.fire(
+                //                  window.open('./login.php','_self')
+                //                )
+                //               }else{
+                //                window.open('./login.php','_self')
+                //             }
+                //           });</script>";
+
+
+                //Envoyer Code Verification 
+
+                    $otp = rand(100000,999999);
+                    $_SESSION['otp'] = $otp;
+                    $_SESSION['mail'] = $email_utilisateur;
+                    require "Mail/phpmailer/PHPMailerAutoload.php";
+                    $mail = new PHPMailer;
+    
+                    $mail->isSMTP();
+                    $mail->Host='smtp.gmail.com';
+                    $mail->Port=587;
+                    $mail->SMTPAuth=true;
+                    $mail->SMTPSecure='tls';
+    
+                    // $mail->Username='electroshop.irisi1@gmail.com';
+                    // $mail->Password='123abc$456ABC';
+
+                    $mail->Username='ayoubtalbi787@gmail.com';
+                    $mail->Password='tsue nioq ieim tkgc';
+    
+                    // $mail->setFrom('electroshop.irisi1@gmail.com', 'ElectroShop');
+                    // $mail->addAddress($_POST["email"]);
+
+                    $mail->setFrom('ayoubtalbi787@gmail.com', 'ElectroShop');
+                    $mail->addAddress($_POST["email"]);
+    
+                    $mail->isHTML(true);
+                    $mail->Subject="Votre Code de Verification";
+                    $mail->Body="<p>Monsieur/Madame $nom_utilisateur, </p><br><br> <h3>Votre Code de Verification de votre compte sur <strong>ElectroShop</strong> est :</h3><h1 style='color:red;margin:auto'>$otp</h1>
+                    <br><br>
+                    <p>Cordialement,</p>
+                    <p><strong>Equipe ElectroShop</strong></p>
+                    <p><strong>IRISI1</strong></p>
+                    <p><strong>2021-2022</strong></p>
+                    <p><strong>Fstg - Marrakech</strong></p>";
+    
+                    if(!$mail->send()){
+
+                        echo "<script>Swal.fire({position: 'center',
+                            icon: 'error',
+                            title: 'Email n\'existe pas',
+                            showConfirmButton: true});
+                            </script>";
+                    }else{
+                                //insertion tous va bien
+
+                $insert_utilisateur = $con->prepare('INSERT INTO utilisateurs(nom_utilisateur,prenom_utilisateur,email_utilisateur,mot_passe_utilisateur,image_utilisateur,ip_utilisateur,adresse_utilisateur,tel_utilisateur,verification_code,verifie) VALUES(:nom_utilisateur,:prenom_utilisateur,:email_utilisateur,:mot_passe_utilisateur,:image_utilisateur,:ip_utilisateur,:adresse_utilisateur,:tel_utilisateur,:verification_code,:verifie)');
+                $executer = $insert_utilisateur->execute(array(":nom_utilisateur"=>$nom_utilisateur,
+                    ":prenom_utilisateur"=>$prenom_utilisateur,
+                    ":email_utilisateur"=>$email_utilisateur,
+                    ":mot_passe_utilisateur"=>$password_utilisateur_hash,
+                    ":image_utilisateur"=>$image_utilisateur,
+                    ":ip_utilisateur"=>$ip_utilisateur,
+                    ":adresse_utilisateur"=>$adresse_utilisateur,
+                    ":tel_utilisateur"=>$tel_utilisateur,
+                    ":verification_code"=>$otp,
+                    ":verifie"=>0,
+                    ));
+
+
+                    if($executer){
+                        echo "<script>Swal.fire({position: 'center',
+                            icon: 'success',
+                            title: 'Vous etes inscrit avec succés, mais verifier d\'abord votre compte associe à $email_utilisateur',
+                            showConfirmButton: true}).then((result) => {
+                                        if (result.isConfirmed) {
+                                Swal.fire(
+                                        window.open('./verification.php','_self')
+                                        )
+                                            }else{
+                                window.open('./verification.php','_self')
                             }
-                          });</script>";
+                        });</script>";
+                    }
+                               
+                                
+                                
             }
+                            
+                 //----Fin Envoyer Code Verification 
+
+            //}
         }
-
-        // $select_carte = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$ip_utilisateur'");
-        // $rows_carte = $select_carte->rowCount();
-        // if($rows_carte>0){
-        //     $_SESSION['nom_utilisateur'] = $nom_utilisateur;
-        //     echo "<script>Swal.fire({position: 'center',
-        //         icon: 'success',
-        //         title: 'Vous avez des produits dans la carte!',
-        //         showConfirmButton: true}).then((result) => {
-        //             if (result.isConfirmed) {
-        //               Swal.fire(
-        //                 window.open('./client/commander.php','_self')
-        //               )
-        //             }else{
-        //                 window.open('./client/commander.php','_self')
-        //             }
-        //           });</script>";
-        // }else{
-        //     echo "<script>window.open('./index.php','_self')</script>";
-        // }
-
-        
-
 
     }
       

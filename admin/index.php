@@ -33,23 +33,24 @@
 </head>
 <body>
 
-    <header class="header" style="width:100%; position:fixed">
+    <header class="header" style="width:100%; height:80px; position:fixed">
 		<h2 class="u-name">Electro <b>Shop</b>
 			<label for="checkbox">
-				<i id="navbtn" class="fa fa-bars" aria-hidden="false"></i>
+				<i id="navbtn" class="fa fa-bars" aria-hidden="true"></i>
 			</label>
+			<input type="checkbox" id="checkbox">
 		</h2>
 		<a href="" class="nav-link">Bienvenue <?php echo $_SESSION['nom_utilisateur']?></a>
 		<a href='./logout.php' class='nav-link'><i class='fa fa-power-off' aria-hidden='true'></i></a>
                     <!-- <a href='./client/profile.php' class='nav-link'><i class="fa fa-user" aria-hidden="true"></i> Profile</a> -->
 	</header>
-	<input type="checkbox" id="checkbox">
+	
 	
 	<div class="container p-0 m-0 " >
 		<div class="row">
-			<div class="body col-lg-3">
-				<nav class="side-bar" style="margin-top:62px;overflow-y:scroll; height:100%; position:fixed">
-					<div class="user-p">
+			<div class="body col-lg-3 col-sm-12">
+				<nav class="side-bar" style="margin-top:80px;overflow-y:scroll; height:100%; position:fixed">
+					<div id="user-p">
 						<?php
 							if(isset($_SESSION['id_utilisateur'])){
 								getProfilImage($_SESSION['id_utilisateur']);
@@ -117,7 +118,7 @@
 						<li>
 							<a href="#">
 								<i class="fa fa-cog" aria-hidden="true"></i>
-								<span>Parametres</span>
+								<span>Modifier vos Données</span>
 							</a>
 						</li>
 						<li>
@@ -131,7 +132,7 @@
 					<div style="height:60px"></div>
 				</nav>
 			</div>
-			<div class="col-lg-9" style="margin-top:62px">
+			<div class="col-lg-9 col-sm-12" style="margin-top:90px">
 				
 				<!-- espace pour ajouter les categories -->
 				<?php
@@ -339,6 +340,7 @@
 	
 	<!-- js linck -->
 	<script src="js/confirme.js"></script>
+	<script src="../js/navbtn.js?v=<?php echo time(); ?>"></script>
     <!-- bootstrap-JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     

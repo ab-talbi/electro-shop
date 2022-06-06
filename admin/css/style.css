@@ -27,16 +27,16 @@
 .header i:hover {
 	color: #fac000;
 }
-.user-p {
+#user-p {
 	text-align: center;
 	padding-left: 10px;
-	padding-top: 25px;
+	padding-top: 10px;
 }
-.user-p img {
+#user-p img {
 	width: 60%;
 	border-radius: 50%;
 }
-.user-p h4 {
+#user-p h4 {
 	color: #ccc;
 	padding: 5px 0;
 
@@ -76,6 +76,7 @@
 	margin-top: 20px;
 	list-style: none;
 	padding-left: 0;
+	
 }
 .side-bar ul li {
 	font-size: 16px;
@@ -113,7 +114,7 @@
 #checkbox :checked ~ .body .side-bar {
 	width: 60px;
 }
-#checkbox:checked ~ .body .side-bar .user-p{
+#checkbox:checked ~ .body .side-bar #user-p{
 	visibility: hidden;
 }
 #checkbox:checked ~ .body .side-bar a span{
