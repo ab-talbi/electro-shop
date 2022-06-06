@@ -1,9 +1,8 @@
 <?php
 
 require_once('../includes/connect.php');
-
-    if(isset($_GET['modifier_categogie'])){
-        $id_categorie = $_GET['modifier_categogie'];
+    if(isset($_GET['modifier_categorie'])){
+        $id_categorie = $_GET['modifier_categorie'];
         $get_category = $con->prepare("SELECT * FROM categories WHERE id_categorie=?");
         $get_category->execute(array($id_categorie));
         $ligne = $get_category->fetch();

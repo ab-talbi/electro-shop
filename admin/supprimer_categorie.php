@@ -13,7 +13,7 @@
             if($delete_category){
                 echo "
                     <script>
-                        alert('une categorie à étè sipprimer');
+                        alert('une categorie à étè supprimer');
                 
                         window.open('index.php?liste_categories','_self');
                 </script>";
