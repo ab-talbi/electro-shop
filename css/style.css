@@ -23,7 +23,8 @@
     background-color: rgb(4, 13, 47);
 }
 .bg-black-white{
-    background-color: rgba(2, 11, 47, 0.811);
+    background-color: #223142;
+    /* rgba(2, 11, 47, 0.811); */
 }
 footer a{
     display: inline-block;
@@ -64,7 +65,7 @@ footer a{
 
 .photo_profile{
     width: 150px;
-    border-radius: 50%;
+ 
 }
 #offline{
  border: 2px solid rgb(82, 189, 82);

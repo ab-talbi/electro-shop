@@ -9,7 +9,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 15px 30px;
-	background: #000318;
+	background: #223142;
 	color: #fff;
 }
 .u-name {
@@ -42,7 +42,7 @@
 }
 .side-bar {
 	width: 250px;
-	background: #030026d8;
+	background: #223142;
 	min-height: 100vh;
 	transition: 500ms width;
 	overflow-y: visible;
@@ -66,7 +66,7 @@
 .section-1 p {
 	color: #127b8e;
 	font-size: 20px;
-	background: #fff;
+	background: #223142;
 	padding: 7px;
 	border-radius: 5px;
 }
@@ -119,6 +119,6 @@
 	display: none;
 }
 .btn-ajouter{
-	background-color: #030026d8;
+	background-color: #223142;
 	color:#ccc
 }
