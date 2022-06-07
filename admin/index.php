@@ -131,7 +131,6 @@
 					<div style="height:60px"></div>
 				</nav>
 			</div>
-<<<<<<< HEAD
 			<div class="col-lg-9" style="margin-top:62px">
 
 
@@ -183,10 +182,8 @@
 				<?php
 					}
 				?>
-=======
 			<div class="col-lg-9 col-sm-12" style="margin-top:90px">
-				
->>>>>>> 08437952519ef506a0d5934375c32f27fad1fd68
+			
 				<!-- espace pour ajouter les categories -->
 				<?php
 					if(isset($_GET['ajouter_categories'])){

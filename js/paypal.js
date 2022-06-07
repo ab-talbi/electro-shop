@@ -8,7 +8,7 @@
 //         return actions.order.create({
 //             purchase_units:[{
 //                 amount:{
-//                     value:'0.1'
+//                     value:finalAmount
 //                 }
 //             }]
 //         });
@@ -25,22 +25,21 @@
 //     }
 // }).render('#paypal-button-container')
 
-paypal.Buttons({
-    createOrder: function(data,actions){
-        return actions.order.create({
-            purchase_units:[{
-                        amount:{
-                            value:finalAmount.toString()
-                        }
-                    }]
-                });
-    }
-}).render('#paypal-button-container')
+// // paypal.Buttons({
+// //     createOrder: function(data,actions){
+// //         return actions.order.create({
+// //             purchase_units:[{
+// //                         amount:{
+// //                             value:finalAmount.toString()
+// //                         }
+// //                     }]
+// //                 });
+// //     }
+// // }).render('#paypal-button-container')
 
 
-        let amount = document.querySelector("#amount").value;
-        console.log(amount+"  "+typeof(amount));
-        let finalAmount = amount / 9.8;
-        console.log(finalAmount+"  "+typeof(finalAmount));
-        let stramount = finalAmount.toString();
-        console.log(stramount+"  "+typeof(stramount));
+//         let amount = document.querySelector("#amount").value;
+//         console.log(amount+"  "+typeof(amount));
+//         let finalAmount = amount.toString();
+//         console.log(finalAmount+"  "+typeof(finalAmount));
+        

@@ -413,7 +413,7 @@
                 <a class='px-2' href='/Electro-Shop/client/commander.php'><button class='px-3 btn btn-secondary'>Commander</button></a>
             </div>
             ";
-            $_SESSION['total'] = $tot;
+            $_SESSION['total'] = $tot/9.8;
         }else{
             echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>La carte est vide</strong></h2>
             <a href='./index.php' class='px-3 btn btn-primary'>Ajouter des Produits</a></div>";
