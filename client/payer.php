@@ -18,11 +18,11 @@
 </head>
 <body>
     <div class="container">
-        <div class="row mt-3 mb-3">
+        <div class="row mt-3 mb-3 text-center">
             <!-- <div class="col-lg-6 col-sm-12"><a href=''><button style='width:100% ;height:100px'><img style='width:50%' src='../images/paypal.png'></img></button></a></div> -->
             
             <div id="paypal-button-container"></div>
-            <div class="col-lg-6 col-sm-12"><a href="./les_commandes.php?id_utilisateur=<?php echo $id_utilisateur ?>"><button style='width:100%; height:100px'>Payer offline</button></a></div>
+            <div class="col-lg-12 col-sm-12"><a href="./les_commandes.php?id_utilisateur=<?php echo $id_utilisateur ?>"><button style='width:100%; height:100px'>Je ne suis Pas Sur mais je veux enregistrer la commande</button></a></div>
         </div>
     </div>
     <input type="hidden" id="amount" name="amount" value=<?php echo $_SESSION['total']?> />
