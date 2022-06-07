@@ -131,8 +131,8 @@
 					<div style="height:60px"></div>
 				</nav>
 			</div>
-			<div class="col-sm-9 col-lg-9" style="margin-top:62px;z-index:-50">
-
+			<div class="col-lg-9 col-sm-12" style="margin-top:90px">
+				
 
 				<!-- Dashboar -->
 				<?php
@@ -322,8 +322,7 @@
 				<?php
 					}
 				?>
-			<div class="col-lg-9 col-sm-12" style="margin-top:90px">
-				
+			
 				<!-- espace pour ajouter les categories -->
 				<?php
 					if(isset($_GET['ajouter_categories'])){
