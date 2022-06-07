@@ -4,6 +4,8 @@
     include('../fonctions/fonctions.php');
 
     session_start();
+    $total_a_payer = $_SESSION['total']*9.8;
+    $pourcentage_remise = $_SESSION['remise'];
     
 
 ?>
@@ -48,40 +50,78 @@ $adresse_ip = getIPAddress();
 $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` WHERE ip_utilisateur like '$adresse_ip'");
 $id_utilisateur = ($select_utilisateur->fetch(PDO::FETCH_OBJ))->id_utilisateur;
 
-if(isset($_GET['id_utilisateur']) and (string)$id_utilisateur == $_GET['id_utilisateur']){
+if(isset($_GET['id_utilisateur']) and (string)$id_utilisateur == $_GET['id_utilisateur'] or (isset($_SESSION['mode_paiement']) and isset($_SESSION['id_utilisateur']) and $_SESSION['id_utilisateur'] == (string)$id_utilisateur)){
 
     $random_cmd = mt_rand();
     $status_commande = 'suspens';
+    if(isset($_SESSION['mode_paiement'])){
+        $status_commande = 'paypal';
+    }else{
+        $status_commande = 'Après Livraison';
+    }
 
     $prix_total = getPrixTotalProduitsPourUtilisateur();
     $nombre_produits = getNombreProduitsPourUtilisateur();
+    if($prix_total == 0){
+        echo '<script>window.open("../carte.php","_self")</script>';
+    }
 
     
 
-    $insert_commande = $con->prepare('INSERT INTO commande(id_utilisateur,a_payer,random_cmd,nombre_produits,status_commande) VALUES(:id_utilisateur,:a_payer,:random_cmd,:nombre_produits,:status_commande)');
-    $insert_commande->execute(array(":id_utilisateur"=>$id_utilisateur,":a_payer"=>$prix_total,":random_cmd"=>$random_cmd,":nombre_produits"=>$nombre_produits,":status_commande"=>$status_commande));
+    $insert_commande = $con->prepare('INSERT INTO commande(id_utilisateur,a_payer,random_cmd,nombre_produits,status_commande,remise,total_a_payer) VALUES(:id_utilisateur,:a_payer,:random_cmd,:nombre_produits,:status_commande,:remise,:total_a_payer)');
+    $insert_commande->execute(array(":id_utilisateur"=>$id_utilisateur,":a_payer"=>$prix_total,":random_cmd"=>$random_cmd,":nombre_produits"=>$nombre_produits,":status_commande"=>$status_commande,":remise"=>$pourcentage_remise,":total_a_payer"=>$total_a_payer));
     if($insert_commande){
-        echo "<script>Swal.fire({position: 'center',
-            icon: 'success',
-            title: 'La commande à été enregistrée avec succés',
-            showConfirmButton: true}).then((result) => {
-                if (result.isConfirmed) {
-                  Swal.fire(
-                    window.open('./profile.php','_self')
-                  )
-                }
-                else{
-                    window.open('./profile.php','_self')
-                }
-              });
-            </script>";
+        if(isset($_SESSION['mode_paiement'])){
+            unset($_SESSION['mode_paiement']);
+            echo "<script>Swal.fire({position: 'center',
+                icon: 'success',
+                title: 'La commande à été enregistrée avec succés et completé avec PayPal',
+                showConfirmButton: true}).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire(
+                        window.open('./profile.php?mes_commandes','_self')
+                      )
+                    }
+                    else{
+                        window.open('./profile.php?mes_commandes','_self')
+                    }
+                  });
+                </script>";
+        }else{
+            echo "<script>Swal.fire({position: 'center',
+                icon: 'success',
+                title: 'La commande à été enregistrée avec succés',
+                showConfirmButton: true}).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire(
+                        window.open('./profile.php?mes_commandes','_self')
+                      )
+                    }
+                    else{
+                        window.open('./profile.php?mes_commandes','_self')
+                    }
+                  });
+                </script>";
+        }
+        
     }else{
         echo 'Oops erreur insertion';
     }
 
+    $select_carte = $con->query("SELECT * FROM `carte`");
 
+    $rows = $select_carte->rowCount();
+    if($rows>0){
+        while($ligne = $select_carte->fetch(PDO::FETCH_OBJ)){
+            $id_produit = $ligne->id_produit; 
+            $quantite = $ligne->quantite;
 
+            $insert_carte_backup = $con->prepare('INSERT INTO carte_backup(id_carte_commande,id_produit,quantite) VALUES(:id_carte_commande,:id_produit,:quantite)');
+            $insert_carte_backup->execute(array(":id_carte_commande"=>$random_cmd,":id_produit"=>$id_produit,":quantite"=>$quantite));
+        }
+    }
 
+    
     $supp = $con->prepare("DELETE FROM carte WHERE adresse_ip like '$adresse_ip'")->execute();
 
 }else{

@@ -71,9 +71,9 @@
             </div>
             <div class="form-outline mt-4 text-center m-auto">
                 <select name="mode_paiement" id="" class="form-select w-50 m-auto">
-                    <option value="">Selectionner Le Mode De paiement</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="offline">OffLine</option>
+                    <option value="" disabled selected>Selectionner Le Mode De paiement</option>
+                    <option value="paypal" id="paypal-button-container">PayPal</option>
+                    <option value="offline">Apres Livraison</option>
                 </select>
             </div>
             <div class="form-outline my-4 text-center m-auto">
@@ -93,8 +93,8 @@
             $insert_paiement->execute(array(":id_commande"=>$id_commande,":random_cmd"=>$random_cmd_form,":a_payer"=>$a_payer_form,":mode_paiement"=>$mode_paiement));
             
             if($insert_paiement){
-                $modifier_commande = "UPDATE commande SET status_commande='complete' WHERE id_commande = $id_commande";
-                $modifier= $con->prepare($modifier_commande);
+                $modifier_commande = "UPDATE commande SET status_commande='$mode_paiement' WHERE id_commande = $id_commande";
+                $modifier = $con->prepare($modifier_commande);
                 $modifier->execute();
 
                 echo "<script>Swal.fire({position: 'center',
@@ -117,10 +117,43 @@
 
 
 
+<!-- paypal script  SMAIL-->
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=AfaLemrF5KCyRixbyUz3rVNbI09pS1cSEKeCKgPjqVccV_YyFECFcujBTQkABa_nHcKBAO9squeZb7eq&disable-funding=card"></script> -->
 
-    <!-- js -->
+    <!-- paypal script  AYOUB-->
+    <script src="https://www.paypal.com/sdk/js?client-id=AYFLwtsdN8wZS45-S4grGpbW7J8vXRA3CF8EwLy89wVYcujbGLNx7wf3iL1MB1cHVr3QQsPy-yiWw_Yx&disable-funding=card"></script>
 
-    <script src="../js/fonctions.js"></script>
+    <script>
+
+        
+paypal.Buttons({
+    style:{
+        color:'blue',
+        shape:'pill'
+    },
+    createOrder: function(data,actions){
+        return actions.order.create({
+            purchase_units:[{
+                amount:{
+                    value:'<?php echo $a_payer_form; ?>'
+                }
+            }]
+        });
+    },
+    onApprove: function(data,actions){
+        return actions.order.capture().then(function(details){
+        //    console.log(details);
+            alert("Payment effectuée par "+ details.payer.name.given_name);
+            window.location.replace("/Electro-Shop/client/verifier_mzn_avec_paypal.php?mode=paypal&id=<?php echo $id_utilisateur ?>&termine")
+        })
+    },
+    onCancel: function(data){
+        alert("Un Problème se produite au niveau de paiement");
+        window.location.replace("/Electro-Shop/carte.php")
+    }
+}).render('#paypal-button-container')
+
+    </script>
 
     <!-- bootstrap-JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

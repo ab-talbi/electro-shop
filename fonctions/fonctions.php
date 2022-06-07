@@ -407,16 +407,51 @@
             <input class='btn btn-primary mb-3' style='width:100%' type='submit' value='Enregistrer les modifications' name='modifier_produit_carte' formaction='./carte.php'>
             </form>
 
-            <div class='d-flex mb-3'>
+            <div class='d-flex mb-5'>
                 <h4 class='px-3'>TOTAL DE LA COMMANDE :<strong id='amount' data-amount='$tot'> $tot DH<sub>TTC</sub> </strong></h4>
-                <a href='./index.php'><button class='px-3 btn btn-primary'>Ajouter Autres Produits</button></a>
-                <a class='px-2' href='/Electro-Shop/client/commander.php'><button class='px-3 btn btn-secondary'>Commander</button></a>
+            </div>
+
+            <div class='d-flex mb-3'>
+            <form class='m-auto' method='post'>
+                <input type='text' name='promos' placeholder='Tapez Votre Code Promo' class='form-control mb-2'>
+                <input type='submit' name='app_remise' class='form-control bg-success text-light' value='Appliquer la Remise'>
+            </form>
             </div>
             ";
             $_SESSION['total'] = $tot/9.8;
+            $_SESSION['remise'] = 0;
+            $pourcentage_remise = 0;
+            if(isset($_POST['app_remise'])){
+                $promos_post = $_POST['promos'];
+
+                $select_remise = $con->query("SELECT * FROM `remise` WHERE nom_remise like '$promos_post'");
+                $row_remise = $select_remise->rowCount();
+                if($row_remise == 0){
+                    $_SESSION['total'] = $tot/9.8;
+                    $_SESSION['remise'] = 0;
+                    echo "<div class='d-flex mb-3 '>
+                        <h4 class='text-danger m-auto'>Pas de reduction associe à ce code</h4>
+                    </div>";
+                }else{
+                    $pourcentage_remise = ($select_remise->fetch(PDO::FETCH_OBJ)->pourcentage_remise)/100;
+                    $tot_apres_remise = $tot - $tot*$pourcentage_remise;
+                    $_SESSION['total'] = $tot_apres_remise/9.8;
+                    $_SESSION['remise'] = $pourcentage_remise*100;
+
+                }
+
+            }
+            $a_payer = $_SESSION['total']*9.8;
+            echo "<div class='d-flex mb-5'>
+            <h4 class='px-3'>TOTAL A PAYER :<strong id='amount' data-amount='$a_payer'> $a_payer DH<sub>TTC</sub> </strong></h4>
+            <a href='./index.php'><button class='px-3 btn btn-primary'>Ajouter Autres Produits</button></a>
+            <a class='px-2' href='/Electro-Shop/client/commander.php'><button class='px-3 btn btn-secondary'>Commander</button></a>
+        </div>";
+            
         }else{
             echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>La carte est vide</strong></h2>
-            <a href='./index.php' class='px-3 btn btn-primary'>Ajouter des Produits</a></div>";
+            <a href='./index.php' class='px-3 btn btn-primary'>Ajouter des Produits</a></div>
+            ";
         }
     }
 
@@ -592,10 +627,13 @@
                     <th scope="col">#</th>
                     <th scope="col">Réferrence</th>
                     <th scope="col">Nombre de Produits</th>
-                    <th scope="col">A payer (MAD)</th>
+                    <th scope="col">Total Avant Remise (MAD)</th>
+                    <th scope="col">Remise</th>
+                    <th scope="col">Total Apres Remise (MAD)</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Mode Paiement</th>
                     <th scope="col">Etat</th>
-                    <th scope="col">Opération</th>
+                    <th scope="col">Supprimer</th>
                 </tr>
             </thead>
             <tbody>
@@ -606,12 +644,16 @@
                 $random_cmd = $ligne->random_cmd;
                 $nombre_produits = $ligne->nombre_produits;
                 $a_payer = $ligne->a_payer;
+                $total_a_payer = $ligne->total_a_payer;
+                $remise = $ligne->remise;
                 $date_commande = $ligne->date_commande;
                 $status_commande = $ligne->status_commande;
                 if($status_commande == 'suspens'){
-                    $status_commande = 'incomplète';
+                    $status_commande = 'Incomplète';
+                    $mode = '-';
                 }else{
-                    $status_commande = 'achevé';
+                    $mode = $status_commande;
+                    $status_commande = 'Terminé';
                 }
                 echo "
                     <tr>
@@ -619,20 +661,14 @@
                         <td>$random_cmd</td>
                         <td>$nombre_produits</td>
                         <td>$a_payer</td>
+                        <td>$remise</td>
+                        <td>$total_a_payer</td>
                         <td>$date_commande</td>
+                        <td>$mode</td>
                         <td style='color:red'>$status_commande</td>
-                    ";
-                    if($status_commande == 'achevé'){
-                        echo "
-                        <td class='text-center'>-</td>
-                        </tr> 
-                        ";
-                    }else{
-                        echo "
-                        <td class='text-center'><a href='terminer_commande.php?id_commande=$id_commande'>Terminer</a></td>
-                        </tr> 
-                        ";
-                    }
+                    <td><button value='profile.php?supprimer_commande=$id_commande' 
+                    type='button' class='fa-solid fa-trash btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'>
+                    </button></td></tr> ";
                  
                 $compteur++; 
                          

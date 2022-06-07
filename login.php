@@ -135,6 +135,27 @@
         $rows_carte = $select_carte->rowCount();
 
         
+            
+        $tot = 0;
+        while($ligne = $select_carte->fetch(PDO::FETCH_OBJ)){
+            $select_produit = $con->query("SELECT * FROM `produits` WHERE id_produit = $ligne->id_produit");
+            $quantite = $ligne->quantite;
+
+            $existe_produit = $select_produit->rowCount();
+            
+            if($existe_produit > 0){
+                while($prod = $select_produit->fetch(PDO::FETCH_OBJ)){
+                    
+                    $prix_unitaire = $prod->prix_produit;
+                    
+                    $prix_total_produit = $prix_unitaire * $quantite;
+                    $tot = $tot + $prix_total_produit;
+                }
+            }
+        }
+
+
+
 
         if($rows > 0){
             if(password_verify($password_utilisateur,$mot_passe_utilisateur)){
@@ -172,6 +193,9 @@
                             }
                           });</script>";
                 }else{
+
+                    $_SESSION['total'] = $tot/9.8;
+
                     echo "<script>Swal.fire({position: 'center',
                         icon: 'success',
                         title: 'Bienvenu',
