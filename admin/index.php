@@ -47,7 +47,7 @@
 	
 	<div class="container p-0 m-0 " >
 		<div class="row">
-			<div class="body col-lg-3 col-sm-12">
+			<div class="body col-lg-3 col-sm-3">
 				<nav class="side-bar" style="margin-top:80px;overflow-y:scroll; height:100%; position:fixed">
 					<div id="user-p">
 						<?php
@@ -61,9 +61,9 @@
 					</div>
 					<ul>
 						<li>
-							<a href="index.php?dashboard">
+							<a href="index.php?tableau_bort">
 								<i class="fa fa-desktop" aria-hidden="true"></i>
-								<span>Dashboard</span>
+								<span>Tableau de bord</span>
 							</a>
 						</li>
 						<li>
@@ -131,16 +131,155 @@
 					<div style="height:60px"></div>
 				</nav>
 			</div>
-<<<<<<< HEAD
-			<div class="col-lg-9" style="margin-top:62px">
+			<div class="col-sm-9 col-lg-9" style="margin-top:62px;z-index:-50">
 
 
 				<!-- Dashboar -->
 				<?php
-					if(isset($_GET['dashboard'])){
+					if(isset($_GET['tableau_bort'])){
 				?>
+
+                    <div class="row">
+                        <div class="col-md-12 page-header text-success mt-5">
+                            <h2 class="page-title">Tableau de Bord</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="teal fas fa-shopping-cart"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail">
+                                                <p class="detail-subtitle">Produits</p>
+                                                <span class="number"><?php
+									getStatistique("produits");
+								?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-calendar"></i> For this Week
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="olive fas fa-money-bill-alt"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail">
+                                                <p class="detail-subtitle">Clients</p>
+                                                <span class="number"><?php
+									getStatistique("utilisateurs");
+								?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-calendar"></i> For this Month
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="violet fas fa-eye"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail">
+                                                <p class="detail-subtitle">Commandes</p>
+                                                <span class="number"><?php
+									getStatistique("commande");
+								?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="fas fa-stopwatch"></i> For this Month
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+                                                <i class="orange fas fa-envelope"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail">
+                                                <p class="detail-subtitle">Marques</p>
+                                                <span class="number"><?php
+									getStatistique("marques");
+								?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            
+											<a href='./index.php?liste_marques' style='text-decoration:none;color:black'>
+											<i class="fas fa-envelope-open-text"></i>
+											<span>Afficher Tous</span>
+											</a> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="dfd text-center">
+                                            MAD
+                                            <h4 class="mb-0">+98,601</h4>
+                                            <p class="text-muted">TOTAL DES VENTES</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        
+
+                    
+
+
+				<!--
 						<div class="row pt-4 d-flex flex-row justify-content-around text-center">
-							<!-- Produit -->
+							
 							<div class="col-3 m-3" style="width:200px; height:200px;">
 								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Produits</strong><br/>
 					</div><?php
@@ -148,7 +287,7 @@
 								?>
 							</div>
 
-							<!-- utilisateurs -->
+							
 							<div class="col-3 m-3" style="width:200px; height:200px;">
 								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Clients</strong><br/>
 					</div><?php
@@ -156,7 +295,7 @@
 								?>
 							</div>
 
-							<!-- commande -->
+							
 							<div class="col-3 m-3" style="width:200px; height:200px;">
 								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-3" >Commandes</strong><br/>
 					</div><?php
@@ -164,7 +303,7 @@
 								?>
 							</div>
 
-							<!-- marques -->
+							
 							<div class="col-3 m-3" style="width:200px; height:200px;">
 								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Marques</strong><br/>
 					</div><?php
@@ -172,21 +311,19 @@
 								?>
 							</div>
 
-							<!-- categories -->
+						
 							<div class="col-3 m-3" style="width:200px; height:200px;">
 								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Categories</strong>	<br/>
 					</div><?php
 									getStatistique("categories");
 								?>
 							</div>
-						</div>
+						</div> -->
 				<?php
 					}
 				?>
-=======
 			<div class="col-lg-9 col-sm-12" style="margin-top:90px">
 				
->>>>>>> 08437952519ef506a0d5934375c32f27fad1fd68
 				<!-- espace pour ajouter les categories -->
 				<?php
 					if(isset($_GET['ajouter_categories'])){
