@@ -139,8 +139,7 @@
         include("footer.php");
                         
     ?>
-    <!-- js -->
-    <script src="js/fonctions.js"></script>
+    
 
     <!-- bootstrap-JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -242,7 +241,7 @@
     
                     $mail->isHTML(true);
                     $mail->Subject="Votre Code de Verification";
-                    $mail->Body="<p>Monsieur/Madame $nom_utilisateur, </p><br><br> <h3>Votre Code de Verification de votre compte sur <strong>ElectroShop</strong> est :</h3><h1 style='color:red;margin:auto'>$otp</h1>
+                    $mail->Body="<p>Monsieur/Madame $nom_utilisateur, </p><br><br> <h3 style='font-size: 50px;'>Votre Code de Verification de votre compte sur <strong>ElectroShop</strong> est :</h3><h1 style='color:red;margin:auto;font-size: 150px'>$otp</h1>
                     <br><br>
                     <p>Cordialement,</p>
                     <p><strong>Equipe ElectroShop</strong></p>
