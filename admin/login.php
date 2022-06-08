@@ -119,17 +119,24 @@
             $nom_utilisateur = $ligne->nom_utilisateur;
             $mot_passe_utilisateur = $ligne->mot_passe_utilisateur;
             $id_utilisateur = $ligne->id_utilisateur;
+            $role = $ligne->role;
         }
 
         if($rows > 0){
             if(password_verify($password_utilisateur,$mot_passe_utilisateur)){
                 
-                $_SESSION['nom_utilisateur'] = $nom_utilisateur;
-                $_SESSION['id_utilisateur'] = $id_utilisateur;
-                echo "<script>
-                        window.open('./index.php?tableau_bort','_self')
-                    </script>";
+               if($role == 1){
+                    $_SESSION['nom_utilisateur'] = $nom_utilisateur;
+                    $_SESSION['id_utilisateur'] = $id_utilisateur;
+                    echo "<script>
+                            window.open('./index.php?tableau_bort','_self')
+                        </script>";
 
+                }else{
+                    echo "<script>
+                            window.open('/Electro-Shop/index.php','_self')
+                        </script>";
+                }
             }else{
                 echo "<script>Swal.fire({position: 'center',
                     icon: 'error',
@@ -137,6 +144,7 @@
                     showConfirmButton: true});
                     </script>";
             }
+               
             
         }else{
             echo "<script>Swal.fire({position: 'center',

@@ -693,7 +693,7 @@
         if($rows>0){
             echo '
             <table class="table mt-5">
-            <thead class="bg-success text-light">
+            <thead class="bg-success">
                 <tr class="text-center">
                     <th>#ID</th>
                     <th>NOM</th>
@@ -754,8 +754,9 @@
         $rows = $select_commande->rowCount();
         if($rows>0){
             echo '
+            <h2 class="text-center text-success my-4">Tous les commandes</h2>
             <table class="table mt-5">
-            <thead class="bg-success text-light">
+            <thead class="bg-success">
                 <tr class="text-center">
                     <th>#</th>
                     <th>Réfference</th>
@@ -828,7 +829,7 @@
         if($rows>0){
             echo '
             <table class="table mt-5">
-            <thead class="bg-success text-light">
+            <thead class="bg-success">
                 <tr class="text-center">
                     <th>#</th>
                     <th>Image</th>
@@ -849,7 +850,7 @@
                 $nom_utilisateur = $utilisateur->nom_utilisateur;
                 $prenom_utilisateur = $utilisateur->prenom_utilisateur;
                 $email_utilisateur = $utilisateur->email_utilisateur;
-                $image_utilisateur = $utilisateur->image_utilisateur;
+                $image_utilisateur = $utilisateur->image_utilisateur == ""? "photo.png":$utilisateur->image_utilisateur;
                 $adresse_utilisateur = $utilisateur->adresse_utilisateur;
                 $tel_utilisateur = $utilisateur->tel_utilisateur;
 
@@ -857,7 +858,7 @@
                 echo "
                     <tr class='text-center'>
                         <th style='padding-top:3.35%'>$compteur</th>
-                        <td><img style='width:100px' src='./produits_images/$image_utilisateur'></td>
+                        <td><img style='width:100px' src='/Electro-Shop/client/client_images/$image_utilisateur'></td>
                         <td style='padding-top:3.35%'>$nom_utilisateur</td>
                         <td style='padding-top:3.35%''>$prenom_utilisateur</td>
                         <td style='padding-top:3.35%'>$email_utilisateur</td>
@@ -905,87 +906,19 @@
     }
 
 
-    function getFacture(){
+
+    function getCA(){
+
         global $con;
-        global $refference;
-
-        $select_commande = $con->query("SELECT * FROM `commande` WHERE random_cmd = $refference");
-
-
-        $rows_commande = $select_commande->rowCount();
-        if($rows_commande>0){
-
-            while($ligne = $select_commande->fetch(PDO::FETCH_OBJ)){
-
-                $total_avant_remise = $ligne->a_payer;
-                $remise = $ligne->remise;
-                $total_apres_remise = $ligne->total_a_payer;
-                $date_commande = $ligne->date_commande;
-                $status_commande = $ligne->status_commande;
-
-                //L'etulisateur qui a effectuer la commande
-                $id_utilisateur = $ligne->id_utilisateur;
-
-                $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` WHERE id_utilisateur = $id_utilisateur");
-
-                $rows_utilisateur = $select_utilisateur->rowCount();
-                if($rows_utilisateur>0){
-
-                    while($utilisateur = $select_utilisateur->fetch(PDO::FETCH_OBJ)){
-                        $nom_utilisateur = $utilisateur->nom_utilisateur; 
-                        $prenom_utilisateur = $utilisateur->prenom_utilisateur;
-                        $email_utilisateur = $utilisateur->email_utilisateur;
-                        $adresse_utilisateur = $utilisateur->adresse_utilisateur;
-                        $tel_utilisateur = $utilisateur->tel_utilisateur;  
-                    }
-
-                }
-                //--- End - L'etulisateur qui a effectuer la commande
-
-
-                //Les infos sur les produits et quantite
-
-                $select_carte_backup = $con->query("SELECT * FROM `carte_backup` WHERE 	id_carte_commande = $refference");
- 
-                $carte_backup_details = array();
-
-                $rows_carte_backup = $select_carte_backup->rowCount();
-                if($rows_carte_backup>0){
-                    $compteur = 1;
-                    while($carte_backup = $select_carte_backup->fetch(PDO::FETCH_OBJ)){
-                        $produit_details = array();
-
-                        $quantite = $carte_backup->quantite;
-                        $id_produit = $carte_backup->id_produit;
-
-                        $select_produit = $con->query("SELECT * FROM `produits` WHERE 	id_produit = $id_produit");
- 
-                        $rows_produit = $select_produit->rowCount();
-                        if($rows_produit>0){
-        
-                            while($produit = $select_produit->fetch(PDO::FETCH_OBJ)){
-                                $designation_produit = $produit->nom_produit;
-                                $prix_produit_unitaire = $produit->prix_produit;
-                                $montant_produit = $prix_produit_unitaire*$quantite;
-                            }
-
-                        }
-                        array_push($produit_details, $designation_produit, $prix_produit_unitaire,$quantite,$montant_produit);
-
-                        array_push($carte_backup_details,$produit_details);
-                    }
-                }
-                //--- End - Les infos sur les produits et quantite
-
-
-
-
-            }
+        $select_total = $con->prepare("SELECT sum(total_a_payer) AS total FROM commande ");
+        $select_total->execute(array());
+        $rows = $select_total->rowcount();
+        $data = $select_total->fetch();
+        if($rows > 0){
+            echo $data['total'];
+        }else{
+            echo '0';
         }
-        
-
-
-
     }
 
 

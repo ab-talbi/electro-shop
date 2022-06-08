@@ -132,8 +132,7 @@
 				</nav>
 			</div>
 			<div class="col-lg-9 col-sm-12" style="margin-top:90px">
-				
-
+			
 				<!-- Dashboar -->
 				<?php
 					if(isset($_GET['tableau_bort']) || $_GET == null){
@@ -141,22 +140,22 @@
 
                     <div class="row">
                         <div class="col-md-12 page-header text-success mt-5">
-                            <h2 class="page-title">Tableau de Bord</h2>
+                            <h2 class=" text-center page-title">Tableau de Bord</h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
                             <div class="card">
                                 <div class="content">
-                                    <div class="row">
+                                    <div class="row pt-2">
                                         <div class="col-sm-4">
                                             <div class="icon-big text-center">
-                                                <i class="teal fas fa-shopping-cart"></i>
+											<i class="fa-brands fa-product-hunt"></i>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="detail">
-                                                <p class="detail-subtitle">Produits</p>
+											<i class="fa-solid detail-subtitle">Produits</i><br>
                                                 <span class="number"><?php
 									getStatistique("produits");
 								?></span>
@@ -165,9 +164,11 @@
                                     </div>
                                     <div class="footer">
                                         <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-calendar"></i> For this Week
-                                        </div>
+                                        <div class="stats text-center">
+											<a href='./index.php?liste_produits' style='text-decoration:none;color:black'>
+												<i class="violet fas fa-eye"> Afficher</i>
+											</a> 
+										</div>
                                     </div>
                                 </div>
                             </div>
@@ -175,25 +176,27 @@
                         <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
                             <div class="card">
                                 <div class="content">
-                                    <div class="row">
+                                    <div class="row pt-2">
                                         <div class="col-sm-4">
                                             <div class="icon-big text-center">
-                                                <i class="olive fas fa-money-bill-alt"></i>
+											<i class="fa-solid fa-users"></i>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="detail">
-                                                <p class="detail-subtitle">Clients</p>
+											<i class="fa-solid detail-subtitle">Clients</i><br>
                                                 <span class="number"><?php
-									getStatistique("utilisateurs");
-								?></span>
+													getStatistique("utilisateurs");
+												?></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="footer">
                                         <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-calendar"></i> For this Month
+                                        <div class="stats text-center">
+											<a href='./index.php?liste_utilisateurs' style='text-decoration:none;color:black'>
+												<i class="violet fas fa-eye"> Afficher</i> 
+											</a>
                                         </div>
                                     </div>
                                 </div>
@@ -202,25 +205,27 @@
                         <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
                             <div class="card">
                                 <div class="content">
-                                    <div class="row">
+                                    <div class="row pt-2">
                                         <div class="col-sm-4">
                                             <div class="icon-big text-center">
-                                                <i class="violet fas fa-eye"></i>
+                                                <i class="teal fas fa-shopping-cart"></i>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="detail">
-                                                <p class="detail-subtitle">Commandes</p>
+											<i class="fa-solid detail-subtitle">Commandes</i>
                                                 <span class="number"><?php
-									getStatistique("commande");
-								?></span>
+													getStatistique("commande");
+												?></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="footer">
                                         <hr />
-                                        <div class="stats">
-                                            <i class="fas fa-stopwatch"></i> For this Month
+                                        <div class="stats text-center">
+										<a href='./index.php?liste_commandes' style='text-decoration:none;color:black'>
+											<i class="violet fas fa-eye"> Afficher</i> 
+											</a> 
                                         </div>
                                     </div>
                                 </div>
@@ -229,15 +234,15 @@
                         <div class="col-sm-6 col-md-6 col-lg-3 mt-3">
                             <div class="card">
                                 <div class="content">
-                                    <div class="row">
+                                    <div class="row pt-2">
                                         <div class="col-sm-4">
                                             <div class="icon-big text-center">
-                                                <i class="orange fas fa-envelope"></i>
+												<i class="fa-solid fa-paperclip"></i>
                                             </div>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="detail">
-                                                <p class="detail-subtitle">Marques</p>
+											<i class="fa-solid detail-subtitle">Catrgories</i>
                                                 <span class="number"><?php
 									getStatistique("marques");
 								?></span>
@@ -246,11 +251,9 @@
                                     </div>
                                     <div class="footer">
                                         <hr />
-                                        <div class="stats">
-                                            
+                                        <div class="stats text-center">
 											<a href='./index.php?liste_marques' style='text-decoration:none;color:black'>
-											<i class="fas fa-envelope-open-text"></i>
-											<span>Afficher Tous</span>
+											<i class="violet fas fa-eye"> Afficher</i>
 											</a> 
                                         </div>
                                     </div>
@@ -260,65 +263,46 @@
 						<div class="col-sm-6 col-md-6 col-lg-3 mt-3">
                             <div class="card">
                                 <div class="content">
-                                    <div class="row">
+                                    <div class="row pt-2">
+                                        <div class="col-sm-4">
+                                            <div class="icon-big text-center">
+												<i class="fa-solid fa-paperclip"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            <div class="detail">
+                                                <i class="fa-solid detail-subtitle">Catrgories</i>
+                                                <span class="number"><?php
+									getStatistique("marques");
+								?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats text-center">
+											<a href='./index.php?liste_categories' style='text-decoration:none;color:black'>
+											<i class="violet fas fa-eye"> Afficher</i>
+											</a> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<div class="col-sm-6 col-md-6 col-lg-3 mt-3">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row pt-2">
                                         <div class="dfd text-center">
                                             MAD
-                                            <h4 class="mb-0">+98,601</h4>
-                                            <p class="text-muted">TOTAL DES VENTES</p>
+                                            <h4 class="mb-0"><?php getCA();?></h4>
+                                            <p class="fa-solid text-muted">TOTAL DES VENTES</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                        
-
-                    
-
-
-				<!--
-						<div class="row pt-4 d-flex flex-row justify-content-around text-center">
-							
-							<div class="col-3 m-3" style="width:200px; height:200px;">
-								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Produits</strong><br/>
-					</div><?php
-									getStatistique("produits");
-								?>
-							</div>
-
-							
-							<div class="col-3 m-3" style="width:200px; height:200px;">
-								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Clients</strong><br/>
-					</div><?php
-									getStatistique("utilisateurs");
-								?>
-							</div>
-
-							
-							<div class="col-3 m-3" style="width:200px; height:200px;">
-								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-3" >Commandes</strong><br/>
-					</div><?php
-									getStatistique("commande");
-								?>
-							</div>
-
-							
-							<div class="col-3 m-3" style="width:200px; height:200px;">
-								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Marques</strong><br/>
-					</div><?php
-									getStatistique("marques");
-								?>
-							</div>
-
-						
-							<div class="col-3 m-3" style="width:200px; height:200px;">
-								<div style="border-bottom: #000318 solid 2px; background-color:red;"><strong class="fs-2" >Categories</strong>	<br/>
-					</div><?php
-									getStatistique("categories");
-								?>
-							</div>
-						</div> -->
 				<?php
 					}
 				?>
@@ -503,6 +487,14 @@
 				<?php
 					if(isset($_GET['liste_utilisateurs'])){
 						include('liste_utilisateurs.php');
+					}
+				?>
+
+				<!-- espace pour supprimer les utilisateurs -->
+				<?php
+
+					if(isset($_GET['supprimer_utilisateur'])){
+					include('supprimer_utilisateur.php');
 					}
 				?>
 
