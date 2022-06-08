@@ -85,9 +85,6 @@
                     ?>
                 </li>
                 <li class='nav-item'>
-                    <a href='profile.php' class='nav-link text-light'>Commandes incomplete P55</a>
-                </li>
-                <li class='nav-item'>
                     <a href='profile.php?modifier_compte' class='nav-link text-light'>Modifier le compte</a>
             </li>
                 <li class='nav-item'>
@@ -111,7 +108,11 @@
                         include('supprimer_compte.php');
                     }
                     
-                    if(isset($_GET['mes_commandes'])){
+
+                    if(isset($_GET['supprimer_commande'])){
+                        include('supprimer_commande.php');
+                    }
+                    if(isset($_GET['mes_commandes']) || $_GET == null){
                         include('liste_commandes.php');
                     }
                     if(isset($_GET['facture'])){
@@ -128,6 +129,24 @@
     ?>
 
 
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<div class="modal-body">
+			<h4>Êtes-vous sûr de vouloir le supprimer ?</h4>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-success" data-bs-dismiss="modal">Non</button>
+			<button type="button" class="btn btn-danger" id="idConfirme"></button>
+		</div>
+		</div>
+	</div>
+	</div>
+
+	
+	<!-- js linck -->
+	<script src="/Electro-Shop/admin/js/confirme.js"></script>
 
     <!-- bootstrap-JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

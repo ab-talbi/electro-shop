@@ -663,10 +663,11 @@
                         <td>$total_a_payer</td>
                         <td>$date_commande</td>
                         <td>$mode</td>
-                        <td><a href='profile.php?facture=$random_cmd'>Imprimer</a></td>
+                        <td><a href='profile.php?facture=$random_cmd' style='color:black;'><i class='pt-3 fa-solid fa-print'></i></a></td>
                     <td><button value='profile.php?supprimer_commande=$id_commande' 
-                    type='button' class='fa-solid fa-trash btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                    </button></td></tr> ";
+                        type='button' class='fa-solid fa-trash-can btn confirme' data-bs-toggle='modal' 
+                        data-bs-target='#exampleModal'></button></td>
+                    </tr> ";
                  
                 $compteur++; 
                          

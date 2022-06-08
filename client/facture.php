@@ -99,19 +99,25 @@ function Header()
     // Décalage à droite
     $this->Cell(130);
     // Titre
-    $this->Cell(30,10,'Facture n  ','',0,'B');
+    $this->Cell(30,10,'Facture N :  ','',0,'B');
     // Saut de ligne
     $this->Ln(9);
     // Décalage à droite
     $this->Cell(130);
     // Titre
-    $this->Cell(30,10,'Date  ','',0,'B');
+    $this->Cell(30,10,'Date de facture :   '.date("d.m.Y"),'',0,'B');
     // Saut de ligne
     $this->Ln(9);
     // Décalage à droite
     $this->Cell(130);
     // Titre
-    $this->Cell(30,10,'command  ','',0,'B');
+    $this->Cell(30,10,'Commande N :      '.$_SESSION['facture'],'',0,'B');
+    // Saut de ligne
+    $this->Ln(9);
+    // Décalage à droite
+    $this->Cell(130);
+    // Titre
+    $this->Cell(30,10,"Date d'echeance :  ".date("d.m.Y",strtotime("+4 Days")),'',0,'B');
     
     // Saut de ligne
     $this->Ln(20);
@@ -121,15 +127,13 @@ function Header()
 function Footer()
 {
     // Positionnement à 6 cm du bas
-    $this->SetY(-50);
-    // Police Arial italique 8
-    $this->SetFont('Arial','I',8);
+    $this->SetY(-60);
     // Police Arial gras 15
-    $this->SetFont('Arial','B',15);
+    $this->SetFont('Arial','B',12);
     // Décalage à droite
-    $this->Cell(140);
+    $this->Cell(130);
     //signature
-    $this->Cell(30,10,'Signature:',0,0,'B');
+    $this->Cell(30,10,'Signature:',0,0,'C');
     // Positionnement à 1,5 cm du bas
     $this->SetY(-15);
     // Police Arial italique 8
@@ -145,28 +149,34 @@ $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 // Positionnement à 6 cm du bas
-$pdf->SetY(60);
+$pdf->SetY(40);
 // Police Arial gras 15
-$pdf->SetFont('Arial','',15);
+$pdf->SetFont('Arial','I',15);
 $pdf->Cell(30,10,'Facture a:',0,0,'B');
 // Saut de ligne
 $pdf->Ln(9);
-$pdf->SetFont('Times','',12);
-$pdf->Write(7,"  rue abdelkrime lkhtabi,\n  Marrakech,Maroc");
+$pdf->SetFont('Times','I',11);
+$pdf->Write(7," FSTG RUE ABDELKRIME EL KHATABI,\n MARRAKECH, MAROC ");
 
 // Positionnement à 6 cm du bas
-$pdf->SetY(60);
+$pdf->SetY(54);
 // Police Arial gras 15
-$pdf->SetFont('Arial','',15);
+$pdf->SetFont('Arial','I',15);
 // Décalage à droite
-$pdf->cell(90);
+$pdf->cell(110);
 $pdf->cell(30,10,'Envoye a:',0,0,'B');
 // Saut de ligne
 $pdf->Ln(9);
-// Décalage à droite
-$pdf->cell(92);
-$pdf->SetFont('Times','',12);
-$pdf->cell(0,10,'rue abdelkrime lkhtabi, Marrakech,Maroc',0,0,'');
+$pdf->SetFont('Times','I',11);
+$tab_address = explode(" ", $adresse_utilisateur);
+for($i=0;$i<count($tab_address);$i++){
+    // Décalage à droite
+    $pdf->cell(112);
+    $pdf->cell(0,7,$tab_address[$i]." ".$tab_address[$i+1]." ".$tab_address[$i+2]." ".$tab_address[$i+3],0,0,'');
+    // Saut de ligne
+    $pdf->Ln(6);
+    $i=$i+3;
+}
 
 
 //tablaeu
@@ -219,6 +229,26 @@ $pdf->cell(40,10,'TOTAL A PAYER','',0,'C');
 $pdf->cell(50,10,$total_apres_remise,'BRL',0,'C');
 // Saut de ligne
 $pdf->Ln(10);
+
+
+// Positionnement à 6 cm du bas
+$pdf->SetY(-80);
+$pdf->SetFont('Arial','B',12);
+//signature
+$pdf->Cell(30,10,'Mode Paeiment: ',0,0,'C');
+// Saut de ligne
+$pdf->Ln(10);
+// Police Arial gras 15
+$pdf->SetFont('Times','I',12);
+$pdf->Cell(30,10,$status_commande,0,0,'C');
+
+
+// Positionnement à 6 cm du bas
+$pdf->SetY(-50);
+// Décalage à droite
+$pdf->Cell(140);
+//signature
+$pdf->Cell(30,10,'M/Mme.'.$nom_utilisateur.' '.$prenom_utilisateur,0,0,'C');
 
 $pdf->Output();
 ?>
