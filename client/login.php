@@ -2,14 +2,20 @@
     include('../includes/connect.php');
     include('../fonctions/fonctions.php');
     @session_start();
-    if(isset($_SESSION['otp']) and isset($_SESSION['mail'])){
-        $code = $_SESSION['otp'];
-        $mail = $_SESSION['mail'];
-        $_SESSION['otp'] = $code;
-        $_SESSION['mail'] = $mail;
+    // if(isset($_SESSION['otp']) and isset($_SESSION['mail'])){
+    //     $code = $_SESSION['otp'];
+    //     $mail = $_SESSION['mail'];
+    //     $_SESSION['otp'] = $code;
+    //     $_SESSION['mail'] = $mail;
 
-    }elseif($_SESSION){
-        session_destroy();
+    // }elseif($_SESSION){
+    //     session_destroy();
+    //     echo "<script>window.open('./login.php','_self')</script>";
+    // }
+
+
+    if(isset($_SESSION['nom_utilisateur'])){
+        unset($_SESSION['nom_utilisateur']);
         echo "<script>window.open('./login.php','_self')</script>";
     }
 ?>
@@ -92,6 +98,27 @@
         $select_carte = $con->query("SELECT * FROM `carte` WHERE adresse_ip like '$adresse_ip'");
         $rows_carte = $select_carte->rowCount();
 
+        $tot = 0;
+        while($ligne = $select_carte->fetch(PDO::FETCH_OBJ)){
+            $select_produit = $con->query("SELECT * FROM `produits` WHERE id_produit = $ligne->id_produit");
+            $quantite = $ligne->quantite;
+
+            $existe_produit = $select_produit->rowCount();
+            
+            if($existe_produit > 0){
+                while($prod = $select_produit->fetch(PDO::FETCH_OBJ)){
+                    
+                    $prix_unitaire = $prod->prix_produit;
+                    
+                    $prix_total_produit = $prix_unitaire * $quantite;
+                    $tot = $tot + $prix_total_produit;
+                }
+            }
+            if(isset($_SESSION['remise'])){
+                $tot = $tot - $tot*($_SESSION['remise']/100);
+            }
+        }
+
         if($rows > 0){
             if(password_verify($password_utilisateur,$mot_passe_utilisateur)){
                 $_SESSION['nom_utilisateur'] = $nom_utilisateur;
@@ -127,6 +154,7 @@
                             }
                           });</script>";
                 }else{
+                    $_SESSION['total'] = $tot/9.8;
                     echo "<script>Swal.fire({position: 'center',
                         icon: 'success',
                         title: 'Bienvenu',
