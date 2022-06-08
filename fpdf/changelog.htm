@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<meta charset="UTF-8">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Changelog</title>
 <link type="text/css" rel="stylesheet" href="fpdf.css">
@@ -13,146 +14,146 @@ dd {margin:1em 0 1em 1em}
 <dl>
 <dt><strong>v1.83</strong> (18/04/2021)</dt>
 <dd>
-- Correction d'un problème lié aux annotations.<br>
+- Correction d'un problï¿½me liï¿½ aux annotations.<br>
 </dd>
 <dt><strong>v1.82</strong> (07/12/2019)</dt>
 <dd>
-- Suppression d'un avertissement de fonction dépréciée sous PHP 7.4.<br>
+- Suppression d'un avertissement de fonction dï¿½prï¿½ciï¿½e sous PHP 7.4.<br>
 </dd>
 <dt><strong>v1.81</strong> (20/12/2015)</dt>
 <dd>
-- Ajout des méthodes GetPageWidth() et GetPageHeight().<br>
+- Ajout des mï¿½thodes GetPageWidth() et GetPageHeight().<br>
 - Correction d'un bug dans SetXY().<br>
 </dd>
 <dt><strong>v1.8</strong> (29/11/2015)</dt>
 <dd>
-- PHP 5.1.0 ou supérieur est maintenant requis.<br>
-- L'utilitaire MakeFont gère maintenant le subsetting, ce qui peut fortement réduire la taille des polices.<br>
-- Les ToUnicode CMaps ont été ajoutés afin d'améliorer l'extraction du texte.<br>
-- Un paramètre a été ajouté à AddPage() pour faire tourner la page.<br>
-- Un paramètre a été ajouté à SetY() pour indiquer si la position x doit être réinitialisée ou non.<br>
-- Un paramètre a été ajouté à Output() pour spécifier l'encodage du nom, et les caractères spéciaux sont maintenant correctement encodés. De plus, l'ordre des deux premiers paramètres a été inversé pour être plus logique (cependant l'ancien ordre est toujours supporté).<br>
-- La méthode Error() lance maintenant une exception.<br>
-- L'ajout de contenu avant le premier appel à AddPage() ou après Close() produit maintenant une erreur.<br>
-- L'ajout de texte sans police sélectionnée produit maintenant une erreur.<br>
+- PHP 5.1.0 ou supï¿½rieur est maintenant requis.<br>
+- L'utilitaire MakeFont gï¿½re maintenant le subsetting, ce qui peut fortement rï¿½duire la taille des polices.<br>
+- Les ToUnicode CMaps ont ï¿½tï¿½ ajoutï¿½s afin d'amï¿½liorer l'extraction du texte.<br>
+- Un paramï¿½tre a ï¿½tï¿½ ajoutï¿½ ï¿½ AddPage() pour faire tourner la page.<br>
+- Un paramï¿½tre a ï¿½tï¿½ ajoutï¿½ ï¿½ SetY() pour indiquer si la position x doit ï¿½tre rï¿½initialisï¿½e ou non.<br>
+- Un paramï¿½tre a ï¿½tï¿½ ajoutï¿½ ï¿½ Output() pour spï¿½cifier l'encodage du nom, et les caractï¿½res spï¿½ciaux sont maintenant correctement encodï¿½s. De plus, l'ordre des deux premiers paramï¿½tres a ï¿½tï¿½ inversï¿½ pour ï¿½tre plus logique (cependant l'ancien ordre est toujours supportï¿½).<br>
+- La mï¿½thode Error() lance maintenant une exception.<br>
+- L'ajout de contenu avant le premier appel ï¿½ AddPage() ou aprï¿½s Close() produit maintenant une erreur.<br>
+- L'ajout de texte sans police sï¿½lectionnï¿½e produit maintenant une erreur.<br>
 </dd>
 <dt><strong>v1.7</strong> (18/06/2011)</dt>
 <dd>
-- L'utilitaire MakeFont a été complètement réécrit et ne dépend plus de ttf2pt1.<br>
-- L'alpha channel est maintenant supporté pour les PNG.<br>
-- Lorsqu'on insère une image, il est maintenant possible de spécifier sa résolution.<br>
-- La résolution par défaut des images est passée de 72 à 96 dpi.<br>
-- Lorsqu'on insère une image GIF, il n'y a plus de fichier temporaire utilisé si la version de PHP est au moins 5.1.<br>
-- Lorsque l'output buffering est activé, au moment d'envoyer le PDF, le buffer est purgé s'il ne contient qu'un BOM UTF-8 et/ou du blanc (au lieu de provoquer une erreur).<br>
-- Les polices Symbol et ZapfDingbats acceptent maintenant le style souligné.<br>
-- Les formats de page personnalisés sont maintenant contrôlés pour s'assurer que la largeur est plus petite que la hauteur.<br>
-- Les fichiers de police standard ont été modifiés pour utiliser le même format que les polices utlisateur.<br>
-- Un bug dans l'incorporation des polices Type1 a été corrigé.<br>
-- Un bug lié à SetDisplayMode() et le locale courant a été corrigé.<br>
-- Un problème d'affichage survenant avec le plug-in d'Adobe Reader X a été corrigé.<br>
-- Un problème lié à la transparence survenant avec certaines versions d'Adobe Reader a été corrigé.<br>
-- L'en-tête Content-Length a été supprimé car cela causait un problème lorsque le serveur HTTP applique une compression.<br>
+- L'utilitaire MakeFont a ï¿½tï¿½ complï¿½tement rï¿½ï¿½crit et ne dï¿½pend plus de ttf2pt1.<br>
+- L'alpha channel est maintenant supportï¿½ pour les PNG.<br>
+- Lorsqu'on insï¿½re une image, il est maintenant possible de spï¿½cifier sa rï¿½solution.<br>
+- La rï¿½solution par dï¿½faut des images est passï¿½e de 72 ï¿½ 96 dpi.<br>
+- Lorsqu'on insï¿½re une image GIF, il n'y a plus de fichier temporaire utilisï¿½ si la version de PHP est au moins 5.1.<br>
+- Lorsque l'output buffering est activï¿½, au moment d'envoyer le PDF, le buffer est purgï¿½ s'il ne contient qu'un BOM UTF-8 et/ou du blanc (au lieu de provoquer une erreur).<br>
+- Les polices Symbol et ZapfDingbats acceptent maintenant le style soulignï¿½.<br>
+- Les formats de page personnalisï¿½s sont maintenant contrï¿½lï¿½s pour s'assurer que la largeur est plus petite que la hauteur.<br>
+- Les fichiers de police standard ont ï¿½tï¿½ modifiï¿½s pour utiliser le mï¿½me format que les polices utlisateur.<br>
+- Un bug dans l'incorporation des polices Type1 a ï¿½tï¿½ corrigï¿½.<br>
+- Un bug liï¿½ ï¿½ SetDisplayMode() et le locale courant a ï¿½tï¿½ corrigï¿½.<br>
+- Un problï¿½me d'affichage survenant avec le plug-in d'Adobe Reader X a ï¿½tï¿½ corrigï¿½.<br>
+- Un problï¿½me liï¿½ ï¿½ la transparence survenant avec certaines versions d'Adobe Reader a ï¿½tï¿½ corrigï¿½.<br>
+- L'en-tï¿½te Content-Length a ï¿½tï¿½ supprimï¿½ car cela causait un problï¿½me lorsque le serveur HTTP applique une compression.<br>
 </dd>
 <dt><strong>v1.6</strong> (03/08/2008)</dt>
 <dd>
-- PHP 4.3.10 ou supérieur est maintenant requis.<br>
+- PHP 4.3.10 ou supï¿½rieur est maintenant requis.<br>
 - Support des images GIF.<br>
 - Les images peuvent maintenant provoquer un saut de page.<br>
-- Possibilité d'avoir plusieurs formats de pages dans un même document.<br>
-- Les propriétés du document (auteur, createur, mots-clés, sujet et titre) peuvent maintenant être spécifées en UTF-8.<br>
-- Correction d'un bug : lorsqu'un PNG était inséré via une URL, une erreur se produisait parfois.<br>
+- Possibilitï¿½ d'avoir plusieurs formats de pages dans un mï¿½me document.<br>
+- Les propriï¿½tï¿½s du document (auteur, createur, mots-clï¿½s, sujet et titre) peuvent maintenant ï¿½tre spï¿½cifï¿½es en UTF-8.<br>
+- Correction d'un bug : lorsqu'un PNG ï¿½tait insï¿½rï¿½ via une URL, une erreur se produisait parfois.<br>
 - Un saut de page automatique dans Header() ne provoque plus de boucle infinie.<br>
-- Suppression de messages d'avertissement apparaissant avec des versions récentes de PHP.<br>
-- Ajout d'en-têtes HTTP afin de réduire les problèmes avec IE.<br>
+- Suppression de messages d'avertissement apparaissant avec des versions rï¿½centes de PHP.<br>
+- Ajout d'en-tï¿½tes HTTP afin de rï¿½duire les problï¿½mes avec IE.<br>
 </dd>
 <dt><strong>v1.53</strong> (31/12/2004)</dt>
 <dd>
-- Lorsque le sous-répertoire font se trouve dans le même répertoire que fpdf.php, il n'est maintenant plus nécessaire de définir la constante FPDF_FONTPATH.<br>
-- Le tableau $HTTP_SERVER_VARS n'est plus utilisé. Cela pouvait poser des problèmes avec les configurations PHP 5 ayant désactivé l'option register_long_arrays.<br>
-- L'incorporation des polices Type1 posait des problèmes avec certains processeurs de PDF.<br>
-- Le nom du PDF envoyé au navigateur ne pouvait pas comporter d'espace.<br>
-- La méthode Cell() ne pouvait pas imprimer le nombre 0 (seulement la chaîne '0').<br>
+- Lorsque le sous-rï¿½pertoire font se trouve dans le mï¿½me rï¿½pertoire que fpdf.php, il n'est maintenant plus nï¿½cessaire de dï¿½finir la constante FPDF_FONTPATH.<br>
+- Le tableau $HTTP_SERVER_VARS n'est plus utilisï¿½. Cela pouvait poser des problï¿½mes avec les configurations PHP 5 ayant dï¿½sactivï¿½ l'option register_long_arrays.<br>
+- L'incorporation des polices Type1 posait des problï¿½mes avec certains processeurs de PDF.<br>
+- Le nom du PDF envoyï¿½ au navigateur ne pouvait pas comporter d'espace.<br>
+- La mï¿½thode Cell() ne pouvait pas imprimer le nombre 0 (seulement la chaï¿½ne '0').<br>
 </dd>
 <dt><strong>v1.52</strong> (30/12/2003)</dt>
 <dd>
-- Image() affiche maintenant l'image en 72 dpi si aucune dimension n'est indiquée.<br>
-- Output() prend un second paramètre chaîne pour indiquer la destination.<br>
-- Open() est maintenant appelé automatiquement par AddPage().<br>
-- L'insertion d'image JPEG distante ne génère plus d'erreur.<br>
-- Le séparateur décimal est forcé au point dans le constructeur.<br>
-- Ajout de différents encodages (turc, thaïlandais, hébreu, ukrainien et vietnamien).<br>
-- La dernière ligne d'un MultiCell() cadré à droite n'était pas bien alignée si elle se terminait par un retour-chariot.<br>
-- Plus de message d'erreur sur les en-têtes déjà envoyés lorsque le PDF est généré sur la sortie standard en mode ligne de commande.<br>
-- Le souligné allait trop loin lorsque le texte comportait les caractères \, ( ou ).<br>
-- $HTTP_ENV_VARS a été remplacé par $HTTP_SERVER_VARS.<br>
+- Image() affiche maintenant l'image en 72 dpi si aucune dimension n'est indiquï¿½e.<br>
+- Output() prend un second paramï¿½tre chaï¿½ne pour indiquer la destination.<br>
+- Open() est maintenant appelï¿½ automatiquement par AddPage().<br>
+- L'insertion d'image JPEG distante ne gï¿½nï¿½re plus d'erreur.<br>
+- Le sï¿½parateur dï¿½cimal est forcï¿½ au point dans le constructeur.<br>
+- Ajout de diffï¿½rents encodages (turc, thaï¿½landais, hï¿½breu, ukrainien et vietnamien).<br>
+- La derniï¿½re ligne d'un MultiCell() cadrï¿½ ï¿½ droite n'ï¿½tait pas bien alignï¿½e si elle se terminait par un retour-chariot.<br>
+- Plus de message d'erreur sur les en-tï¿½tes dï¿½jï¿½ envoyï¿½s lorsque le PDF est gï¿½nï¿½rï¿½ sur la sortie standard en mode ligne de commande.<br>
+- Le soulignï¿½ allait trop loin lorsque le texte comportait les caractï¿½res \, ( ou ).<br>
+- $HTTP_ENV_VARS a ï¿½tï¿½ remplacï¿½ par $HTTP_SERVER_VARS.<br>
 </dd>
 <dt><strong>v1.51</strong> (03/08/2002)</dt>
 <dd>
 - Support des polices Type1.<br>
 - Ajout des encodages pour les pays baltes.<br>
-- La classe travaille maintenant en interne en points avec l'origine en bas afin d'éviter deux bugs avec Acrobat 5 :<br>&nbsp;&nbsp;* L'épaisseur des traits était trop importante lors des impressions sous Windows 98 SE et ME.<br>&nbsp;&nbsp;* Les polices TrueType n'apparaissaient pas immédiatement dans le plug-in (une police de substitution était utilisée), il fallait provoquer un rafraîchissement de la fenêtre pour les voir apparaître.<br>
-- La zone cliquable dans une cellule était toujours positionnée à gauche indépendamment de l'alignement du texte.<br>
-- Les images JPEG en mode CMYK apparaissaient en couleurs inversées.<br>
-- Les images PNG transparentes en niveaux de gris ou couleurs vraies étaient incorrectement traitées.<br>
-- L'ajout de nouvelles polices fonctionne maintenant correctement même avec l'option magic_quotes_runtime à on.<br>
+- La classe travaille maintenant en interne en points avec l'origine en bas afin d'ï¿½viter deux bugs avec Acrobat 5 :<br>&nbsp;&nbsp;* L'ï¿½paisseur des traits ï¿½tait trop importante lors des impressions sous Windows 98 SE et ME.<br>&nbsp;&nbsp;* Les polices TrueType n'apparaissaient pas immï¿½diatement dans le plug-in (une police de substitution ï¿½tait utilisï¿½e), il fallait provoquer un rafraï¿½chissement de la fenï¿½tre pour les voir apparaï¿½tre.<br>
+- La zone cliquable dans une cellule ï¿½tait toujours positionnï¿½e ï¿½ gauche indï¿½pendamment de l'alignement du texte.<br>
+- Les images JPEG en mode CMYK apparaissaient en couleurs inversï¿½es.<br>
+- Les images PNG transparentes en niveaux de gris ou couleurs vraies ï¿½taient incorrectement traitï¿½es.<br>
+- L'ajout de nouvelles polices fonctionne maintenant correctement mï¿½me avec l'option magic_quotes_runtime ï¿½ on.<br>
 </dd>
 <dt><strong>v1.5</strong> (28/05/2002)</dt>
 <dd>
 - Support des polices TrueType (AddFont()) et des encodages (Europe de l'Ouest, de l'Est, cyrillique et grec).<br>
-- Ajout de la méthode Write().<br>
-- Ajout du style souligné.<br>
+- Ajout de la mï¿½thode Write().<br>
+- Ajout du style soulignï¿½.<br>
 - Support des liens internes et externes (AddLink(), SetLink(), Link()).<br>
-- Gestion de la marge droite et ajout des méthodes SetRightMargin() et SetTopMargin().<br>
-- Modification de SetDisplayMode() pour sélectionner un affichage continu ou en colonnes.<br>
-- Le paramètre border de MultiCell() permet de choisir les bords à tracer comme Cell().<br>
+- Gestion de la marge droite et ajout des mï¿½thodes SetRightMargin() et SetTopMargin().<br>
+- Modification de SetDisplayMode() pour sï¿½lectionner un affichage continu ou en colonnes.<br>
+- Le paramï¿½tre border de MultiCell() permet de choisir les bords ï¿½ tracer comme Cell().<br>
 - Lorsqu'un document ne contient aucune page, Close() appelle maintenant AddPage() au lieu de provoquer une erreur fatale.<br>
 </dd>
 <dt><strong>v1.41</strong> (13/03/2002)</dt>
 <dd>
-- Correction de SetDisplayMode() qui ne fonctionnait plus (le visualiseur PDF utilisait l'affichage par défaut).<br>
+- Correction de SetDisplayMode() qui ne fonctionnait plus (le visualiseur PDF utilisait l'affichage par dï¿½faut).<br>
 </dd>
 <dt><strong>v1.4</strong> (02/03/2002)</dt>
 <dd>
-- PHP3 n'est plus supporté.<br>
+- PHP3 n'est plus supportï¿½.<br>
 - Compression des pages (SetCompression()).<br>
-- Choix du format des pages et possibilité de changer l'orientation en cours de document.<br>
-- Ajout de la méthode AcceptPageBreak().<br>
-- Ajout de la méthode SetLeftMargin().<br>
-- Possibilité d'imprimer le nombre total de pages (AliasNbPages()).<br>
-- Choix des bords des cellules à tracer.<br>
-- Nouveau mode pour la méthode Cell() : la position courante se déplace sous la cellule.<br>
-- Possibilité d'inclure une image en n'indiquant que la hauteur (la largeur est déterminée automatiquement).<br>
-- Correction d'un bug : lorsqu'une ligne justifiée provoquait un saut de page, le pied de page héritait de l'espacement inter-mot correspondant.<br>
+- Choix du format des pages et possibilitï¿½ de changer l'orientation en cours de document.<br>
+- Ajout de la mï¿½thode AcceptPageBreak().<br>
+- Ajout de la mï¿½thode SetLeftMargin().<br>
+- Possibilitï¿½ d'imprimer le nombre total de pages (AliasNbPages()).<br>
+- Choix des bords des cellules ï¿½ tracer.<br>
+- Nouveau mode pour la mï¿½thode Cell() : la position courante se dï¿½place sous la cellule.<br>
+- Possibilitï¿½ d'inclure une image en n'indiquant que la hauteur (la largeur est dï¿½terminï¿½e automatiquement).<br>
+- Correction d'un bug : lorsqu'une ligne justifiï¿½e provoquait un saut de page, le pied de page hï¿½ritait de l'espacement inter-mot correspondant.<br>
 </dd>
 <dt><strong>v1.31</strong> (12/01/2002)</dt>
 <dd>
-- Correction d'un bug dans le tracé du cadre avec MultiCell() : la dernière ligne partait toujours de la marge gauche.<br>
-- Suppression de l'en-tête HTTP Expires (pose des problèmes dans certains cas).<br>
-- Ajout de l'en-tête HTTP Content-disposition (semble aider dans certains cas).<br>
+- Correction d'un bug dans le tracï¿½ du cadre avec MultiCell() : la derniï¿½re ligne partait toujours de la marge gauche.<br>
+- Suppression de l'en-tï¿½te HTTP Expires (pose des problï¿½mes dans certains cas).<br>
+- Ajout de l'en-tï¿½te HTTP Content-disposition (semble aider dans certains cas).<br>
 </dd>
 <dt><strong>v1.3</strong> (03/12/2001)</dt>
 <dd>
 - Gestion des sauts de ligne avec justification du texte (MultiCell()).<br>
-- Ajout du support de la couleur (SetDrawColor(), SetFillColor(), SetTextColor()). Possibilité de dessiner des rectangles pleins et de colorer le fond des cellules.<br>
-- Une cellule dont la largeur est déclarée nulle s'étend jusqu'à la marge droite de la page.<br>
-- L'épaisseur des traits est maintenant conservée de page en page et vaut 0,2 mm par défaut.<br>
-- Ajout de la méthode SetXY().<br>
-- Correction d'un passage par référence effectué d'une manière obsolète en PHP4.<br>
+- Ajout du support de la couleur (SetDrawColor(), SetFillColor(), SetTextColor()). Possibilitï¿½ de dessiner des rectangles pleins et de colorer le fond des cellules.<br>
+- Une cellule dont la largeur est dï¿½clarï¿½e nulle s'ï¿½tend jusqu'ï¿½ la marge droite de la page.<br>
+- L'ï¿½paisseur des traits est maintenant conservï¿½e de page en page et vaut 0,2 mm par dï¿½faut.<br>
+- Ajout de la mï¿½thode SetXY().<br>
+- Correction d'un passage par rï¿½fï¿½rence effectuï¿½ d'une maniï¿½re obsolï¿½te en PHP4.<br>
 </dd>
 <dt><strong>v1.2</strong> (11/11/2001)</dt>
 <dd>
-- Ajout des fichiers de métrique des polices et de la méthode GetStringWidth().<br>
-- Possibilité de centrer et d'aligner à droite le texte dans les cellules.<br>
-- Réglage du mode d'affichage (SetDisplayMode()).<br>
-- Ajout des méthodes de propriété du document (SetAuthor(), SetCreator(), SetKeywords(), SetSubject(), SetTitle()).<br>
-- Possibilité de forcer le téléchargement du PDF.<br>
-- Ajout des méthodes SetX() et GetX().<br>
-- Lors du saut de page automatique, l'abscisse courante est maintenant conservée.<br>
+- Ajout des fichiers de mï¿½trique des polices et de la mï¿½thode GetStringWidth().<br>
+- Possibilitï¿½ de centrer et d'aligner ï¿½ droite le texte dans les cellules.<br>
+- Rï¿½glage du mode d'affichage (SetDisplayMode()).<br>
+- Ajout des mï¿½thodes de propriï¿½tï¿½ du document (SetAuthor(), SetCreator(), SetKeywords(), SetSubject(), SetTitle()).<br>
+- Possibilitï¿½ de forcer le tï¿½lï¿½chargement du PDF.<br>
+- Ajout des mï¿½thodes SetX() et GetX().<br>
+- Lors du saut de page automatique, l'abscisse courante est maintenant conservï¿½e.<br>
 </dd>
 <dt><strong>v1.11</strong> (20/10/2001)</dt>
 <dd>
-- L'utilisation des PNG ne nécessite plus PHP4 et l'extension Zlib. Les données sont intégrées directement dans le document PDF sans étape de décompression/recompression.<br>
-- L'insertion d'image fonctionne maintenant correctement même avec l'option magic_quotes_runtime à on.<br>
+- L'utilisation des PNG ne nï¿½cessite plus PHP4 et l'extension Zlib. Les donnï¿½es sont intï¿½grï¿½es directement dans le document PDF sans ï¿½tape de dï¿½compression/recompression.<br>
+- L'insertion d'image fonctionne maintenant correctement mï¿½me avec l'option magic_quotes_runtime ï¿½ on.<br>
 </dd>
 <dt><strong>v1.1</strong> (07/10/2001)</dt>
 <dd>
@@ -160,11 +161,11 @@ dd {margin:1em 0 1em 1em}
 </dd>
 <dt><strong>v1.01</strong> (03/10/2001)</dt>
 <dd>
-- Correction d'un bug lors du saut de page : dans le cas où la méthode Header() ne spécifiait pas de police, celle de la page précédente n'était pas restaurée et produisait un document incorrect.<br>
+- Correction d'un bug lors du saut de page : dans le cas oï¿½ la mï¿½thode Header() ne spï¿½cifiait pas de police, celle de la page prï¿½cï¿½dente n'ï¿½tait pas restaurï¿½e et produisait un document incorrect.<br>
 </dd>
 <dt><strong>v1.0</strong> (17/09/2001)</dt>
 <dd>
-- Première version.<br>
+- Premiï¿½re version.<br>
 </dd>
 </dl>
 </body>
