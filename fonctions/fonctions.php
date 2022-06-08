@@ -659,7 +659,7 @@
         if($rows>0){
             echo '
             <table class="table mt-5">
-            <thead class="bg-success text-light">
+            <thead class="bg-success">
                 <tr class="text-center">
                     <th>#ID</th>
                     <th>NOM</th>
@@ -720,8 +720,9 @@
         $rows = $select_commande->rowCount();
         if($rows>0){
             echo '
+            <h2 class="text-center text-success my-4">Tous les commandes</h2>
             <table class="table mt-5">
-            <thead class="bg-success text-light">
+            <thead class="bg-success">
                 <tr class="text-center">
                     <th>#</th>
                     <th>Réfference</th>
@@ -794,7 +795,7 @@
         if($rows>0){
             echo '
             <table class="table mt-5">
-            <thead class="bg-success text-light">
+            <thead class="bg-success">
                 <tr class="text-center">
                     <th>#</th>
                     <th>Image</th>
@@ -815,7 +816,7 @@
                 $nom_utilisateur = $utilisateur->nom_utilisateur;
                 $prenom_utilisateur = $utilisateur->prenom_utilisateur;
                 $email_utilisateur = $utilisateur->email_utilisateur;
-                $image_utilisateur = $utilisateur->image_utilisateur;
+                $image_utilisateur = $utilisateur->image_utilisateur == ""? "photo.png":$utilisateur->image_utilisateur;
                 $adresse_utilisateur = $utilisateur->adresse_utilisateur;
                 $tel_utilisateur = $utilisateur->tel_utilisateur;
 
@@ -823,7 +824,7 @@
                 echo "
                     <tr class='text-center'>
                         <th style='padding-top:3.35%'>$compteur</th>
-                        <td><img style='width:100px' src='./produits_images/$image_utilisateur'></td>
+                        <td><img style='width:100px' src='/Electro-Shop/client/client_images/$image_utilisateur'></td>
                         <td style='padding-top:3.35%'>$nom_utilisateur</td>
                         <td style='padding-top:3.35%''>$prenom_utilisateur</td>
                         <td style='padding-top:3.35%'>$email_utilisateur</td>
@@ -868,6 +869,22 @@
         $rows = $select_table->rowcount();
         echo "<span class='fs-5' style='padding-top:20px'>$rows</span>";
 
+    }
+
+
+
+    function getCA(){
+
+        global $con;
+        $select_total = $con->prepare("SELECT sum(total_a_payer) AS total FROM commande ");
+        $select_total->execute(array());
+        $rows = $select_total->rowcount();
+        $data = $select_total->fetch();
+        if($rows > 0){
+            echo $data['total'];
+        }else{
+            echo '0';
+        }
     }
 
 

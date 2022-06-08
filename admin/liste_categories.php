@@ -7,7 +7,7 @@
 <table class="table mt-5">
     <thead class="bg-success">
         <tr class="text-center">
-            <th>#ID</th>
+            <th>#</th>
             <th>Nom de categorie</th>
             <th>Modifier</th>
             <th>Supprimer</th>
