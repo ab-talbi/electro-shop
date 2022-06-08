@@ -632,7 +632,7 @@
                     <th scope="col">Total Apres Remise (MAD)</th>
                     <th scope="col">Date</th>
                     <th scope="col">Mode Paiement</th>
-                    <th scope="col">Etat</th>
+                    <th scope="col">Imprimer</th>
                     <th scope="col">Supprimer</th>
                 </tr>
             </thead>
@@ -649,11 +649,9 @@
                 $date_commande = $ligne->date_commande;
                 $status_commande = $ligne->status_commande;
                 if($status_commande == 'suspens'){
-                    $status_commande = 'Incomplète';
                     $mode = '-';
                 }else{
                     $mode = $status_commande;
-                    $status_commande = 'Terminé';
                 }
                 echo "
                     <tr>
@@ -665,7 +663,7 @@
                         <td>$total_a_payer</td>
                         <td>$date_commande</td>
                         <td>$mode</td>
-                        <td style='color:red'>$status_commande</td>
+                        <td><a href='profile.php?facture=$random_cmd'>Imprimer</a></td>
                     <td><button value='profile.php?supprimer_commande=$id_commande' 
                     type='button' class='fa-solid fa-trash btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'>
                     </button></td></tr> ";
@@ -903,6 +901,90 @@
         $select_table->execute(array());
         $rows = $select_table->rowcount();
         echo "<span class='fs-5' style='padding-top:20px'>$rows</span>";
+
+    }
+
+
+    function getFacture(){
+        global $con;
+        global $refference;
+
+        $select_commande = $con->query("SELECT * FROM `commande` WHERE random_cmd = $refference");
+
+
+        $rows_commande = $select_commande->rowCount();
+        if($rows_commande>0){
+
+            while($ligne = $select_commande->fetch(PDO::FETCH_OBJ)){
+
+                $total_avant_remise = $ligne->a_payer;
+                $remise = $ligne->remise;
+                $total_apres_remise = $ligne->total_a_payer;
+                $date_commande = $ligne->date_commande;
+                $status_commande = $ligne->status_commande;
+
+                //L'etulisateur qui a effectuer la commande
+                $id_utilisateur = $ligne->id_utilisateur;
+
+                $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` WHERE id_utilisateur = $id_utilisateur");
+
+                $rows_utilisateur = $select_utilisateur->rowCount();
+                if($rows_utilisateur>0){
+
+                    while($utilisateur = $select_utilisateur->fetch(PDO::FETCH_OBJ)){
+                        $nom_utilisateur = $utilisateur->nom_utilisateur; 
+                        $prenom_utilisateur = $utilisateur->prenom_utilisateur;
+                        $email_utilisateur = $utilisateur->email_utilisateur;
+                        $adresse_utilisateur = $utilisateur->adresse_utilisateur;
+                        $tel_utilisateur = $utilisateur->tel_utilisateur;  
+                    }
+
+                }
+                //--- End - L'etulisateur qui a effectuer la commande
+
+
+                //Les infos sur les produits et quantite
+
+                $select_carte_backup = $con->query("SELECT * FROM `carte_backup` WHERE 	id_carte_commande = $refference");
+ 
+                $carte_backup_details = array();
+
+                $rows_carte_backup = $select_carte_backup->rowCount();
+                if($rows_carte_backup>0){
+                    $compteur = 1;
+                    while($carte_backup = $select_carte_backup->fetch(PDO::FETCH_OBJ)){
+                        $produit_details = array();
+
+                        $quantite = $carte_backup->quantite;
+                        $id_produit = $carte_backup->id_produit;
+
+                        $select_produit = $con->query("SELECT * FROM `produits` WHERE 	id_produit = $id_produit");
+ 
+                        $rows_produit = $select_produit->rowCount();
+                        if($rows_produit>0){
+        
+                            while($produit = $select_produit->fetch(PDO::FETCH_OBJ)){
+                                $designation_produit = $produit->nom_produit;
+                                $prix_produit_unitaire = $produit->prix_produit;
+                                $montant_produit = $prix_produit_unitaire*$quantite;
+                            }
+
+                        }
+                        array_push($produit_details, $designation_produit, $prix_produit_unitaire,$quantite,$montant_produit);
+
+                        array_push($carte_backup_details,$produit_details);
+                    }
+                }
+                //--- End - Les infos sur les produits et quantite
+
+
+
+
+            }
+        }
+        
+
+
 
     }
 

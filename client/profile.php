@@ -114,6 +114,10 @@
                     if(isset($_GET['mes_commandes'])){
                         include('liste_commandes.php');
                     }
+                    if(isset($_GET['facture'])){
+                        $_SESSION['facture'] = $_GET['facture'];
+                        echo "<script>window.open('/Electro-Shop/client/facture.php','_self')</script>";
+                    }
                 ?>
         </div>
     </div>

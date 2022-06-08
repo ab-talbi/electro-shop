@@ -1,5 +1,91 @@
 <?php
+session_start();
 require('../fpdf/fpdf.php');
+
+include('../includes/connect.php');
+
+if(isset($_SESSION['facture'])){
+    $refference = $_SESSION['facture'];
+
+
+    $select_commande = $con->query("SELECT * FROM `commande` WHERE random_cmd = $refference");
+
+
+        $rows_commande = $select_commande->rowCount();
+        if($rows_commande>0){
+
+            while($ligne = $select_commande->fetch(PDO::FETCH_OBJ)){
+
+                $total_avant_remise = $ligne->a_payer;
+                $remise = $ligne->remise;
+                $total_apres_remise = $ligne->total_a_payer;
+                $date_commande = $ligne->date_commande;
+                $status_commande = $ligne->status_commande;
+
+                //L'etulisateur qui a effectuer la commande
+                $id_utilisateur = $ligne->id_utilisateur;
+
+                $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` WHERE id_utilisateur = $id_utilisateur");
+
+                $rows_utilisateur = $select_utilisateur->rowCount();
+                if($rows_utilisateur>0){
+
+                    while($utilisateur = $select_utilisateur->fetch(PDO::FETCH_OBJ)){
+                        $nom_utilisateur = $utilisateur->nom_utilisateur; 
+                        $prenom_utilisateur = $utilisateur->prenom_utilisateur;
+                        $email_utilisateur = $utilisateur->email_utilisateur;
+                        $adresse_utilisateur = $utilisateur->adresse_utilisateur;
+                        $tel_utilisateur = $utilisateur->tel_utilisateur;  
+                    }
+
+                }
+                //--- End - L'etulisateur qui a effectuer la commande
+
+
+                //Les infos sur les produits et quantite
+
+                $select_carte_backup = $con->query("SELECT * FROM `carte_backup` WHERE 	id_carte_commande = $refference");
+ 
+                $carte_backup_details = array();
+
+                $rows_carte_backup = $select_carte_backup->rowCount();
+                if($rows_carte_backup>0){
+                    $compteur = 1;
+                    while($carte_backup = $select_carte_backup->fetch(PDO::FETCH_OBJ)){
+                        $produit_details = array();
+
+                        $quantite = $carte_backup->quantite;
+                        $id_produit = $carte_backup->id_produit;
+
+                        $select_produit = $con->query("SELECT * FROM `produits` WHERE 	id_produit = $id_produit");
+ 
+                        $rows_produit = $select_produit->rowCount();
+                        if($rows_produit>0){
+        
+                            while($produit = $select_produit->fetch(PDO::FETCH_OBJ)){
+                                $designation_produit = $produit->nom_produit;
+                                $prix_produit_unitaire = $produit->prix_produit;
+                                $montant_produit = $prix_produit_unitaire*$quantite;
+                            }
+
+                        }
+                        array_push($produit_details, $designation_produit, $prix_produit_unitaire,$quantite,$montant_produit);
+
+                        array_push($carte_backup_details,$produit_details);
+                    }
+                }
+                //--- End - Les infos sur les produits et quantite
+
+
+
+
+            }
+        }
+}else{
+    echo "<script>window.open('/Electro-Shop/index.php','_self')</script>";
+}
+
+
 
 class PDF extends FPDF
 {
@@ -87,26 +173,27 @@ $pdf->cell(0,10,'rue abdelkrime lkhtabi, Marrakech,Maroc',0,0,'');
 
 // Positionnement à 9 cm du bas
 $pdf->SetY(90);
-$pdf->cell(20,10,'QTE','TBLR',0,'C');
 
 $pdf->cell(80,10,'DESIGNATION','TBLR',0,'C');
 
-$pdf->cell(40,10,'PRIX UNIT HT','TBLR',0,'C');
+$pdf->cell(40,10,'PRIX UNIT','TBLR',0,'C');
 
-$pdf->cell(50,10,'MONTANT HT','TBLR',0,'C');
+$pdf->cell(20,10,'QTE','TBLR',0,'C');
+
+$pdf->cell(50,10,'MONTANT','TBLR',0,'C');
 // Saut de ligne
 $pdf->Ln(10);
 
 
-for($i=1;$i<=4;$i++){
+for($i=0;$i<count($carte_backup_details);$i++){
 
-    $pdf->cell(20,10,'10','LBR',0,'C');
+    $pdf->cell(80,10,$carte_backup_details[$i][0],'LBR',0,'C');
 
-    $pdf->cell(80,10,'ECRAN','BR',0,'C');
+    $pdf->cell(40,10,$carte_backup_details[$i][1],'BR',0,'C');
 
-    $pdf->cell(40,10,'999.99','BR',0,'C');
+    $pdf->cell(20,10,$carte_backup_details[$i][2],'BR',0,'C');
 
-    $pdf->cell(50,10,'9990.99','BR',0,'C');
+    $pdf->cell(50,10,$carte_backup_details[$i][3],'BR',0,'C');
     // Saut de ligne
     $pdf->Ln(10);
 
@@ -114,22 +201,22 @@ for($i=1;$i<=4;$i++){
 
 // Décalage à droite
 $pdf->cell(100);
-$pdf->cell(40,10,'TOTAL HT','',0,'C');
-$pdf->cell(50,10,'100000.00','RL',0,'C');
-// Saut de ligne
-$pdf->Ln(10);
-
-// Décalage à droite
-$pdf->cell(100);
-$pdf->cell(40,10,'TVA 20.0%','',0,'C');
-$pdf->cell(50,10,'1000.00','BRL',0,'C');
-// Saut de ligne
-$pdf->Ln(10);
-
-// Décalage à droite
-$pdf->cell(100);
 $pdf->cell(40,10,'TOTAL','',0,'C');
-$pdf->cell(50,10,'1000000.00','BRL',0,'C');
+$pdf->cell(50,10,$total_avant_remise,'RL',0,'C');
+// Saut de ligne
+$pdf->Ln(10);
+
+// Décalage à droite
+$pdf->cell(100);
+$pdf->cell(40,10,'Remise '.$remise.'%','',0,'C');
+$pdf->cell(50,10,$total_avant_remise*$remise/100,'BRL',0,'C');
+// Saut de ligne
+$pdf->Ln(10);
+
+// Décalage à droite
+$pdf->cell(100);
+$pdf->cell(40,10,'TOTAL A PAYER','',0,'C');
+$pdf->cell(50,10,$total_apres_remise,'BRL',0,'C');
 // Saut de ligne
 $pdf->Ln(10);
 
