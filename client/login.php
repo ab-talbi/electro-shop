@@ -114,9 +114,10 @@
                     $tot = $tot + $prix_total_produit;
                 }
             }
-            if(isset($_SESSION['remise'])){
-                $tot = $tot - $tot*($_SESSION['remise']/100);
-            }
+            
+        }
+        if(isset($_SESSION['remise'])){
+            $tot = ($tot - ($tot*($_SESSION['remise']/100)));
         }
 
         if($rows > 0){

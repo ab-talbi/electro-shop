@@ -88,9 +88,10 @@
                 <?php
                 
                     if(isset($_GET['categorie'])){
-                        $url = $_SERVER['REQUEST_URI']."&";
-                        getMarques($url);
-                    }else {
+                        //$url = $_SERVER['REQUEST_URI']."&";
+                        $url = explode("&", $_SERVER['REQUEST_URI']);
+                        getMarques($url[0]);
+                    }else{
                         $url = "index.php?";
                     }
                     
