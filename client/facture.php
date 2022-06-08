@@ -21,6 +21,7 @@ if(isset($_SESSION['facture'])){
                 $total_apres_remise = $ligne->total_a_payer;
                 $date_commande = $ligne->date_commande;
                 $status_commande = $ligne->status_commande;
+                $id_commande = $ligne->id_commande;
 
                 //L'etulisateur qui a effectuer la commande
                 $id_utilisateur = $ligne->id_utilisateur;
@@ -92,6 +93,7 @@ class PDF extends FPDF
 // En-tête
 function Header()
 {
+    
     // Logo
     $this->Image('./client_images/128.png',10,6,30);
     // Police Arial gras 15
@@ -99,7 +101,7 @@ function Header()
     // Décalage à droite
     $this->Cell(130);
     // Titre
-    $this->Cell(30,10,'Facture N :  ','',0,'B');
+    $this->Cell(30,10,'Facture N :  ES-'.$_SESSION['facture']-12479942,'',0,'B');
     // Saut de ligne
     $this->Ln(9);
     // Décalage à droite
