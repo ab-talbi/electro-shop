@@ -27,9 +27,7 @@
             <td><button value="index.php?supprimer_categorie=<?php echo $ligne->id_categorie; ?>" 
             type="button" class=" fa-solid fa-trash btn text-black confirme" data-bs-toggle="modal" data-bs-target="#exampleModal">
             </button></td>
-            <td><button value="index.php?supprimer_categorie=<?php echo $ligne->id_categorie; ?>"
-                        type='button' class='fa-solid fa-trash-can btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'></button>
-            </td>
+            
         </tr>
         <?php
             $number++;

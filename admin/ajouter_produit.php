@@ -21,9 +21,11 @@
         $temp_image3 = htmlspecialchars($_FILES['produit_image3']['tmp_name']);
         $temp_image4 = htmlspecialchars($_FILES['produit_image4']['tmp_name']);
         $temp_image5 = htmlspecialchars($_FILES['produit_image5']['tmp_name']);
+
+        $stock = htmlspecialchars($_POST['stock']);
         $prix_produit = htmlspecialchars($_POST['prix_produit']);
 
-        if($nom_produit == '' ||$description_produit == '' ||$mots_cles == '' ||$produit_categorie == '' ||$produit_marque == '' ||$prix_produit == '' || $produit_image1 == ''){
+        if($nom_produit == '' ||$description_produit == '' ||$mots_cles == '' ||$produit_categorie == '' ||$produit_marque == '' ||$prix_produit == '' || $produit_image1 == '' || $stock == ''){
             echo "<script>Swal.fire({position: 'center',
                 icon: 'error',
                 title: 'Remplir les champs obligatoire!',
@@ -47,8 +49,8 @@
 
                 /* ajout du produit à la base de donnes*/
 
-            $insert = $con->prepare('INSERT INTO produits(nom_produit,description_produit,mots_cles,id_categorie,id_marque,produit_image1,produit_image2,produit_image3,produit_image4,produit_image5,prix_produit,status_produit) VALUES(:nom_produit,:description_produit,:mots_cles,:id_categorie,:id_marque,:produit_image1,:produit_image2,:produit_image3,:produit_image4,:produit_image5,:prix_produit,:status_produit)');
-            $insert->execute(array(":nom_produit"=>$nom_produit,":description_produit"=>$description_produit,":mots_cles"=>$mots_cles,":id_categorie"=>$produit_categorie,":id_marque"=>$produit_marque,":produit_image1"=>$produit_image1,":produit_image2"=>$produit_image2,":produit_image3"=>$produit_image3,":produit_image4"=>$produit_image4,":produit_image5"=>$produit_image5,":prix_produit"=>$prix_produit,":status_produit"=>'true'));
+            $insert = $con->prepare('INSERT INTO produits(nom_produit,description_produit,mots_cles,id_categorie,id_marque,produit_image1,produit_image2,produit_image3,produit_image4,produit_image5,prix_produit,stock) VALUES(:nom_produit,:description_produit,:mots_cles,:id_categorie,:id_marque,:produit_image1,:produit_image2,:produit_image3,:produit_image4,:produit_image5,:prix_produit,:stock)');
+            $insert->execute(array(":nom_produit"=>$nom_produit,":description_produit"=>$description_produit,":mots_cles"=>$mots_cles,":id_categorie"=>$produit_categorie,":id_marque"=>$produit_marque,":produit_image1"=>$produit_image1,":produit_image2"=>$produit_image2,":produit_image3"=>$produit_image3,":produit_image4"=>$produit_image4,":produit_image5"=>$produit_image5,":prix_produit"=>$prix_produit,":stock"=>$stock));
             
             if($insert){
                 echo "<script>Swal.fire({position: 'center',
@@ -148,6 +150,11 @@
                 <input type="file" name="produit_image5" id="produit_image5" class="form-control">
             </div>
             
+            <div class="form-outline mb-4 w-50 m-auto">
+                <label for="stock" class="form-label">Quantité stocké <span style="color:red">*</span></label>
+                <input type="number" name="stock" id="stock" class="form-control" placeholder="Nembre du Produit en stock" autocomplete="off">
+            </div>
+
             <div class="form-outline mb-4 w-50 m-auto">
                 <label for="prix_produit" class="form-label">Prix du Produit <span style="color:red">*</span></label>
                 <input type="text" name="prix_produit" id="prix_produit" class="form-control" placeholder="Prix du Produit" autocomplete="off">
