@@ -98,7 +98,7 @@ if(isset($_GET['id_utilisateur']) and (string)$id_utilisateur == $_GET['id_utili
             }else{
                 echo "
                     <script>
-                        alert('une categorie à étè supprimer');
+                        alert('Hors Stock');
                 
                         window.open('../carte.php','_self');
                 </script>";

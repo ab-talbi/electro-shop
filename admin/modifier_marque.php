@@ -1,5 +1,8 @@
 <?php
 
+if(!isset($_GET['modifier_marque'])){
+    header('Location: ../index.php');
+}
 require_once('../includes/connect.php');
 
     if(isset($_GET['modifier_marque'])){

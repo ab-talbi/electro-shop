@@ -1,5 +1,7 @@
 <?php
-
+if(!isset($_GET['modifier_produit'])){
+    header('Location: ../index.php');
+}
     if(isset($_GET['modifier_produit'])){
         $id_produit = $_GET['modifier_produit'];
         $select_data_produit  = $con->prepare("SELECT * FROM produits WHERE id_produit = ?");
@@ -42,8 +44,11 @@
             <input type="text" name="nom_produit" id="nom_produit" class="form-control w-100" value="<?php echo $nom_produit ?>">
         </div>
         <div class="form-outline mb-4">
+            <!-- <label for="description_produit" class="form-label">Description <span style="color:red">*</span></label>
+            <input type="text" name="description_produit" id="description_produit" class="form-control w-100" value="<?php echo $description_produit ?>"> -->
+
             <label for="description_produit" class="form-label">Description <span style="color:red">*</span></label>
-            <input type="text" name="description_produit" id="description_produit" class="form-control w-100" value="<?php echo $description_produit ?>">
+            <textarea class="form-control w-100" name="description_produit" id="description_produit" cols="30" rows="10"><?php echo $description_produit ?></textarea>
         </div>
         <div class="form-outline mb-4">
             <label for="mots_cles" class="form-label">Mots Cles <span style="color:red">*</span></label>

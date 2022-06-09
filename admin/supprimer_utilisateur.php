@@ -1,4 +1,7 @@
 <?php
+    if(!isset($_GET['supprimer_utilisateur'])){
+        header('Location: ../index.php');
+    }
     
     require_once('../includes/connect.php');
 

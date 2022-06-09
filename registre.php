@@ -6,6 +6,9 @@
 
     session_start();
           
+    if(isset($_SESSION['nom_utilisateur'])){
+        echo "<script>window.open('./index.php','_self')</script>";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +28,7 @@
      <!-- css file -->
      <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
-    <title>Registration</title>
+    <title>Electro Shop - Registration</title>
     
 </head>
 <body>

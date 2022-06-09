@@ -2,6 +2,9 @@
     
     require_once('../includes/connect.php');
 
+    if(!isset($_GET['supprimer_categorie'])){
+        header('Location: ../index.php');
+    }
     if(isset($_GET['supprimer_categorie'])){
 
         $select_produits = $con->prepare("SELECT * FROM produits WHERE id_categorie=?");

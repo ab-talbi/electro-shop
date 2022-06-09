@@ -64,7 +64,7 @@
                     <div class="text-center">
                         <input name="connexion_submit_btn" type="submit" value="connexion" class="btn btn-success me-1"/>
                         <p class="mt-2 small fw-bold">Vous avez pas déjà un compte? <a href="../registre.php">Créer un compte</a></p>
-                        <p class="mt-2 small fw-bold"><a href="./mot_passe_oublier.php">J'ai oublier le mot de passe</a></p>
+                        <p class="mt-2 small fw-bold"><a href="../mot_passe_oublier.php">J'ai oublier le mot de passe</a></p>
                         <p class="mt-2 small fw-bold"><a href="../carte.php">Retour au panier</a></p>
                     </div>
                 </form>

@@ -37,7 +37,8 @@
         </div>
         <div class="form-outline mb-4">
             <label for="email_utilisateur">Email </label>
-            <input type="email" name="email_utilisateur" id="email_utilisateur" class="form-control w-100" value="<?php echo $email_utilisateur ?>">
+            <fieldset class="form-control w-100" name="email_utilisateur" id="email_utilisateur"><?php echo $email_utilisateur ?></fieldset>
+            <!-- <input type="email" name="email_utilisateur" id="email_utilisateur" class="form-control w-100" value="<?php echo $email_utilisateur ?>"> -->
         </div>
         <div class="form-outline mb-4">
             <label for="tel_utilisateur">Telephone </label>

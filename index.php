@@ -9,6 +9,7 @@
                 window.location.replace("/Electro-Shop/index.php")
              </script>';
     }
+    
 
 ?>
 
@@ -114,7 +115,7 @@
                    
                     getProduitsByCategorie();
                    // getProduitsByMarque();
-                    if(isset($_GET['marque']) && isset($_GET['categorie'])){
+                    if(isset($_GET['marque']) and isset($_GET['categorie'])){
                         getProduitsByMarqueEtCategorie();
                     }
                    

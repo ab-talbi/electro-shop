@@ -14,8 +14,8 @@
                     <h5 class='card-title'>$ligne->nom_produit</h5>
                     <p class='card-text to-limit'>$ligne->description_produit</p>
                     <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
-                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:49%'>Ajouter</a>
-                    <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:49%'>Détails</a>
+                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary' style='width:45%'>Ajouter</a>
+                    <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary' style='width:45%'>Détails</a>
                     </div>
                     </div>
                     </div>";
@@ -249,15 +249,39 @@
                 <div class='col-md-4'>
                     <!-- photos -->
                     <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
+                    ";
+                    if($ligne->produit_image2 != ''){
+                        echo "
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image2' class='card-img-top' alt='$ligne->nom_produit'>";
+                    }
+                    if($ligne->produit_image3 != ''){
+                        echo "
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image3' class='card-img-top' alt='$ligne->nom_produit'>";
+                    }
+                    if($ligne->produit_image4 != ''){
+                        echo "
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image4' class='card-img-top' alt='$ligne->nom_produit'>";
+                    }
+                    if($ligne->produit_image5 != ''){
+                        echo "
+                    <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image5' class='card-img-top' alt='$ligne->nom_produit'>";
+                    }
+                 echo "
                 </div>
-                <div class='col-md-8'>
+                <div class='col-md-8' style='border:2px solid black;border-radius:5px'>
                     <!-- text -->
-                    <h5 class='card-title'>$ligne->nom_produit</h5>
-                    <p class='card-text'><strong>Description: </strong>$ligne->description_produit</p>
-                    <p class='card-text'><strong>Prix : $ligne->prix_produit MAD</strong></p>
+                    <h5 class='card-title bg-success text-light ' style='font-size:50px'>$ligne->nom_produit</h5>
+                    <p class='card-text'><strong style='color:red'>Stock : $ligne->stock</strong></p>
+                    <p class=''><strong>Description: </strong>$ligne->description_produit</p>
+                    <p class='card-text'><strong style='color:red'>Prix : $ligne->prix_produit MAD</strong></p>
                 </div>
-                <div class='col-md-12 text-center p-2'>
-                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
+                
+                <div class='col-md-4'>
+                    <!-- photos -->
+                
+                </div>
+                <div class='col-md-8 text-center p-2'>
+                    <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary '>Ajouter</a>
                     <a href='/Electro-Shop/index.php' class='btn btn-secondary'>Retour</a>
                 </div>
                 ";
@@ -468,26 +492,34 @@
                 $select_produit = $con->query("SELECT * FROM `produits` WHERE id_produit = $ligne->id_produit");
     
                 $qty = htmlspecialchars($_GET["modifier_quantite_carte_$ligne->id_produit"]);
-    
-                $modifier_qty = "UPDATE carte SET quantite=:quantite WHERE adresse_ip=:adresse_ip and id_produit = $ligne->id_produit";
-                $modifier= $con->prepare($modifier_qty);
-                $modifier->execute(array('quantite' => $qty,'adresse_ip' => $adresse_ip));
-                if($modifier){
-                    echo "<script>Swal.fire({position: 'center',
-                        icon: 'success',
-                        title: 'la carte à été modifier avec succés',
-                        showConfirmButton: true}).then((result) => {
-                            if (result.isConfirmed) {
-                              Swal.fire(
-                                window.open('/Electro-Shop/carte.php','_self')
-                              )
-                            }
-                            else{
-                                window.open('/Electro-Shop/carte.php','_self')
-                            }
-                          });
-                        </script>";
+
+                if(ctype_digit($qty) and $qty >=1){
+                    $qty_stock = ($select_produit->fetch(PDO::FETCH_OBJ))->stock;
+                    if($qty > $qty_stock){
+                        $qty = $qty_stock;
+                    }
+                    $modifier_qty = "UPDATE carte SET quantite=:quantite WHERE adresse_ip=:adresse_ip and id_produit = $ligne->id_produit";
+                    $modifier= $con->prepare($modifier_qty);
+                    $modifier->execute(array('quantite' => $qty,'adresse_ip' => $adresse_ip));
+                    if($modifier){
+                        echo "<script>Swal.fire({position: 'center',
+                            icon: 'success',
+                            title: 'la carte à été modifier avec succés',
+                            showConfirmButton: true}).then((result) => {
+                                if (result.isConfirmed) {
+                                Swal.fire(
+                                    window.open('/Electro-Shop/carte.php','_self')
+                                )
+                                }
+                                else{
+                                    window.open('/Electro-Shop/carte.php','_self')
+                                }
+                            });
+                            </script>";
+                    }
                 }
+    
+                
             }
         } 
     }
@@ -755,14 +787,17 @@
             <table class="table mt-5">
             <thead class="bg-success text-light">
                 <tr class="text-center">
-                    <th>#</th>
-                    <th>Réfference</th>
-                    <th>Total à payer</th>
-                    <th>Nombre Produits</th>
-                    <th>Date</th>
-                    <th>Email</th>
-                    <th>Etat</th>
-                    <th>Supprimer</th>
+                <th scope="col">#</th>
+                <th scope="col">Réferrence</th>
+                <th scope="col">Nombre de Produits</th>
+                <th scope="col">Total Avant Remise (MAD)</th>
+                <th scope="col">Remise</th>
+                <th scope="col">Total Apres Remise (MAD)</th>
+                <th scope="col">Email</th>
+                <th scope="col">Date</th>
+                <th scope="col">Mode Paiement</th>
+                <th scope="col">Impr</th>
+                <th scope="col">Suppr</th>
                 </tr>
             </thead>
             <tbody class="bg-light">
@@ -783,26 +818,33 @@
                 $nombre_produits = $prod->nombre_produits;
                 $date_commande = $prod->date_commande;
 
+                $total_a_payer = $prod->total_a_payer;
+                $remise = $prod->remise;
+
+                
                 if($status_commande == 'suspens'){
-                    $status_commande = 'Incomplète';
+                    $mode = '-';
+                }else{
+                    $mode = $status_commande;
                 }
-                else{
-                    $status_commande = 'Achevé';
-                }
+
                 echo "
-                    <tr class='text-center'>
-                        <th>$compteur</th>
-                        <td>$random_cmd</td>
-                        <td>$a_payer</td>
-                        <td>$nombre_produits</td>
-                        <td>$date_commande</td>
-                        <td>$email_utilisateur</td>
-                        <td>$status_commande</td>
-                        <td><button value='index.php?supprimer_commande=$id_commande' 
-                        type='button' class=' fa-solid fa-trash btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'>
-                        </button></td>
-                    </tr> 
-                ";
+                <tr>
+                <th scope='row'>$compteur</th>
+                <td>$random_cmd</td>
+                <td>$nombre_produits</td>
+                <td>$a_payer</td>
+                <td>$remise</td>
+                <td>$total_a_payer</td>
+                <td>$email_utilisateur</td>
+                <td>$date_commande</td>
+                <td>$mode</td>
+                <td><a href='index.php?facture=$random_cmd' style='color:black;'><i class='pt-3 fa-solid fa-print'></i></a></td>
+            <td><button value='index.php?supprimer_commande=$id_commande' 
+                type='button' class='fa-solid fa-trash-can btn confirme' data-bs-toggle='modal' 
+                data-bs-target='#exampleModal'></button></td>
+            </tr> ";
+                
                 $compteur++;          
             }
                 

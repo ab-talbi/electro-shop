@@ -1,5 +1,7 @@
 <?php
-
+if(!isset($_GET['modifier_promos'])){
+    header('Location: ../index.php');
+}
 require_once('../includes/connect.php');
     if(isset($_GET['modifier_promos'])){
         $id_remise = $_GET['modifier_promos'];

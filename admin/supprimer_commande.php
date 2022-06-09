@@ -1,6 +1,12 @@
 <?php
     
+    if(!isset($_GET['supprimer_commande'])){
+        header('Location: ../index.php');
+    }
+
     require_once('../includes/connect.php');
+
+    
 
     if(isset($_GET['supprimer_commande'])){
 

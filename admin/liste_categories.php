@@ -1,4 +1,14 @@
 <?php
+
+if(!isset($_GET['liste_categories'])){
+  header('Location: ../index.php');
+}
+
+
+?>
+
+
+<?php
     
     require_once('../includes/connect.php');
 ?>

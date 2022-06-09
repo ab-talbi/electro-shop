@@ -1,5 +1,9 @@
 <?php
 
+if(!isset($_GET['modifier_categorie'])){
+    header('Location: ../index.php');
+}
+
 require_once('../includes/connect.php');
     if(isset($_GET['modifier_categorie'])){
         $id_categorie = $_GET['modifier_categorie'];

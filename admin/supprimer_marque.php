@@ -1,4 +1,8 @@
 <?php
+
+if(!isset($_GET['supprimer_marque'])){
+    header('Location: ../index.php');
+}
     
     require_once('../includes/connect.php');
 

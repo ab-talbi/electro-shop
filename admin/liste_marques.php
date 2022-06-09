@@ -1,5 +1,7 @@
 <?php
-    
+    if(!isset($_GET['liste_marques'])){
+        header('Location: ../index.php');
+      }
     require_once('../includes/connect.php');
 ?>
 <h2 class="text-center text-success my-4">Tous les marques</h2>

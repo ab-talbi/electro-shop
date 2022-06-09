@@ -39,7 +39,7 @@
                             <div class="form-group row mb-3">
                                 <label for="code" class="col-md-4 col-form-label text-md-right">Code de Verfication</label>
                                 <div class="col-md-6 text-right">
-                                    <input type="text" id="code" class="text-right form-control" name="otp_code" required autofocus placeholder='Le code que vous avez recu via email'>
+                                    <input type="text" id="code" class="text-right form-control" name="otp_code" autofocus placeholder='Le code que vous avez recu via email'>
                                 </div>
                             </div>
 
@@ -61,9 +61,61 @@
 <?php 
     
     if(isset($_POST["verifie_compte"])){
-        $otp = $_SESSION['otp'];
-        $email = $_SESSION['mail'];
-        $otp_code = $_POST['otp_code'];
+
+        if(isset($_SESSION['otp'])){
+            $otp = $_SESSION['otp'];
+        }else{
+            $otp = "error_otp";
+            echo "<script>Swal.fire({position: 'center',
+                icon: 'error',
+                title: 'On ne peux pas traiter votre demande',
+                showConfirmButton: true}).then((result) => {
+                    if (result.isConfirmed) {
+            Swal.fire(
+                    window.open('./verification.php','_self')
+                    )
+                        }else{
+            window.open('./verification.php','_self')
+        }
+    });
+                </script>";
+        }
+
+        if(isset($_SESSION['mail'])){
+            $email = $_SESSION['mail'];
+        }else{
+            $email = "error_email";
+            echo "<script>Swal.fire({position: 'center',
+                icon: 'error',
+                title: 'On ne peux pas traiter votre demande',
+                showConfirmButton: true}).then((result) => {
+                    if (result.isConfirmed) {
+            Swal.fire(
+                    window.open('./verification.php','_self')
+                    )
+                        }else{
+            window.open('./verification.php','_self')
+        }
+    });
+                </script>";
+        }
+
+        if(isset($_POST['otp_code'])){
+            $otp_code = $_POST['otp_code'];
+        }else{
+            $otp_code = "error_otp_code";
+        }
+        
+ 
+
+        if($otp_code == 'error_otp_code'){
+            echo "<script>Swal.fire({position: 'center',
+                icon: 'error',
+                title: 'Entrer un code',
+                showConfirmButton: true});
+                </script>";
+        }
+
 
         if($otp != $otp_code){
 
@@ -79,7 +131,7 @@
             $modifier_utilisateur = "UPDATE utilisateurs SET verifie=:verifie WHERE email_utilisateur=:email_utilisateur";
             $modifier= $con->prepare($modifier_utilisateur);
             $modifier->execute(array('verifie' => 1,'email_utilisateur' => $email));
-            session_destroy();
+            
            
 
             echo "<script>Swal.fire({position: 'center',

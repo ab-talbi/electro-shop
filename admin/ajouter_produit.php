@@ -1,5 +1,15 @@
 <?php
 
+if(!isset($_GET['ajouter_produit'])){
+  header('Location: ../index.php');
+}
+
+
+?>
+
+
+<?php
+
     require_once('../includes/connect.php');
 
     if(isset($_POST['ajouter_produit_btn'])){

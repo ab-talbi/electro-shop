@@ -1,7 +1,7 @@
 <?php
-    // if(isset($_SESSION['nom_utilisateur'])){
-    //     echo "<script>window.open('/Electro-Shop/index.php','_self')</script>";
-    // }
+     if(!isset($_GET['liste_promos'])){
+      header('Location: ../index.php');
+  }
     require_once('../includes/connect.php');
 ?>
 <h2 class="text-center text-success my-4">Les Promos</h2>

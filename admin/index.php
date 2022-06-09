@@ -3,7 +3,7 @@
 	include('../includes/connect.php');
 	include('../fonctions/fonctions.php');
 	session_start();
-	if(!isset($_SESSION['nom_utilisateur'])){
+	if(!isset($_SESSION['admin'])){
 		header("Location: login.php");
 	}
 
@@ -40,7 +40,7 @@
 			</label>
 			<input type="checkbox" id="checkbox">
 		</h2>
-		<a href="" class="nav-link">Bienvenue <?php echo $_SESSION['nom_utilisateur']?></a>
+		<a href="" class="nav-link">Bienvenue <?php echo $_SESSION['admin']?></a>
 		<a href='./logout.php' class='nav-link'><i class='fa fa-power-off' aria-hidden='true'></i></a>
 	</header>
 	
@@ -51,13 +51,13 @@
 				<nav class="side-bar" style="margin-top:80px;overflow-y:scroll; height:100%; position:fixed">
 					<div id="user-p">
 						<?php
-							if(isset($_SESSION['id_utilisateur'])){
-								getProfilImage($_SESSION['id_utilisateur']);
+							if(isset($_SESSION['id_admin'])){
+								getProfilImage($_SESSION['id_admin']);
 							}else{
 								getProfilImage(0);
 							}
                 		?>
-						<h4><?php echo $_SESSION['nom_utilisateur']?></h4>
+						<h4><?php echo $_SESSION['admin']?></h4>
 					</div>
 					<ul>
 						<li>
@@ -510,6 +510,12 @@
 					if(isset($_GET['supprimer_promos'])){
 						include('liste_promos.php');
 					}
+
+
+					if(isset($_GET['facture'])){
+                        $_SESSION['facture'] = $_GET['facture'];
+                        echo "<script>window.open('/Electro-Shop/client/facture.php','_self')</script>";
+                    }
 				?>
 
 			</div>

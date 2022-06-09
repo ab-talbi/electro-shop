@@ -4,6 +4,11 @@ require('../fpdf/fpdf.php');
 
 include('../includes/connect.php');
 
+if(!isset($_SESSION['facture'])){
+    header('Location: ./liste_commandes.php');
+}
+
+
 if(isset($_SESSION['facture'])){
     $refference = $_SESSION['facture'];
 

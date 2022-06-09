@@ -1,4 +1,9 @@
 <?php
+
+
+    if(!isset($_GET['supprimer_produit'])){
+        header('Location: ../index.php');
+    }
     require_once('../includes/connect.php');
 
     if(isset($_GET['supprimer_produit'])){

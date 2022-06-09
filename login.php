@@ -15,8 +15,7 @@
     // }
 
     if(isset($_SESSION['nom_utilisateur'])){
-        unset($_SESSION['nom_utilisateur']);
-        echo "<script>window.open('./login.php','_self')</script>";
+        echo "<script>window.open('./index.php','_self')</script>";
     }
     
 
@@ -40,7 +39,7 @@
      <!-- css file -->
      <link rel="stylesheet" href="css/style.css?v=<?php echo time(); ?>">
 
-    <title>Connexion</title>
+    <title>Electro shop - Connexion</title>
     
 </head>
 <body>   
