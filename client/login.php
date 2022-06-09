@@ -64,6 +64,7 @@
                     <div class="text-center">
                         <input name="connexion_submit_btn" type="submit" value="connexion" class="btn btn-success me-1"/>
                         <p class="mt-2 small fw-bold">Vous avez pas déjà un compte? <a href="../registre.php">Créer un compte</a></p>
+                        <p class="mt-2 small fw-bold"><a href="./mot_passe_oublier.php">J'ai oublier le mot de passe</a></p>
                         <p class="mt-2 small fw-bold"><a href="../carte.php">Retour au panier</a></p>
                     </div>
                 </form>
@@ -82,6 +83,8 @@
         $email_utilisateur = htmlspecialchars($_POST['email']);
         $password_utilisateur = htmlspecialchars($_POST['passwd']);
         $adresse_ip = getIPAddress();
+
+        $_SESSION['email_pour_password'] = $email_utilisateur;
 
         $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` WHERE email_utilisateur like '$email_utilisateur'");
         $rows = $select_utilisateur->rowCount();

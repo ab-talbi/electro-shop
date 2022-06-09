@@ -923,4 +923,77 @@
     }
 
 
+
+
+    function getNewPassword(){
+        global $con;
+        $email = $_SESSION['mail'];
+
+        echo '<form class="mt-5 w-50 m-auto" action="" method="post">
+
+        <!-- passsword -->
+        <div class="form-outline mb-4">
+            <label for="idpasswd" class="form-label w-50 m-auto">Mot de passe </label>
+            <input type="password" name="passwd" id="idpasswd" class="form-control w-50 m-auto" placeholder="Saisir le nouveau Mot de passe" autocomplete="off"/>
+        </div>
+
+        <!-- confermer passsword -->
+        <div class="form-outline mb-4">
+            <label for="idconfPass" class="form-label w-50 m-auto">Confirmer le mot de passe </label>
+            <input type="password" name="confPass" id="idconfPass" class="w-50 m-auto form-control" placeholder="Confiremer votre mot de passe" autocomplete="off"/>
+        </div>
+
+        
+        <div class="text-center w-50 m-auto">
+            <input name="enregistrer_mot_passe" type="submit" value="Enregistrer Le mot de passe" class="btn btn-success me-1 m-auto"/>
+            
+        </div>
+        </form>';
+
+        if(isset($_POST['enregistrer_mot_passe'])){
+            $password_utilisateur = htmlspecialchars($_POST['passwd']);
+            $password_utilisateur_hash = password_hash($password_utilisateur,PASSWORD_DEFAULT);
+            $password_utilisateur_verification = htmlspecialchars($_POST['confPass']);
+
+            if($password_utilisateur != $password_utilisateur_verification){
+                echo "<script>Swal.fire({position: 'center',
+                    icon: 'error',
+                    title: 'Verifier mot de passe',
+                    showConfirmButton: true});
+                    </script>";
+            }else{
+                $modifier_utilisateur = "UPDATE utilisateurs SET mot_passe_utilisateur=:mot_passe_utilisateur WHERE email_utilisateur=:email_utilisateur";
+
+                $modifier= $con->prepare($modifier_utilisateur);
+
+                $modifier->execute(array(':mot_passe_utilisateur'=> $password_utilisateur_hash,':email_utilisateur'=> $email));
+
+                if($modifier){
+                    echo "<script>Swal.fire({position: 'center',
+                        icon: 'success',
+                        title: 'Votre mot de passe est enregistré avec succes',
+                        showConfirmButton: true}).then((result) => {
+                            if (result.isConfirmed) {
+                              Swal.fire(
+                                window.open('/Electro-Shop/login.php','_self')
+                              )
+                            }
+                            else{
+                                window.open('/Electro-Shop/login.php','_self')
+                            }
+                          });
+                        </script>";
+                }else{
+                    echo 'Le mot de passe nest pas enregistré';
+                }
+
+                
+            }
+        }
+
+
+
+    }
+
+
 ?>
