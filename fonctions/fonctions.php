@@ -789,7 +789,6 @@
                 <tr class="text-center">
                 <th scope="col">#</th>
                 <th scope="col">Réferrence</th>
-                <th scope="col">Nombre de Produits</th>
                 <th scope="col">Total Avant Remise (MAD)</th>
                 <th scope="col">Remise</th>
                 <th scope="col">Total Apres Remise (MAD)</th>
@@ -798,6 +797,7 @@
                 <th scope="col">Mode Paiement</th>
                 <th scope="col">Impr</th>
                 <th scope="col">Suppr</th>
+                <th scope="col">Signaler un problème</th>
                 </tr>
             </thead>
             <tbody class="bg-light">
@@ -808,7 +808,11 @@
                 $id_utilisateur = $prod->id_utilisateur;
                 $select_utilisateur = $con->query("SELECT * FROM `utilisateurs` where id_utilisateur = '$id_utilisateur'");
 
-                $email_utilisateur = ($select_utilisateur->fetch(PDO::FETCH_OBJ))->email_utilisateur;
+                while($utili = $select_utilisateur->fetch(PDO::FETCH_OBJ) ){
+
+                    $email_utilisateur = $utili->email_utilisateur;
+                    $nom_utilisateur = $utili->nom_utilisateur;
+                }
 
                 $id_commande=$prod->id_commande;
 
@@ -832,7 +836,6 @@
                 <tr>
                 <th scope='row'>$compteur</th>
                 <td>$random_cmd</td>
-                <td>$nombre_produits</td>
                 <td>$a_payer</td>
                 <td>$remise</td>
                 <td>$total_a_payer</td>
@@ -843,6 +846,8 @@
             <td><button value='index.php?supprimer_commande=$id_commande' 
                 type='button' class='fa-solid fa-trash-can btn confirme' data-bs-toggle='modal' 
                 data-bs-target='#exampleModal'></button></td>
+            
+            <td><a href='mailto:$email_utilisateur?subject=Un Problème sur votre commande de referrence $random_cmd&body=M/Mme $nom_utilisateur, Essayer de modifier votre compte, car votre adresse n est pas complet, pour qu on puisse vous envoyer les produits demandes. Cordialement, Equipe ElectroShop 2021-2022 Fstg - Marrakech'><button type='button' class='fa-solid fa-envelope btn'></button></a></td>
             </tr> ";
                 
                 $compteur++;          
