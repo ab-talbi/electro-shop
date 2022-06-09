@@ -3,14 +3,19 @@
     include('includes/connect.php');
     include('fonctions/fonctions.php');
     @session_start();
-    if(isset($_SESSION['otp']) and isset($_SESSION['mail'])){
-        $code = $_SESSION['otp'];
-        $mail = $_SESSION['mail'];
-        $_SESSION['otp'] = $code;
-        $_SESSION['mail'] = $mail;
+    // if(isset($_SESSION['otp']) and isset($_SESSION['mail'])){
+    //     $code = $_SESSION['otp'];
+    //     $mail = $_SESSION['mail'];
+    //     $_SESSION['otp'] = $code;
+    //     $_SESSION['mail'] = $mail;
 
-    }elseif($_SESSION){
-        session_destroy();
+    // }elseif($_SESSION){
+    //     session_destroy();
+    //     echo "<script>window.open('./login.php','_self')</script>";
+    // }
+
+    if(isset($_SESSION['nom_utilisateur'])){
+        unset($_SESSION['nom_utilisateur']);
         echo "<script>window.open('./login.php','_self')</script>";
     }
     
@@ -152,6 +157,7 @@
                     $tot = $tot + $prix_total_produit;
                 }
             }
+
         }
 
 

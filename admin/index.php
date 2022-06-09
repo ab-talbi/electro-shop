@@ -105,7 +105,7 @@
 						<li>
 							<a href="./index.php?liste_utilisateurs">
 								<i class="fa-solid fa-users" aria-hidden="true"></i>
-								<span>Les Utilisateurs</span>
+								<span>Les Clients</span>
 							</a>
 						</li>
 						<li>
@@ -115,9 +115,9 @@
 							</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="index.php?liste_promos">
 								<i class="fa fa-cog" aria-hidden="true"></i>
-								<span>Modifier vos Données</span>
+								<span>Promos</span>
 							</a>
 						</li>
 						<li>
@@ -495,6 +495,20 @@
 
 					if(isset($_GET['supprimer_utilisateur'])){
 					include('supprimer_utilisateur.php');
+					}
+				?>
+
+				<!-- espace pour les promos -->
+				<?php
+
+					if(isset($_GET['liste_promos'])){
+						include('liste_promos.php');
+					}
+					if(isset($_GET['modifier_promos'])){
+						include('modifier_promos.php');
+					}
+					if(isset($_GET['supprimer_promos'])){
+						include('liste_promos.php');
 					}
 				?>
 

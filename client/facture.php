@@ -174,7 +174,8 @@ $tab_address = explode(" ", $adresse_utilisateur);
 for($i=0;$i<count($tab_address);$i++){
     // Décalage à droite
     $pdf->cell(112);
-    $pdf->cell(0,7,$tab_address[$i]." ".$tab_address[$i+1]." ".$tab_address[$i+2]." ".$tab_address[$i+3],0,0,'');
+    // $pdf->cell(0,7,$tab_address[$i]." ".$tab_address[$i+1]." ".$tab_address[$i+2]." ".$tab_address[$i+3],0,0,'');
+    $pdf->cell(0,7,utf8_decode($adresse_utilisateur),0,0,'');
     // Saut de ligne
     $pdf->Ln(6);
     $i=$i+3;
@@ -199,7 +200,7 @@ $pdf->Ln(10);
 
 for($i=0;$i<count($carte_backup_details);$i++){
 
-    $pdf->cell(80,10,$carte_backup_details[$i][0],'LBR',0,'C');
+    $pdf->cell(80,10,utf8_decode($carte_backup_details[$i][0]),'LBR',0,'C');
 
     $pdf->cell(40,10,$carte_backup_details[$i][1],'BR',0,'C');
 
@@ -242,7 +243,7 @@ $pdf->Cell(30,10,'Mode Paeiment: ',0,0,'C');
 $pdf->Ln(10);
 // Police Arial gras 15
 $pdf->SetFont('Times','I',12);
-$pdf->Cell(30,10,$status_commande,0,0,'C');
+$pdf->Cell(30,10,utf8_decode($status_commande),0,0,'C');
 
 
 // Positionnement à 6 cm du bas
@@ -250,7 +251,7 @@ $pdf->SetY(-50);
 // Décalage à droite
 $pdf->Cell(140);
 //signature
-$pdf->Cell(30,10,'M/Mme.'.$nom_utilisateur.' '.$prenom_utilisateur,0,0,'C');
+$pdf->Cell(30,10,'M/Mme.'.utf8_decode($nom_utilisateur).' '.utf8_decode($prenom_utilisateur),0,0,'C');
 
 $pdf->Output();
 ?>

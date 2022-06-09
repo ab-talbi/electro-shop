@@ -93,7 +93,7 @@
                             <a href='#' class='nav-link text-light'><h4>Les Marques</h4></a>
                         </li>";
             while($ligne = $select_marques->fetch(PDO::FETCH_OBJ)){
-                echo "<li class='nav-item'><a href='".$url."marque=$ligne->id_marque' class='nav-link text-light'>$ligne->nom_marque</a></li>";
+                echo "<li class='nav-item'><a href='".$url."&marque=$ligne->id_marque' class='nav-link text-light'>$ligne->nom_marque</a></li>";
             }
             echo "
             </ul>
@@ -176,7 +176,7 @@
                     <img src='/Electro-Shop/admin/produits_images/$ligne->produit_image1' class='card-img-top' alt='$ligne->nom_produit'>
                     <div class='card-body'>
                     <h5 class='card-title'>$ligne->nom_produit</h5>
-                    <p class='card-text'>$ligne->description_produit</p>
+                    <p class='card-text to-limit'>$ligne->description_produit</p>
                     <p class='card-text'>Prix : $ligne->prix_produit MAD</p>
                     <a href='/Electro-Shop/index.php?ajouter_produit_carte=$ligne->id_produit' class='btn btn-primary'>Ajouter</a>
                     <a href='/Electro-Shop/index.php?voir_details&id_produit=$ligne->id_produit' class='btn btn-secondary'>Voir les détails</a>
@@ -694,7 +694,7 @@
         if($rows>0){
             echo '
             <table class="table mt-5">
-            <thead class="bg-success">
+            <thead class="bg-success text-light">
                 <tr class="text-center">
                     <th>#ID</th>
                     <th>NOM</th>
@@ -753,7 +753,7 @@
             echo '
             <h2 class="text-center text-success my-4">Tous les commandes</h2>
             <table class="table mt-5">
-            <thead class="bg-success">
+            <thead class="bg-success text-light">
                 <tr class="text-center">
                     <th>#</th>
                     <th>Réfference</th>
@@ -821,12 +821,12 @@
 
     function afficherTousUtilisateurs(){
         global $con;
-        $select_utilisateurs = $con->query("SELECT * FROM `utilisateurs`");
+        $select_utilisateurs = $con->query("SELECT * FROM `utilisateurs` where role = 0");
         $rows = $select_utilisateurs->rowCount();
         if($rows>0){
             echo '
             <table class="table mt-5">
-            <thead class="bg-success">
+            <thead class="bg-success text-light">
                 <tr class="text-center">
                     <th>#</th>
                     <th>Image</th>
@@ -875,7 +875,7 @@
             </table>
             ";
         }else{
-            echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>Pas d'etulisateurs</strong></h2>
+            echo "<div class='text-center' style='margin-bottom:60px;margin-top:60px'><h2 style='color:red;' class=' text-center'><strong>Pas de Clients</strong></h2>
             </div>";
         }
     }

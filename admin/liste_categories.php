@@ -5,7 +5,7 @@
 <h2 class="text-center text-success my-4">Tous les categories</h2>
 
 <table class="table mt-5">
-    <thead class="bg-success">
+    <thead class="bg-success text-light">
         <tr class="text-center">
             <th>#</th>
             <th>Nom de categorie</th>
@@ -27,7 +27,13 @@
             <td><button value="index.php?supprimer_categorie=<?php echo $ligne->id_categorie; ?>" 
             type="button" class=" fa-solid fa-trash btn text-black confirme" data-bs-toggle="modal" data-bs-target="#exampleModal">
             </button></td>
+<<<<<<< HEAD
             
+=======
+            <!-- <td><button value="index.php?supprimer_categorie=<?php echo $ligne->id_categorie; ?>"
+                        type='button' class='fa-solid fa-trash-can btn text-black confirme' data-bs-toggle='modal' data-bs-target='#exampleModal'></button>
+            </td> -->
+>>>>>>> 0acfc33cc49a2b461b2d5e751c0548d8fe6abbe6
         </tr>
         <?php
             $number++;

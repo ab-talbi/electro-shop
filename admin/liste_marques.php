@@ -5,7 +5,7 @@
 <h2 class="text-center text-success my-4">Tous les marques</h2>
 
 <table class="table mt-5">
-    <thead class="bg-success">
+    <thead class="bg-success text-light">
         <tr class="text-center">
             <th>#</th>
             <th>Nom de marque</th>
