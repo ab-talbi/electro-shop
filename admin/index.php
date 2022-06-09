@@ -242,7 +242,7 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="detail">
-											<i class="fa-solid detail-subtitle">Catrgories</i>
+											<i class="fa-solid detail-subtitle">Marques</i><br/>
                                                 <span class="number"><?php
 									getStatistique("marques");
 								?></span>
@@ -271,9 +271,9 @@
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="detail">
-                                                <i class="fa-solid detail-subtitle">Catrgories</i>
+                                                <i class="fa-solid detail-subtitle">Categories</i>
                                                 <span class="number"><?php
-									getStatistique("marques");
+									getStatistique("categories");
 								?></span>
                                             </div>
                                         </div>
@@ -295,7 +295,7 @@
                                     <div class="row pt-2">
                                         <div class="dfd text-center">
                                             MAD
-                                            <h4 class="mb-0"><?php getCA();?></h4>
+                                            <h4 class="mb-0">+<?php getCA();?></h4>
                                             <p class="fa-solid text-muted">TOTAL DES VENTES</p>
                                         </div>
                                     </div>

@@ -14,6 +14,7 @@
         $produit_image4 = $data['produit_image4'];
         $produit_image5 = $data['produit_image5'];
         $prix_produit = $data['prix_produit'];
+        $stock = $data['stock'];
         $id_categorie = $data['id_categorie'];
         $id_marque = $data['id_marque'];
 
@@ -37,33 +38,33 @@
 
 <form class="w-50 m-auto" action="" method="post" enctype="multipart/form-data">
         <div class="form-outline mb-4" style="width:100%">
-            <label for="nom_produit" class="form-label">Nom Produit </label>
+            <label for="nom_produit" class="form-label">Nom Produit <span style="color:red">*</span></label>
             <input type="text" name="nom_produit" id="nom_produit" class="form-control w-100" value="<?php echo $nom_produit ?>">
         </div>
         <div class="form-outline mb-4">
-            <label for="description_produit" class="form-label">Description </label>
+            <label for="description_produit" class="form-label">Description <span style="color:red">*</span></label>
             <input type="text" name="description_produit" id="description_produit" class="form-control w-100" value="<?php echo $description_produit ?>">
         </div>
         <div class="form-outline mb-4">
-            <label for="mots_cles" class="form-label">Mots Cles</label>
+            <label for="mots_cles" class="form-label">Mots Cles <span style="color:red">*</span></label>
             <input type="text" name="mots_cles" id="mots_cles" class="form-control w-100" value="<?php echo $mots_cles ?>">
         </div>
         <div class="form-outline mb-4">
-            <label for="categorie" class="form-label">Catégorie</label>
+            <label for="categorie" class="form-label">Catégorie <span style="color:red">*</span></label>
             <select name="categorie" id="categorie" class="form-select">
                 <option value="<?php echo $id_categorie; ?>"><?php echo $nom_categorie; ?></option>
                 <?php getCategoriesAdminSelect(); ?>
             </select>
         </div>
         <div class="form-outline mb-4">
-            <label for="marque" class="form-label">Marque</label>
+            <label for="marque" class="form-label">Marque <span style="color:red">*</span></label>
             <select name="marque" id="marque" class="form-select">
                 <option value="<?php echo $id_marque; ?>"><?php echo $nom_marque; ?></option>
                 <?php getMarquesAdminSelect(); ?>
             </select>
         </div>
         <div class="form-outline mb-4">
-            <label for="produit_image1">Image 1</label>
+            <label for="produit_image1">Image 1 <span style="color:red">*</span></label>
             <div class="d-flex">
                 <input type="file" name="produit_image1" id="produit_image1" class="form-control <?php if($produit_image1 != '') echo "w-90"; else echo "w-100"; ?> m-auto" value="">
                 <?php if($produit_image1 != '') echo "<img src='./produits_images/$produit_image1' style='width:100px'>";?>
@@ -99,8 +100,12 @@
             </div>
         </div>
         <div class="form-outline mb-4">
-            <label for="prix_produit">Prix </label>
-            <input type="text" name="prix_produit" id="prix_produit" class="form-control w-100" value="<?php echo $prix_produit ?>">
+            <label for="stock">Quantité stocké <span style="color:red">*</span></label>
+            <input type="number" name="stock" id="stock" class="form-control" value="<?php echo $stock ?>">
+        </div>
+        <div class="form-outline mb-4">
+            <label for="prix_produit">Prix <span style="color:red">*</span></label>
+            <input type="text" name="prix_produit" id="prix_produit" class="form-control" value="<?php echo $prix_produit ?>">
         </div>
         <div class="form-outline mb-2">
             <input type="submit" name="modifier_btn_produit" class="btn btn-primary form-control w-100 m-auto" value="Modifier">
@@ -120,11 +125,12 @@ if(isset($_POST['modifier_btn_produit'])){
     $description_produit = htmlspecialchars($_POST['description_produit']);
     $mots_cles = htmlspecialchars($_POST['mots_cles']);
     $prix_produit = htmlspecialchars($_POST['prix_produit']);
+    $stock = htmlspecialchars($_POST['stock']);
     $id_categorie = htmlspecialchars($_POST['categorie']);
     $id_marque = htmlspecialchars($_POST['marque']);
 
     $not_go = 1;
-    if($nom_produit == '' or $description_produit == '' or $mots_cles == '' or $prix_produit == '' or $id_categorie == '' or $id_marque == '' or $id_categorie == 0 or $id_marque == 0){
+    if($nom_produit == '' or $description_produit == '' or $mots_cles == '' or $prix_produit == '' or $stock == '' or $id_categorie == '' or $id_marque == '' or $id_categorie == 0 or $id_marque == 0){
         $not_go = 0;
     }
 
@@ -187,17 +193,26 @@ if(isset($_POST['modifier_btn_produit'])){
 
     
     if($not_go != 0){
+        if($stock <= 0){
+            $status_produit = "pas disponible";
+        }else{
+            $status_produit = "disponible";
+        }
         $update_data_produits = $con->prepare("UPDATE produits SET nom_produit=:nom_produit,
         description_produit=:description_produit,
         mots_cles=:mots_cles,
+        status_produit=:status_produit,
         prix_produit=:prix_produit,
+        stock=:stock,
         id_categorie=:id_categorie,
         id_marque=:id_marque WHERE id_produit=:id_produit
         ")->execute(array(
                         ":nom_produit"=>$nom_produit,
                         ":description_produit"=>$description_produit,
                         ":mots_cles"=>$mots_cles,
+                        ":status_produit"=>$status_produit,
                         ":prix_produit"=>$prix_produit,
+                        ":stock"=>$stock,
                         ":id_categorie"=>$id_categorie,
                         ":id_marque"=>$id_marque,
                         ":id_produit"=>$id_produit));

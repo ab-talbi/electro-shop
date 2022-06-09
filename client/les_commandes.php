@@ -68,6 +68,55 @@ if(isset($_GET['id_utilisateur']) and (string)$id_utilisateur == $_GET['id_utili
 
     
 
+    $select_carte = $con->query("SELECT * FROM `carte`");
+
+    $rows = $select_carte->rowCount();
+    if($rows>0){
+        while($ligne = $select_carte->fetch(PDO::FETCH_OBJ)){
+            $id_produit = $ligne->id_produit; 
+            $quantite = $ligne->quantite;
+
+
+            //modifier le stock du produits
+            $select_stock = $con->prepare('SELECT nom_produit, stock FROM produits WHERE id_produit = ?');
+            $select_stock->execute(array($id_produit));
+            $stock = $select_stock->fetch();
+            $q_stock = $stock['stock'];
+            $nom_produit = $stock['nom_produit'];
+
+            if($q_stock >= $quantite){
+                $new_stock = $q_stock - $quantite;
+                if($new_stock <= 0){
+                    $status_produit = "pas disponible";
+                }else{
+                    $status_produit = "disponible";
+                }
+                $select_stock = $con->prepare('UPDATE produits SET stock=:stock, status_produit=:status_produit WHERE id_produit = :id_produit');
+                $select_stock->execute(array(":stock"=>$new_stock,
+                                             ":status_produit"=>$status_produit, 
+                                             ":id_produit"=>$id_produit));
+            }else{
+                echo "
+                    <script>
+                        alert('une categorie à étè supprimer');
+                
+                        window.open('../carte.php','_self');
+                </script>";
+                exit();
+            }
+            
+
+            
+            $insert_carte_backup = $con->prepare('INSERT INTO carte_backup(id_carte_commande,id_produit,quantite) VALUES(:id_carte_commande,:id_produit,:quantite)');
+            $insert_carte_backup->execute(array(":id_carte_commande"=>$random_cmd,":id_produit"=>$id_produit,":quantite"=>$quantite));
+            
+
+
+        }
+    }
+
+
+
     $insert_commande = $con->prepare('INSERT INTO commande(id_utilisateur,a_payer,random_cmd,nombre_produits,status_commande,remise,total_a_payer) VALUES(:id_utilisateur,:a_payer,:random_cmd,:nombre_produits,:status_commande,:remise,:total_a_payer)');
     $insert_commande->execute(array(":id_utilisateur"=>$id_utilisateur,":a_payer"=>$prix_total,":random_cmd"=>$random_cmd,":nombre_produits"=>$nombre_produits,":status_commande"=>$status_commande,":remise"=>$pourcentage_remise,":total_a_payer"=>$total_a_payer));
     if($insert_commande){
@@ -108,18 +157,6 @@ if(isset($_GET['id_utilisateur']) and (string)$id_utilisateur == $_GET['id_utili
         echo 'Oops erreur insertion';
     }
 
-    $select_carte = $con->query("SELECT * FROM `carte`");
-
-    $rows = $select_carte->rowCount();
-    if($rows>0){
-        while($ligne = $select_carte->fetch(PDO::FETCH_OBJ)){
-            $id_produit = $ligne->id_produit; 
-            $quantite = $ligne->quantite;
-
-            $insert_carte_backup = $con->prepare('INSERT INTO carte_backup(id_carte_commande,id_produit,quantite) VALUES(:id_carte_commande,:id_produit,:quantite)');
-            $insert_carte_backup->execute(array(":id_carte_commande"=>$random_cmd,":id_produit"=>$id_produit,":quantite"=>$quantite));
-        }
-    }
 
     
     $supp = $con->prepare("DELETE FROM carte WHERE adresse_ip like '$adresse_ip'")->execute();
