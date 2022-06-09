@@ -894,7 +894,7 @@
         }elseif($table == "categories"){
             $select_table = $con->prepare("SELECT * FROM categories ");
         }elseif($table == "utilisateurs"){
-            $select_table = $con->prepare("SELECT * FROM utilisateurs ");
+            $select_table = $con->prepare("SELECT * FROM utilisateurs WHERE role != 1");
         }
         $select_table->execute(array());
         $rows = $select_table->rowcount();
@@ -912,7 +912,7 @@
         $rows = $select_total->rowcount();
         $data = $select_total->fetch();
         if($rows > 0){
-            echo $data['total'];
+            echo number_format($data['total'],2);
         }else{
             echo '0';
         }
