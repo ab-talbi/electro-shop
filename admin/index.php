@@ -116,7 +116,7 @@
 						</li>
 						<li>
 							<a href="index.php?liste_promos">
-								<i class="fa fa-cog" aria-hidden="true"></i>
+								<i class="fa fa-percent" aria-hidden="true"></i>
 								<span>Promos</span>
 							</a>
 						</li>
