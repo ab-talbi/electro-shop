@@ -37,7 +37,7 @@
         </div>
         <div class="form-outline mb-4">
             <label for="email_utilisateur">Email </label>
-            <fieldset class="form-control w-100" name="email_utilisateur" id="email_utilisateur"><?php echo $email_utilisateur ?></fieldset>
+            <p class="form-control w-100" name="email_utilisateur" id="email_utilisateur"><?php echo $email_utilisateur ?></p>
             <!-- <input type="email" name="email_utilisateur" id="email_utilisateur" class="form-control w-100" value="<?php echo $email_utilisateur ?>"> -->
         </div>
         <div class="form-outline mb-4">
@@ -55,7 +55,7 @@
     if(isset($_POST['modifier_btn'])){
         $nom_utilisateur = htmlspecialchars($_POST['nom_utilisateur']);
         $prenom_utilisateur = htmlspecialchars($_POST['prenom_utilisateur']);
-        $email_utilisateur = htmlspecialchars($_POST['email_utilisateur']);
+        //$email_utilisateur = htmlspecialchars($_POST['email_utilisateur']);
         $adresse_utilisateur = htmlspecialchars($_POST['adresse_utilisateur']);
         $tel_utilisateur = htmlspecialchars($_POST['tel_utilisateur']);
         $id_utilisateur = $_SESSION['id_utilisateur'];
@@ -63,23 +63,23 @@
         //verification d'email
         $select_users = $con->prepare("SELECT * FROM utilisateurs");
         $select_users->execute();
-        $exsiste = false;
-        if($select_users->rowCount() > 0){
-            while($ligne = $select_users->fetch()){
-                if($email_utilisateur == $ligne['email_utilisateur'] && $id_utilisateur != $ligne['id_utilisateur']){
-                    $exsiste = true;
-            }
-        }
-        }
-            if($exsiste){
-                echo "
-                <script>
-                    Swal.fire({position: 'center',
-                        icon: 'error',
-                        title: 'Ce email utilisé déjà avec un auter compte',
-                        showConfirmButton: true});  
-                </script>";                    
-            }else{
+        // $exsiste = false;
+        // if($select_users->rowCount() > 0){
+        //     while($ligne = $select_users->fetch()){
+        //         if($email_utilisateur == $ligne['email_utilisateur'] && $id_utilisateur != $ligne['id_utilisateur']){
+        //             $exsiste = true;
+        //     }
+        // }
+        // }
+        //     if($exsiste){
+        //         echo "
+        //         <script>
+        //             Swal.fire({position: 'center',
+        //                 icon: 'error',
+        //                 title: 'Ce email utilisé déjà avec un auter compte',
+        //                 showConfirmButton: true});  
+        //         </script>";                    
+        //     }else{
                 if($_FILES['image_utilisateur']['name'] == ""){
                     $image_utilisateur_up = $image_utilisateur;
                 }else{
@@ -116,7 +116,7 @@
                             window.open('./profile.php?modifier_compte','_self'));
                     </script>";
                 }
-            }
+            //}
         
 
 
