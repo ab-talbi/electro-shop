@@ -5,10 +5,126 @@
     include('fonctions/fonctions.php');
 
     session_start();
+    if(!isset($_SESSION['values'])){
+        $_SESSION['values']['nom']='';
+        $_SESSION['values']['prenom']='';
+        $_SESSION['values']['email']='';
+        $_SESSION['values']['passwd']='';
+        $_SESSION['values']['confPass']='';
+        $_SESSION['values']['adresse']='';
+        $_SESSION['values']['tel']='';
+    }
+    if(!isset($_SESSION['erreurs'])){
+        $_SESSION['erreurs']['nom']='';
+        $_SESSION['erreurs']['prenom']='';
+        $_SESSION['erreurs']['email']='';
+        $_SESSION['erreurs']['passwd']='';
+        $_SESSION['erreurs']['confPass']='';
+        $_SESSION['erreurs']['adresse']='';
+        $_SESSION['erreurs']['tel']='';
+    }
           
     if(isset($_SESSION['nom_utilisateur'])){
         echo "<script>window.open('./index.php','_self')</script>";
     }
+
+if(isset($_POST['register_utilisateur'])){
+    $iserreur=0;//pas d'erreurs
+    // verifacation de nom
+    $nomER='#[a-zA-Z]{0,5}[ -]?[a-zA-Z]{3,10}#';
+     if(!preg_match($nomER,$_POST['nom'])){
+         $_SESSION['erreurs']['nom']=' invalid';
+         $_SESSION['erreurs']['nomMsg'] = "le nom pas valide !";
+         $iserreur=1;//il y a des erreurs dons le nom
+     }else{
+        $_SESSION['erreurs']['nom']=' valid';
+        unset($_SESSION['erreurs']['nomMsg']);
+     }
+    
+      // verifacation de nom
+     $prenomER='#[a-zA-Z]{3,7}#';
+     if(!preg_match($prenomER,$_POST['prenom'])){
+        $_SESSION['erreurs']['prenomMsg'] = "le prenom pas valide !"; 
+        $_SESSION['erreurs']['prenom']=' invalid';
+         $iserreur=1;
+     }else{
+        $_SESSION['erreurs']['prenom']=' valid';
+        unset($_SESSION['erreurs']['prenomMsg']);
+     }
+    
+      // verifacation de pseudo
+      $pseudoER='#[a-zA-Z1-9, -]{15,30}#';
+      if(!preg_match($pseudoER,$_POST['adresse'])){
+         $_SESSION['erreurs']['adresse']=' invalid';
+         $_SESSION['erreurs']['adresseMsg'] = "l'adresse pas valide !";
+         $iserreur=1;
+      }else{
+        $_SESSION['erreurs']['adresse']=' valid';
+        unset($_SESSION['erreurs']['adresse']);
+     }
+    
+      // verification d'email
+      $emailER='#(^([a-zA-Z]){1,20}[@]{1}([a-zA-Z]){1,20}[.]{1}([a-zA-Z1-9]){1,20}){1,3}$#';
+      if(!preg_match($emailER,$_POST['email'])){
+         $_SESSION['erreurs']['email']=' invalid';
+         $_SESSION['erreurs']['emailMsg'] = "l'email pas valide !";
+         $iserreur=1;
+      }else{
+        $_SESSION['erreurs']['email']=' valid';
+        unset($_SESSION['erreurs']['email']);
+     }
+     //verification du mot de passe    '#([a-zA-Z]){1,8}[@%&*+., -]{1}#'
+     //  $passeER = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/';//makhdamch
+     //  if(!preg_match($passeER,$_POST['passwd'])){
+     //     $_SESSION['erreurs']['passwd']='invalid';
+     //     $_SESSION['erreurs']['confPass']='invalid';
+     //     $iserreur=1;
+     //  }
+    
+     if(empty(trim($_POST['passwd']))){
+         $_SESSION['erreurs']['passwdMsg'] = "Donnez un mot de passe svp."; 
+         $_SESSION['erreurs']['passwd']=' invalid';
+         $_SESSION['erreurs']['confPass']=' invalid';
+         $iserreur=1;    
+     } elseif(strlen(trim($_POST['passwd'])) < 8){
+         $_SESSION['erreurs']['passwdMsg'] = "Le mot de passe faut cintient au moin 8 caractèrs.";
+         $_SESSION['erreurs']['passwd']=' invalid';
+         $_SESSION['erreurs']['confPass']=' invalid';
+         $iserreur=1;
+     } elseif(preg_match("/^(?=[a-zA-Z0-9]{8,})(?=[a-zA-Z]*[0-9][a-zA-Z]*$)[a-zA-Z0-9]+$/", ($_POST['passwd']))) {
+         $_SESSION['erreurs']['passwdMsg'] = "Le mot de passe faut cintient au moin 8 caractèrs, 1 numbre, une letter majescule et caractère specile";
+         $_SESSION['erreurs']['passwd']=' invalid';
+         $_SESSION['erreurs']['passwd']=' invalid';
+         $iserreur=1;
+     } elseif($_POST['passwd'] != $_POST['confPass']){
+         $_SESSION['erreurs']['passwdMsg'] = "le mot de passe c'est pas le meme";
+         $_SESSION['erreurs']['passwd']=' invalid';
+         $_SESSION['erreurs']['confPass']=' invalid';
+         $iserreur=1;
+     } else{
+         $_SESSION['erreurs']['passwdMsg']= '';
+         $_SESSION['erreurs']['passwd']=' valid';
+         $_SESSION['erreurs']['confPass']=' valid';
+     }
+    
+    
+     if(!preg_match("/^((00|\+)212|0)[567]([. ]?[0-9]{2}){4}$/",$_POST['tel'])){
+         $_SESSION['erreurs']['tel'] =' invalid';
+         $_SESSION['erreurs']['telMsg'] = "le numero de telephone pas valide !";
+         $iserreur=1;
+     }else{
+        $_SESSION['erreurs']['tel'] =' valid';
+        unset($_SESSION['erreurs']['tel']);
+    
+     }
+    
+    
+      foreach ($_POST as $key => $value){
+         $_SESSION['values'][$key]=$value;
+     }
+    
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,20 +189,32 @@
 
                     <!-- Nom -->
                     <div class="form-outline mb-4">
-                        <label for="idnom" class="form-label">Nom </label>
-                        <input type="text" name="nom" id="idnom" class="form-control" placeholder="Votre nom" autocomplete="off" required="required"/>
+                        <label for="idnom" class="form-label">Nom <span style="color:red">*</span></label>
+                        <input type="text" name="nom" id="idnom" class="form-control <?php echo $_SESSION['erreurs']['nom'] ??"";?>"
+                         value="<?php echo $_SESSION['values']['nom'] ??""; ?>" placeholder="Votre nom" autocomplete="off" required="required"/>
+                        <div class="mt-2" style="color:red;"><?php
+                            echo $_SESSION['erreurs']['nomMsg'] ?? "";
+                       ?></div>
                     </div>
 
                     <!-- Prenom -->
                     <div class="form-outline mb-4">
-                        <label for="idprenom" class="form-label">Prenom </label>
-                        <input type="text" name="prenom" id="idprenom" class="form-control" placeholder="Votre prenom" autocomplete="off" required="required"/>
+                        <label for="idprenom" class="form-label">Prenom <span style="color:red">*</span></label>
+                        <input type="text" name="prenom" id="idprenom" class="form-control <?php echo $_SESSION['erreurs']['prenom'] ??"";?>"
+                         value="<?php echo $_SESSION['values']['prenom'] ??""; ?>" placeholder="Votre prenom" autocomplete="off" required="required"/>
+                         <div class="mt-2" style="color:red;"><?php
+                            echo $_SESSION['erreurs']['prenomMsg'] ?? "";
+                       ?></div>
                     </div>
 
                     <!-- Email -->
                     <div class="form-outline mb-4">
-                        <label for="idemail" class="form-label">Email </label>
-                        <input type="email" name="email" id="idemail" class="form-control" placeholder="Votre email valide" autocomplete="off" required="required"/>
+                        <label for="idemail" class="form-label">Email <span style="color:red">*</span></label>
+                        <input type="email" name="email" id="idemail" class="form-control <?php echo $_SESSION['erreurs']['email'] ??"";?>"
+                         value="<?php echo $_SESSION['values']['email'] ??""; ?>" placeholder="Votre email valide" autocomplete="off" required="required"/>
+                         <div class="mt-2" style="color:red;"><?php
+                            echo $_SESSION['erreurs']['emailMsg'] ?? "";
+                       ?></div>
                     </div>
 
                     <!-- image -->
@@ -97,30 +225,43 @@
 
                     <!-- passsword -->
                     <div class="form-outline mb-4">
-                        <label for="idpasswd" class="form-label">Mot de passe </label>
-                        <input type="password" name="passwd" id="idpasswd" class="form-control" placeholder="Mot de passe" autocomplete="off" required="required"/>
+                        <label for="idpasswd" class="form-label">Mot de passe <span style="color:red">*</span></label>
+                        <input type="password" name="passwd" id="idpasswd" class="form-control <?php echo $_SESSION['erreurs']['passwd'] ??"";?>"
+                         value="<?php echo $_SESSION['values']['passwd'] ??""; ?>" placeholder="Mot de passe" autocomplete="off" required="required"/>
                     </div>
 
                     <!-- conferm passsword -->
                     <div class="form-outline mb-4">
-                        <label for="idconfPass" class="form-label">Cnfiremer mot de passe </label>
-                        <input type="password" name="confPass" id="idconfPass" class="form-control" placeholder=" Confiremer votre mot de passe" autocomplete="off" required="required"/>
+                        <label for="idconfPass" class="form-label">Cnfiremer mot de passe <span style="color:red">*</span></label>
+                        <input type="password" name="confPass" id="idconfPass" class="form-control <?php echo $_SESSION['erreurs']['confPass'] ??"";?>"
+                         value="<?php echo $_SESSION['values']['confPass'] ??""; ?>" placeholder=" Confiremer votre mot de passe" autocomplete="off" required="required"/>
+                        <div class="mt-2" style="color:red;"><?php
+                            echo $_SESSION['erreurs']['passwdMsg'] ?? "";
+                       ?></div>
                     </div>
 
                     <!-- Adresse -->
                     <div class="form-outline mb-4">
-                        <label for="idadresse" class="form-label">Adresse </label>
-                        <input type="text" name="adresse" id="idadresse" class="form-control" placeholder="Votre adresse" autocomplete="off" required="required"/>
+                        <label for="idadresse" class="form-label">Adresse <span style="color:red">*</span></label>
+                        <input type="text" name="adresse" id="idadresse" class="form-control <?php echo $_SESSION['erreurs']['adresse'] ??"";?>"
+                         value="<?php echo $_SESSION['values']['adresse'] ??""; ?>" placeholder="Votre adresse" autocomplete="off" required="required"/>
+                         <div class="mt-2" style="color:red;"><?php
+                            echo $_SESSION['erreurs']['adresseMsg'] ?? "";
+                       ?></div>
                     </div>
 
                     <!-- telephon -->
                     <div class="form-outline mb-4">
-                        <label for="idtel" class="form-label">Telephone </label>
-                        <input type="tel" name="tel" id="idtel" class="form-control" placeholder="Votre numero de telephone" autocomplete="off" required="required"/>
+                        <label for="idtel" class="form-label">Telephone <span style="color:red">*</span></label>
+                        <input type="tel" name="tel" id="idtel" class="form-control <?php echo $_SESSION['erreurs']['tel'] ??"";?>"
+                         value="<?php echo $_SESSION['values']['tel'] ??""; ?>" placeholder="Votre numero de telephone" autocomplete="off" required="required"/>
+                         <div class="mt-2" style="color:red;"><?php
+                            echo $_SESSION['erreurs']['telMsg'] ?? "";
+                       ?></div>
                     </div>
                     <div class="text-center">
-                        <input name="register_utilisateur" type="submit" value="envoyer" class="btn btn-success me-1"/>
-                        <input type="reset" value="renitialiser" class="btn btn-warning text-light ms-1">
+                        <input name="register_utilisateur" id="btn" type="submit" value="M'inscrire" class="btn btn-success me-1"/>
+                        <input type="submit" id="reset" formaction="reinitialiser.php" value="Reinitialiser" class="btn btn-warning text-light ms-1">
                         <?php
                                 if(isset($_SESSION['payer'])){
                                     $url = "./client/payer.php";
@@ -154,7 +295,8 @@
 
 <?php
 
-    if(isset($_POST['register_utilisateur'])){
+
+    if(isset($_POST['register_utilisateur']) && $iserreur == 0){
         $nom_utilisateur = htmlspecialchars($_POST['nom']);
         $prenom_utilisateur = htmlspecialchars($_POST['prenom']);
         $email_utilisateur = htmlspecialchars($_POST['email']);
@@ -301,5 +443,5 @@
         }
 
     }
-      
+
 ?>
