@@ -13,8 +13,9 @@ require_once('../includes/connect.php');
     }
 
     if(isset($_POST['Modifier_remise_btn'])){
-        $select = $con->prepare('SELECT * FROM remise WHERE nom_remise = ?');
-        $select->execute(array($_POST['nomRemise']));
+        $new_nom_remise = $_POST['nomRemise'];
+        $select = $con->prepare("SELECT * FROM remise WHERE nom_remise like '$new_nom_remise' and nom_remise not like '$nom_remise'");
+        $select->execute();
         $row = $select->rowCount();
         if($row>0){
             echo "<script>Swal.fire({position: 'center',

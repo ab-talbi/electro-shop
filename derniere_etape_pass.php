@@ -56,10 +56,10 @@ if(isset($_POST['enregistrer_mot_passe'])){
             showConfirmButton: true}).then((result) => {
                 if (result.isConfirmed) {
         Swal.fire(
-                window.open('./mot_passe_code.php','_self')
+                window.open('./mot_passe_oublier_verification.php','_self')
                 )
                     }else{
-        window.open('./mot_passe_code.php','_self')
+        window.open('./mot_passe_oublier_verification.php','_self')
     }
 });
             </script>";
@@ -80,6 +80,11 @@ if(isset($_POST['enregistrer_mot_passe'])){
                 window.open('./login.php','_self')
             }
         });</script>";
+
+        if(isset($_SESSION['otp_code'])){
+            unset($_SESSION['otp_code']);
+        }
+        
 
         
     }

@@ -60,7 +60,7 @@ if(isset($_POST['register_utilisateur'])){
          $iserreur=1;
       }else{
         $_SESSION['erreurs']['adresse']=' valid';
-        unset($_SESSION['erreurs']['adresse']);
+        unset($_SESSION['erreurs']['adresseMsg']);
      }
     
       // verification d'email
@@ -71,7 +71,7 @@ if(isset($_POST['register_utilisateur'])){
          $iserreur=1;
       }else{
         $_SESSION['erreurs']['email']=' valid';
-        unset($_SESSION['erreurs']['email']);
+        unset($_SESSION['erreurs']['emailMsg']);
      }
      //verification du mot de passe    '#([a-zA-Z]){1,8}[@%&*+., -]{1}#'
      //  $passeER = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/';//makhdamch
@@ -114,7 +114,7 @@ if(isset($_POST['register_utilisateur'])){
          $iserreur=1;
      }else{
         $_SESSION['erreurs']['tel'] =' valid';
-        unset($_SESSION['erreurs']['tel']);
+        unset($_SESSION['erreurs']['telMsg']);
     
      }
     
